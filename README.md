@@ -30,3 +30,7 @@
 
   * Write test cases in the tests/ folder
   * Run php bin/phpunit
+  
+  Créer la base de données 
+  
+   * php bin/console doctrine:migrations:migrate
