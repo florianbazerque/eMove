@@ -1,0 +1,268 @@
+
+{% extends "layout/layout.html.twig" %}
+{% block content %}
+
+    <div class="container profile">
+        <div class="row">
+            <div class="col-sm-12 banner">
+                <img title="profile" class="img-circle img-responsive icon" src="src="{{ asset('img/profil.png') }}">
+                <h3>User</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <!--left col-->
+                <ul class="list-group">
+                    <li class="list-group-item text-muted" contenteditable="false">Commandes <i class="fa fa-dashboard fa-1x"></i></li>
+                    <a href="#" class="list-group-item text-right" data="orders"><span class="pull-left"><strong>Vos commmandes</strong></span></a>
+                    <a href="#" class="list-group-item text-right" data="advantage"><span class="pull-left"><strong class="">Vos avantages</strong></span></a>
+                    <a href="#" class="list-group-item text-right" data="favorite"><span class="pull-left"><strong class="">Favoris</strong></span></a>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item text-muted">Paramètre du compte <i class="fa fa-address-card-o" aria-hidden="true"></i></li>
+                    <a href="#" class="list-group-item text-right" data="connexion"><span class="pull-left"><strong class="">Connexion</strong></span></a>
+                    <a href="#" class="list-group-item text-right" data="information"><span class="pull-left"><strong class="">Informations personnelles</strong></span></a>
+                    <a href="#" class="list-group-item text-right" data="plan"><span class="pull-left"><strong class="">Bon Plans</strong></span></a>
+                </ul>
+            </div>
+            <!--/col-3-->
+            <div class="col-sm-9" style="" contenteditable="false">
+                <div class="jumbotron-fluid orders ">
+                    <div class="container">
+                        <h2>Mes dernières commandes</h2>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr class="bg-danger">
+                                <th scope="col">N° Commande</th>
+                                <th scope="col">Vehicule</th>
+                                <th scope="col">Début</th>
+                                <th scope="col">Fin</th>
+                                <th scope="col">Lien</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                                <td>@twitter</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="jumbotron-fluid advantage ">
+                    <div class="container">
+                        <h2>Avantages</h2>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr class="bg-danger">
+                                <th scope="col">N° Commande</th>
+                                <th scope="col">Vehicule</th>
+                                <th scope="col">Début</th>
+                                <th scope="col">Fin</th>
+                                <th scope="col">Lien</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                                <td>@twitter</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="jumbotron-fluid favorite ">
+                    <div class="container">
+                        <h2>Favoris</h2>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr class="bg-danger">
+                                <th scope="col">N° Commande</th>
+                                <th scope="col">Vehicule</th>
+                                <th scope="col">Début</th>
+                                <th scope="col">Fin</th>
+                                <th scope="col">Lien</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                                <td>@twitter</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="jumbotron-fluid connexion ">
+                    <div class="container">
+                        <h2>Paramètres de connexion</h2>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr class="bg-danger">
+                                <th scope="col">N° Commande</th>
+                                <th scope="col">Vehicule</th>
+                                <th scope="col">Début</th>
+                                <th scope="col">Fin</th>
+                                <th scope="col">Lien</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                                <td>@twitter</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="jumbotron-fluid information ">
+                    <div class="container">
+                        <h2>Informations personnelles</h2>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr class="bg-danger">
+                                <th scope="col">N° Commande</th>
+                                <th scope="col">Vehicule</th>
+                                <th scope="col">Début</th>
+                                <th scope="col">Fin</th>
+                                <th scope="col">Lien</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                                <td>@twitter</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="jumbotron-fluid plan ">
+                    <div class="container">
+                        <h2>Bon plans</h2>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr class="bg-danger">
+                                <th scope="col">N° Commande</th>
+                                <th scope="col">Vehicule</th>
+                                <th scope="col">Début</th>
+                                <th scope="col">Fin</th>
+                                <th scope="col">Lien</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                                <td>@twitter</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="push"></div>
+        </div>
+    </div>
+{% endblock %}
