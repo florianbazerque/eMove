@@ -10,17 +10,15 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class IndexController
+class IndexController extends AbstractController
 {
-    /*
+    /**
      *  @Route("/", name="home_page")
      */
-    public function index()
+    public function indexAction()
     {
-        return new Response(
-            '<html><body>Hola quetal</body></html>'
-        );
+        return $this->render('default/index.html.twig');
     }
-
 }
