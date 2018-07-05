@@ -17,8 +17,16 @@ class VehiculeController extends AbstractController
     /**
      *  @Route("/shop", name="shop")
      */
-    public function vehiculeAction()
+    public function listAction()
     {
         return $this->render('default/shop.html.twig');
+    }
+
+    /**
+     *  @Route("/produit", name="produit")
+     */
+    public function vehiculeAction()
+    {
+        return $this->render('default/produit.html.twig');
     }
 }
