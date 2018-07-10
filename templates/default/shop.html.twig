@@ -2,7 +2,6 @@
 {% extends "layout/layout.html.twig" %}
 {% block content %}
 <div class="container-fluid shop">
-
     <div class="row">
         <div class="col-lg-2">
             <h2 class="my-4">Nouveautés</h2>
@@ -71,6 +70,25 @@
             </div>
 
             <div class="row">
+                {% for vehicule in vehicules %}
+                    <p></p>
+                    <div class="col-lg-3 col-md-6 mb-3">
+                        <div class="card h-100">
+                            <a href="produit/{{ vehicule.id }}"><img class="card-img-top" src="{{ asset(vehicule.image) }}" alt=""></a>
+                            <div class="card-header">
+                                <h4><a href="produit/{{ vehicule.id }}">{{ vehicule.modele }}</a></h4>
+                                <p>{{ vehicule.prixachat }} €</p>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ vehicule.numserie }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="">Notes et commentaires </a>
+                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
 
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="card h-100">

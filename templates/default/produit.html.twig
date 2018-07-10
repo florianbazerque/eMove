@@ -12,14 +12,16 @@
                     <div class="collapse" id="vehiculetype">
                         <ul class="list-group">
                             <li class="list-group-item ">
-                                <input type="checkbox" aria-label="Choix"> Choix</li>
+                                <input type="checkbox" aria-label="Choix"> Choix
+                            </li>
                         </ul>
                     </div>
                     <a href="#km" class="list-group-item" data-toggle="collapse" href="#km" role="button" aria-expanded="false" aria-controls="km">Kilometrage</a>
                     <div class="collapse" id="km">
                         <ul class="list-group">
                             <li class="list-group-item ">
-                                <input type="checkbox" aria-label="Choix"> Choix</li>
+                                <input type="checkbox" aria-label="Choix"> Choix
+                            </li>
                         </ul>
                     </div>
                     <a href="#price" class="list-group-item" data-toggle="collapse" href="#price" role="button" aria-expanded="false" aria-controls="price">Prix</a>
@@ -41,13 +43,13 @@
                 <div id="productControl" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <a class="gallery_image" href="{{ asset('img/amg.jpg') }}"><img class="d-block w-100" src="{{ asset('img/amg.jpg') }}" alt=""></a>
+                            <a class="gallery_image" href="{{ asset(vehicule.image) }}"><img class="d-block w-100" src="{{ asset(vehicule.image) }}" alt=""></a>
                         </div>
                         <div class="carousel-item">
-                            <a class="gallery_image" href="{{ asset('img/amg.jpg') }}"><img class="d-block w-100" src="{{ asset('img/amg.jpg') }}" alt=""></a>
+                            <a class="gallery_image" href="{{ asset(vehicule.image) }}"><img class="d-block w-100" src="{{ asset(vehicule.image) }}" alt=""></a>
                         </div>
                         <div class="carousel-item">
-                            <a class="gallery_image" href="{{ asset('img/amg.jpg') }}"><img class="d-block w-100" src="{{ asset('img/amg.jpg') }}" alt=""></a>
+                            <a class="gallery_image" href="{{ asset(vehicule.image) }}"><img class="d-block w-100" src="{{ asset(vehicule.image) }}" alt=""></a>
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#productControl" role="button" data-slide="prev">
@@ -59,9 +61,8 @@
                 </div>
                 <div class="card-body">
                     <a class="btn btn-primary booking" href="#" role="button">Réservation</a>
-                    <h3 class="card-title">Product Name</h3>
-                    <h4>$24.99</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
+                    <h3 class="card-title">{{ vehicule.modele }}</h3>
+                    <h4>{{ vehicule.prixachat }} €</h4>
                     <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                     4.0 stars
                 </div>
@@ -80,32 +81,28 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>Couleur</td>
+                        <td>{{ vehicule.couleur }}</td>
                     </tr>
                     <tr>
-                        <td>Thornton</td>
-                        <td>@fat</td>
+                        <td>Numero de Série</td>
+                        <td>{{ vehicule.numserie }}</td>
                     </tr>
                     <tr>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
+                        <td>Plaque d'immatriculation</td>
+                        <td>{{ vehicule.plaqueimma }}</td>
                     </tr>
                     <tr>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
+                        <td>Nombre de Kilométrage</td>
+                        <td>{{ vehicule.nbkm }}</td>
                     </tr>
                     <tr>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
+                        <td>Date d'achat</td>
+                        <td>{{ vehicule.dateachat|date('Y-m-d') }}</td>
                     </tr>
                     <tr>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    <tr>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
+                        <td>Prix d'achat</td>
+                        <td>{{ vehicule.prixachat }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -139,4 +136,4 @@
         <!-- /.col-lg-9 -->
     </div>
 </div>
-    {% end content %}
+    {% endblock %}
