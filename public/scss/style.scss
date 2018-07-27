@@ -22,6 +22,14 @@ $color1: #6a6a6a;
 $colorlight: #ff9e57;
 $colordark: #e26000;
 
+
+$phone-devices: 320px;
+$small-devices: 576px;
+$medium-devices: 768px;
+$large-devices: 992px;
+$extra-large-devices: 1200px;
+
+
 /****************************************************************/
 /***************************** CSS ******************************/
 /****************************************************************/
@@ -43,10 +51,41 @@ header{
   z-index: 999;
   background: #FFF;
   border-bottom: 4px solid $color;
+  @media screen and (max-width: $medium-devices) {
+    height: 135px;
+  }
+
+  .col-sm-6{
+    @media screen and (max-width: $medium-devices) {
+      left: 0;
+      clear: both;
+      margin-top: 60px;
+      position: absolute;
+      max-width: 100%;
+      padding: 0px 20px;
+    }
+    .col-sm-10{
+      @media screen and (max-width: $medium-devices) {
+        max-width: 90%;
+      }
+    }
+  }
+  .col-sm-4{
+    @media screen and (max-width: $medium-devices) {
+      right: 0;
+      position: absolute;
+    }
+  }
+
   img{
     max-height:80px;
+    @media screen and (max-width: $large-devices) {
+      width: 100px;
+      margin-top: 10px;
+    }
   }
   nav{
+    max-width: 1000px;
     ul{
       float:right;
       list-style: none;
@@ -71,32 +110,63 @@ header{
             color : $color1;
           }
         }
+        a{
+          span{
+            @media screen and (max-width: $large-devices) {
+              display: none;
+            }
+            @media screen and (max-width: $extra-large-devices) {
+              font-size: 20px;
+            }
+          }
+
+        }
         img{
           margin-top: -10px;
           height: 25px;
         }
       }
+
     }
+
+    i{
+      display: none !important;
+      @media screen and (max-width: $large-devices) {
+        display: block !important;
+        font-size: 35px !important;
+        margin: -5px 10px;
+      }
+    }
+    .dropdown-toggle{
+      &:after{
+        @media screen and (max-width: $large-devices) {
+          content: none;
+        }
+      }
+    }
+
     form{
       margin-top: 20px;
-        input[type="text"]{
-          border: 0px;
+      input[type="text"]{
+        border: 0px;
+        color: #212529;
+        border-bottom: 1px solid $color;
+        border-radius: 0px;
+        &:focus{
           color: #212529;
+          outline: none !important;
+          border:0px;
           border-bottom: 1px solid $color;
-          border-radius: 0px;
-          &:focus{    
-            color: #212529;
-            outline: none !important;
-            border:0px;
-            border-bottom: 1px solid $color;
-            box-shadow: 0 0 0px $color;
+          box-shadow: 0 0 0px $color;
         }
       }
       button{
-        margin-top: 8px;
-        font-size: 14px;
+        float: right;
+        position: absolute;
+        margin: 10px 15px;
       }
-    }
+  }
+
     .dropdown-menu.show {
       margin-top: 10px;
       border: 1px solid $color;
@@ -106,7 +176,7 @@ header{
           color: #FFF;
           background: $color;
         }
-        &:click{
+        &:active{
           background: $color;
         }
       }
@@ -203,10 +273,117 @@ header{
 /**************************** SHOP ******************************/
 /****************************************************************/
 .shop{
+  @media screen and (max-width: $medium-devices) {
+    margin-top: 135px;
+  }
 
   h2.my-4{
     padding: 10px;
-  
+  }
+  .col-lg-2{
+    padding-top: 25px;
+
+    .list-group{
+      #km{
+        div{
+          .input-group-prepend{
+            display: inline-block;
+            float: left;
+            width: 16%;
+            min-height: 38px;
+            text-align: center;
+            span{
+              min-height: 38px;
+              font-size: 21px;
+              margin: auto;
+              border: 2px solid $colorlight;
+            }
+          }
+          &:nth-child(2){
+            display: inline-block;
+            text-align: center;
+            float: left;
+            width: 42%;
+          }
+          &:nth-child(3){
+            display: inline-block;
+            text-align: center;
+            float: right;
+            width: 42%;
+          }
+          label{
+            display: none;
+          }
+          input{
+          }
+        }
+
+
+      }
+      #price{
+        div{
+          .input-group-prepend{
+            display: inline-block;
+            float: left;
+            width: 16%;
+            font-size: 24px;
+            margin: auto;
+            min-height: 38px;
+            text-align: center;
+            span{
+              font-size: 21px;
+              margin: auto;
+              min-height: 38px;
+              border: 2px solid $colorlight;
+            }
+          }
+          &:nth-child(2){
+            display: inline-block;
+            text-align: center;
+            float: left;
+            width: 42%;
+          }
+          &:nth-child(3){
+            display: inline-block;
+            text-align: center;
+            float: right;
+            width: 42%;
+          }
+          label{
+            display: none;
+          }
+          input{
+          }
+        }
+
+
+      }
+
+      #color, #agence, #vehiculetype{
+        div{
+          display: inline-block;
+          label, input{
+            float: left;
+            margin: 0px 2px;
+          }
+          input{
+            margin-top: 6px;
+          }
+        }
+      }
+    }
+    button{
+      margin: 10px auto;
+      width: 100%;
+      font-weight: 900;
+      text-transform: uppercase;
+      background-color: $color;
+      border-color: $color;
+      &:hover{
+        background-color: $colorlight;
+        border-color: $colorlight;
+      }
+    }
   }
   .my-4{
     border-radius: 5px;
@@ -229,9 +406,19 @@ header{
         width: 75%;
         top: 37%;
         margin: 0 auto;
-        font-size: 35px;
+        font-size: 30px;
         right: 0;
         left: 0;
+        @media screen and (max-width: $medium-devices) {
+          font-size: 20px;
+        }
+        @media screen and (max-width: $small-devices) {
+          top: 30%;
+          font-size: 15px;
+        }
+        @media screen and (max-width: $phone-devices) {
+          font-size: 10px;
+        }
       }
       p{
         text-align: center;
@@ -240,6 +427,15 @@ header{
         width: 100%;
         margin-bottom: 3px;
         font-size: 8px;
+
+        @media screen and (max-width: $small-devices) {
+          width: 90%;
+          position: relative;
+          margin: auto;
+          margin-bottom: 3px;
+          font-size: 5px;
+          padding-top: 5px;
+        }
       }
     }
   }
@@ -248,21 +444,22 @@ header{
     .card-header{
       color:#333;
       h4{
-        float: left;
+
       }
       p{
         float: right;
         font-weight: 900;
+
       }
     }
 
     .card-text {
       margin-bottom: 0;
-      /*overflow: hidden;
-      white-space: nowrap;*/
+      overflow: hidden;
+      white-space: normal;
       max-width: none;
-      height:50px;
       text-overflow: ellipsis;
+      height:60px;
       font-size: 14px;
     }
     .text-muted {
@@ -281,52 +478,68 @@ header{
 }
 
 
+/****************************************************************/
+/*************************** PRODUCT ****************************/
+/****************************************************************/
+.slide-product{
+  max-height: 660px;
+
+  img{
+    max-height: 660px;
+  }
+}
 .product{
-  .card{
-    .carousel{
-      background: #252525;
-      img{
-        width: auto !important;
-        margin: auto;
+  max-width: 1400px;
+  padding-top: 20px;
+  .col-sm-4{
+    h1{
+      padding: 20px;
+      font-family: $family1;
+    }
+    h2{
+      float: right;
+      padding: 0px 20px;
+      font-weight: 900;
+      font-size: 30px;
+      color: #0087ff;
+      margin: -1px 0px;
+      font-family: $family1;
+    }
+    button,a{
+      margin:auto;
+      text-transform: uppercase;
+      font-size: 30px;
+      display: block;
+      width: 100%;
+      font-weight: 900;
+      font-family: $family2;
+    }
+    .hr-primary{
+      height: 1px;
+      margin-left: 15px;
+      margin-bottom: 15px;
+      background-image: -webkit-linear-gradient(left, rgba(66,133,244,.8), rgba(66, 133, 244,.6), rgba(0,0,0,0));
+    }
+    .wrap{
+      padding: 0;
+      flex-wrap: wrap;
+      list-style: none;
+      display: flex;
+      li {
+        font-size: 18px;
+        text-align: left;
+        color: #666;
+        width: 50%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        strong{
+          padding: 10px;
+        }
       }
     }
-    .card-body{
-
-    }
-    .text-muted{
-      color: #333 !important;
-    }
-    hr{
-      clear: both;
-    }
-    a.booking{
-      float: right;
-      font-size: 24px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
   }
 
-  .my-5 {
-    background: $colorlight;
-    color: #FFF;
-    .card-header{
-      color: #FFF;
-      font-weight: 800;
-    }
-
-    label{
-      text-transform: uppercase;
-      font-weight: 900;
-    }
-
-    button{
-      margin: 30px auto 0px;
-      display: block;
-      width: 111px;
-      font-weight: 900;
-    }
-  }
 }
 
 
@@ -359,10 +572,13 @@ header{
     border-radius: 10px;
     border: 2px inset $color;
     color: #EEE;
-        left: 0;
+    left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
+    @media screen and (max-width: $large-devices) {
+      transform: translate(0%, 30%);
+    }
 
     h2{
       text-align:center;
@@ -373,6 +589,9 @@ header{
     label{
       width: 100%;
       font-size: 24px;
+      @media screen and (max-width: $medium-devices) {
+        font-size: 21px;
+      }
     }
     
     input{
@@ -395,7 +614,7 @@ header{
     }
 }
 
-a[href="shop"]{
+.summary a{
   text-align: center;
 }
 .introduce{
