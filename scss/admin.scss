@@ -1,0 +1,191 @@
+/****************************************************************/
+/*********************** PARAMETRAGE SASS ***********************/
+/****************************************************************/
+
+@font-face {
+  font-family: "Century Gothic";
+  src: url(../fonts/CenturyGothicRegular.ttf) format("truetype");
+}
+
+
+@font-face {
+  font-family: "Candara";
+  src: url(../fonts/Candara.ttf) format("truetype");
+}
+
+
+$family1:"Century Gothic", sans-serif;
+$family2:"Candara", sans-serif;
+
+$color: #ff9d3d;
+$color1: #6a6a6a;
+$color2: #ff9d3d69;
+
+
+
+/****************************************************************/
+/**************************** ADIMN *****************************/
+/****************************************************************/
+h2, .mr-5, header{
+	font-family:$family1;
+}
+
+.navbar{
+	button{
+		background: none;
+		color: #FFF;
+		border: 0px;
+		cursor:pointer;
+	}
+	.navbar-brand{
+		margin-left: 25px;
+		font-size: 25px;
+	}
+
+	.input-group{
+		margin-top:5px;
+	}
+
+  	.nav-item{
+  		margin: 10px;
+	  	.nav-link  i{
+	  		float: left;
+	    	font-size: 30px;
+	  	}
+	  	
+	  	.fa-circle{
+	  		float: right !important;
+	    	margin-top: -30px;
+	    	font-size: 10px !important;
+	  	}
+	  	.dropdown-toggle::after {
+	  		display:none;
+	  	}
+	  	.nav-link{
+	  		line-height: 30px;
+	  	}
+  	}
+
+  	.dropdown-menu{
+  		max-width: 500px;
+  	}
+
+  	.dropdown-message {
+	    overflow: hidden;
+	    max-width: none;
+	    text-overflow: ellipsis;
+	}
+
+
+}
+
+.wrapper {
+   	display: flex;
+	width: 100%;
+    align-items: stretch;
+    padding-top: 78px;
+    min-height:100vh;
+	#sidebar.active {
+	    margin-left: -300px;
+	    -webkit-transition: margin-left .5s, -webkit-ease-out .5s;
+      	transition: margin-left .5s, ease-out .5s; 
+	}
+
+    #sidebar {
+	    min-width: 300px;
+	    max-width: 300px;
+	    -webkit-transition: margin-left .5s, -webkit-ease-out .5s;
+      	transition: margin-left .5s, ease-out .5s; 
+    	background: #444;
+	    color: #FFF;
+	    h3{
+	    	padding: 30px 20px;
+	    	background: #000;
+	    	text-transform: uppercase;
+	    }
+
+	    .list-unstyled{
+	    	a{
+	    		text-decoration: none;
+	    		color:#FFF;
+	    		li{
+	    			padding: 10px 20px;
+    				font-size: 25px; 
+    				&:hover{
+	    			background: #636363;
+	    			}  		
+	    		}
+	    		
+	   		}
+	    }
+	}
+	#content.active{
+	    padding-left: 20px;
+    	margin-left: 0px;
+    }
+	#content{
+		width:100%;
+		padding-top: 20px;
+	    padding-left: 350px;
+    	margin-left: -320px;
+	    -webkit-transition: padding .5s, margin .5s, -webkit-ease-out .5s;
+      	transition: padding .5s, margin .5s, ease-out .5s; 
+
+		.card-footer {
+			i{	
+				font-size:20px;
+			}
+		}
+
+		h2{
+			margin: 20px auto;
+			margin: 20px auto;
+    		margin-bottom: 30px;
+		}
+
+		.mr-5{
+			font-size: 25px;
+    		font-weight: 900;
+		}
+		.dashboard-carousel{	
+			max-width:100%;
+			.slick-arrow{
+				display:none !important;
+			}
+			.slick-list{
+				cursor: pointer;
+			}
+			.slick-slide{
+				/*max-width: 100%;*/
+				padding: 20px;
+			}
+		}
+	}
+
+}
+
+
+/****************************************************************/
+/**************************** MODAL *****************************/
+/****************************************************************/
+
+.modal{
+	.modal-dialog{
+		margin: 100px auto;
+		min-width: 70vh;
+
+		form{
+			padding: 0px 30px;
+			.input-group.mb-3{
+				margin: 30px auto;
+			}
+		}
+	}
+	button{
+		display:block;
+		margin:auto;
+	}
+	.input-group>.form-control:not(:first-child) {
+	    margin-right: 10px;
+	}
+}
