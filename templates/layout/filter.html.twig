@@ -1,0 +1,49 @@
+{{ form_start(form) }}
+<div class="list-group">
+    <a href="#agence" class="list-group-item" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="agence">Agence</a>
+    <div class="collapse" id="agence">
+        <ul class="list-group">
+            <li class="list-group-item ">{{ form_row(form.agence) }}</li>
+        </ul>
+    </div>
+
+    <a href="#vehiculetype" class="list-group-item" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="vehiculetype">Vehicule</a>
+    <div class="collapse" id="vehiculetype">
+        <ul class="list-group">
+            <li class="list-group-item ">{{ form_row(form.vehicule) }}</li>
+        </ul>
+    </div>
+
+    <a href="#km" class="list-group-item" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="km">Kilometrage</a>
+    <div class="collapse" id="km">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id=""><i class="fa fa-road" aria-hidden="true"></i></span>
+            </div>
+            {{ form_row(form.Km_Min) }}
+            {{ form_row(form.Km_Max) }}
+        </div>
+    </div>
+
+    <a href="#price" class="list-group-item" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="price">Prix</a>
+    <div class="collapse" id="price">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id=""><i class="fas fa-euro-sign"></i></span>
+            </div>
+            {{ form_row(form.Price_Min) }}
+            {{ form_row(form.Price_Max) }}
+        </div>
+    </div>
+
+
+    <a href="#color" class="list-group-item" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="color">Couleurs</a>
+    <div class="collapse" id="color">
+        <ul class="list-group input-group mb-2 mr-sm-2">
+            <li class="list-group-item ">
+                {{ form_row(form.couleur) }}
+            </li>
+        </ul>
+    </div>
+</div>
+{{ form_end(form) }}

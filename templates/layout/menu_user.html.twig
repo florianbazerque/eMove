@@ -1,26 +1,18 @@
 <header>
-    <nav  class="container">
+    <nav class="container-fluid">
         <div class="row">
             <div class="col-sm-2">
                 <a href="/"><img src="{{ asset('img/logo.png') }}" /></a>
             </div>
-            <div class="col-sm-6">
-                <form method="post" class="bar_search">
-                    <div class="form-group row">
-                        <div class="col-sm-11">
-                            <input type="text" class="form-control-plaintext" placeholder="Recherche..." name="search">
-                        </div>
-                        <div class="col-sm-1">
-                            <button class="btn btn-outline-warning btn-sm" type="submit" value=""><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+
+            {{ render(controller('App\\Controller\\VehiculeController::searchBarAction')) }}
             <div class="col-sm-4">
                 <ul>
-                    <li><a href="#">Véhicule</a></li>
+                    <li><a href="{{ path('shop') }}"><span>Catalogue</span> <i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profil <i class="fa fa-user" aria-hidden="true"></i></a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span>Profil</span> <i class="fa fa-user" aria-hidden="true"></i>
+                        </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="#">Profil</a>
                             <a class="dropdown-item" href="#">Commandes</a>

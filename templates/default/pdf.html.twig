@@ -1,0 +1,66 @@
+<style type="text/css">
+    table{ width: 50%; border-collapse: collapse; }
+    .header td{ width: 100%; vertical-align: top; }
+    .text-left{text-align: left}.text-right{text-align: right}.text-center{text-align: center}
+    .separator{height: 100px; width: 100%}
+    .content{}
+    .content td{border: solid 1px #cfd1c2; padding: 10px; width: 25%;}
+    .content th{border: solid 1px; padding: 10px; background-color: #333333; color: #FFF;}
+</style>
+    {% set promo = 5 %}
+    {% set HT = vehicule.prixachat - (vehicule.prixachat * 20/100) %}
+    {% set TVA = vehicule.prixachat * 5/100 %}
+    {% set total = vehicule.prixachat - (vehicule.prixachat * promo/100) %}
+    <page backtop="20mm" backright="10mm" backbottom="20mm" backleft="10mm">
+        <table class="header">
+            <tr>
+                <td class="text-left">
+                    <b>{{ user.firstname }} {{ user.lastname }}</b>
+                    <br>{{ user.email }}
+                    <br>{{ user.adresse }}
+                    <br>{{ user.licencenum }}
+                </td>
+                <td class="text-right">
+                    <b>eMove</b>
+                    <br>25 Rue Claude Tillier
+                    <br>75012 Paris
+                    <br>France
+                </td>
+            </tr>
+        </table>
+        <div class="separator"></div>
+        <table class="content" width="100px">
+            <thead>
+                <tr>
+                    <th class="text-left">Designation</th>
+                    <th class="text-center">Debut</th>
+                    <th class="text-center">Fin</th>
+                    <th class="text-right">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-left">{{ vehicule.modele }}</td>
+                    <td class="text-center">{{ location.startdate|date("m/d/Y H:i")  }} </td>
+                    <td class="text-center">{{ location.enddate|date("m/d/Y H:i")  }} </td>
+                    <td class="text-right">{{ (HT)|number_format(2, ',', ' ') }} €</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right"><b>Remise de bienvenu</b></td>
+                    <td class="text-right"><b>{{ promo }} %</b></td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right"><b>TOTAL NET</b></td>
+                    <td class="text-right"><b>{{ HT }} €</b></td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right"><b>TVA (20%)</b></td>
+                    <td class="text-right"><b>{{ vehicule.prixachat }} €</b></td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right"><b>TOTAL TTC</b></td>
+                    <td class="text-right"><b>{{ (total)|number_format(2, ',', ' ') }} €</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </page>

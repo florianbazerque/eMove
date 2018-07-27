@@ -1,76 +1,38 @@
 
 {% extends "layout/layout.html.twig" %}
 {% block content %}
-
-<div class="container-fluid shop product">
-    <div class="row">
-        <div class="col-lg-2">
-            <form method="post">
-                <h2 class="my-4">Nouveautés</h2>
-                <div class="list-group">
-                    <a href="#vehiculetype" class="list-group-item" data-toggle="collapse" href="#vehiculetype" role="button" aria-expanded="false" aria-controls="vehiculetype">Vehicule</a>
-                    <div class="collapse" id="vehiculetype">
-                        <ul class="list-group">
-                            <li class="list-group-item ">
-                                <input type="checkbox" aria-label="Choix"> Choix
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="#km" class="list-group-item" data-toggle="collapse" href="#km" role="button" aria-expanded="false" aria-controls="km">Kilometrage</a>
-                    <div class="collapse" id="km">
-                        <ul class="list-group">
-                            <li class="list-group-item ">
-                                <input type="checkbox" aria-label="Choix"> Choix
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="#price" class="list-group-item" data-toggle="collapse" href="#price" role="button" aria-expanded="false" aria-controls="price">Prix</a>
-                    <div class="collapse" id="price">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id=""><i class="fas fa-euro-sign"></i></span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Min">
-                            <input type="text" class="form-control" placeholder="Max">
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <!-- /.col-lg-3 -->
-        <div class="col-lg-10 ">
-            <div class="card mt-4">
-                <div id="productControl" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <a class="gallery_image" href="{{ asset(vehicule.image) }}"><img class="d-block w-100" src="{{ asset(vehicule.image) }}" alt=""></a>
-                        </div>
-                        <div class="carousel-item">
-                            <a class="gallery_image" href="{{ asset(vehicule.image) }}"><img class="d-block w-100" src="{{ asset(vehicule.image) }}" alt=""></a>
-                        </div>
-                        <div class="carousel-item">
-                            <a class="gallery_image" href="{{ asset(vehicule.image) }}"><img class="d-block w-100" src="{{ asset(vehicule.image) }}" alt=""></a>
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#productControl" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#productControl" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <div class="card-body">
-                    <a class="btn btn-primary booking" href="#" role="button">Réservation</a>
-                    <h3 class="card-title">{{ vehicule.modele }}</h3>
-                    <h4>{{ vehicule.prixachat }} €</h4>
-                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                    4.0 stars
-                </div>
+    <div id="carouselControls" class="carousel slide slide-product" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a class="gallery_image" href="{{ asset(vehicule.image) }}">
+                    <img class="d-block w-100" src="{{ asset(vehicule.image) }}" alt="First slide">
+                </a>
             </div>
-            <!-- /.card -->
+            <div class="carousel-item">
+                <a class="gallery_image" href="{{ asset(vehicule.image) }}">
+                    <img class="d-block w-100" src="{{ asset(vehicule.image) }}" alt="Second slide">
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a class="gallery_image" href="{{ asset(vehicule.image) }}">
+                    <img class="d-block w-100" src="{{ asset(vehicule.image) }}" alt="Third slide">
+                </a>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+<div class="container-fluid product">
+    <div class="row">
+        <div class="col-sm-8">
             <div class="jumbotron">
                 <h1 class="display-4">Caractéristiques</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
                 <hr class="my-3">
                 <table class="table">
                     <thead class="thead-dark">
@@ -110,30 +72,53 @@
                   <a class="btn btn-primary btn-lg" href="#" role="button">Plus</a>
                 </p>-->
             </div>
-            <div class="card card-outline-secondary my-5">
-                <div class="card-header">
-                    AVIS DES CLIENTS
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>{{ vehicule.modele }}</h1>
                 </div>
-                <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                    <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                    <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                    <hr>
-                    <form class="form-group">
-                        <label for="exampleFormControlTextarea1">Laisser un commentaire</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        <button type="submit" class="btn btn-success">Envoyer</button>
-                    </form>
+                <div class="col-sm-12">
+                    <h2>{{ (vehicule.prixachat)|number_format(2, ',', ' ') }} €</h2>
                 </div>
             </div>
-            <!-- /.card -->
+            <hr class="hr-primary" />
+            <ul class="wrap">
+                <li class="ac"><strong><i class="fa fa-snowflake-o" aria-hidden="true"></i></strong>Climatisation</li>
+                <li class="seats"><strong><i class="fa fa-male" aria-hidden="true"></i></strong>5 Places</li>
+                <li class="transmission"><strong><i class="fa fa-arrows" aria-hidden="true"></i></strong>Manuelle</li>
+                <li class="doors-4"><strong><i class="fa fa-car" aria-hidden="true"></i></strong>5 Portes</li>
+                <li class="case_big"><strong><i class="fa fa-suitcase" aria-hidden="true"></i></strong>1 Valise(s)</li>
+                <li class="case_small"><strong><i class="fa fa-shopping-bag" aria-hidden="true"></i></strong>2 Sacs</li>
+                <li class="sx-res-minage-info"><strong><i class="fa fa-id-card-o" aria-hidden="true"></i></strong>à partir de 18 ans</li>
+            </ul>
+            <!--<h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Durée</span>
+            </h4>-->
+
+                <a href="{{  path('location_view', {'id': vehicule.id}) }}" class="btn btn-primary" type="submit">Reservation</a>
+
         </div>
-        <!-- /.col-lg-9 -->
     </div>
+    <!-- /.row -->
+    <hr />
+    <h3>Voir aussi</h3>
+    <div class="row">
+        {% for option in options %}
+            <div class="col-sm-4 my-4">
+                <div class="card">
+                    <img class="card-img-top" src="{{  asset(option.image) }}" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ option.modele }}</h4>
+                        <p class="card-text">{{ option.description }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ path('produit_view', {'id': option.id}) }}" class="btn btn-primary">Voir</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <!-- /.row -->
 </div>
     {% endblock %}
