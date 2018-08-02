@@ -23,6 +23,7 @@ class AgenceFixture extends Fixture
         $manager->persist($agence);
         $manager->persist($agence1);
         $manager->flush();
+        $this->addReference('agence', $agence);
     }
 
 }

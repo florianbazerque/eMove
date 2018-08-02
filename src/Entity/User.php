@@ -233,4 +233,9 @@ class User
 
         return $this;
     }
+
+    public function getUtilisateur()
+    {
+        return $this->getId();
+    }
 }

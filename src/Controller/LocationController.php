@@ -8,19 +8,18 @@
 
 namespace App\Controller;
 
+use App\Entity\DispoVehicule;
 use App\Entity\Location;
+use App\Entity\StatusLocation;
 use App\Entity\Vehicule;
 use App\Form\LocationForm;
 use App\Entity\User;
 use App\Service\Html2Pdf;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 
 
@@ -34,11 +33,22 @@ class LocationController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $vehicule = $em->getRepository(Vehicule:: class)
-            ->find($id);
+            ->findOneBy(
+                ['id' => $id ,'dispoVehicule' => 1],
+                ['id' => 'ASC']
+            );
+        $statut = $em->getRepository(StatusLocation:: class)
+            ->findOneBy(
+                ['id' => 2],
+                ['id' => 'ASC']
+            );
         $location = new Location();
-        $form = $this->createForm(LocationForm::class, $location, array('id' => $id));
+        $location->setVehicule($vehicule);
+        $location->setStatusLocation($statut);
+        $location->setReturnKm(null);
+        $location->setReturnDate(null);
+        $form = $this->createForm(LocationForm::class, $location);
         $form->handleRequest($request);
-
         if (!$vehicule)
         {
             throw $this->createNotFoundException(
@@ -51,13 +61,36 @@ class LocationController extends AbstractController
         }
         elseif ($form->isSubmitted() && $form->isValid())
         {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($location);
-            $em->flush();
-            $em->refresh($location);
-            return $this->redirectToRoute( 'facture', [
-                'id' => $location->getId()
-            ]);
+            $loue = $em->getRepository(Location:: class)
+                ->findOneBy(
+                    ['statusLocation' => 1 ,'vehicule' => $id],
+                    ['vehicule' => 'ASC']
+                );
+            $reserve = $em->getRepository(Location:: class)
+                ->findOneBy(
+                    ['statusLocation' => 2 ,'vehicule' => $id],
+                    ['vehicule' => 'ASC']
+                );
+            if (!$loue || !$reserve) {
+                $start = $form["start_date"]->getData();
+                $end = $form["end_date"]->getData();
+                if ($start >= $end){
+                    throw new HttpException(400, "Mauvaise date");
+                }else {
+                    $dispo = $em->getRepository(DispoVehicule:: class)
+                        ->find(2);
+                    $em = $this->getDoctrine()->getManager();
+                    $vehicule->setDispoVehicule($dispo);
+                    $em->persist($location, $vehicule);
+                    $em->flush();
+                    $em->refresh($location);
+                    return $this->redirectToRoute('facture', [
+                        'id' => $location->getId(),
+                    ]);
+                }
+            }else{
+                throw new HttpException(400, "VEHICULE Loue ou Reserve");
+            }
         }else {
             return $this->render('user/location.html.twig', [
                 'vehicule' => $vehicule,
@@ -65,6 +98,7 @@ class LocationController extends AbstractController
             ]);
         }
     }
+
 
     /**
      *  @Route("/facture?vehicule={id}", name="facture", requirements={"id"="\d+"})
@@ -102,7 +136,7 @@ class LocationController extends AbstractController
             ->find($id);
         if (!$location) {
             throw $this->createNotFoundException(
-                'Location indisponible'.$id
+                'Location indisponible'
             );
         }elseif ($location == null){
             throw new HttpException(400, "VEHICULE Absent");
@@ -116,9 +150,12 @@ class LocationController extends AbstractController
                 'vehicule' => $vehicule,
                 'user' => $user
             ));
+            $firstname =$user->getfirstname();
+            $modele = $vehicule->getModele();
+            $name = 'location_'.$firstname.'_'.$modele;
             $html2pdf = new Html2Pdf();
             $html2pdf->create('P', 'A4', 'fr', true, 'UTF-8', array(10, 15, 10, 15));
-            return $html2pdf->generatePdf($template, 'facture');
+            return $html2pdf->generatePdf($template, $name);
         }
     }
 }

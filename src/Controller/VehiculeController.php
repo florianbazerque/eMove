@@ -35,7 +35,10 @@ class VehiculeController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
         $vehicules = $em->getRepository(Vehicule:: class)
-            ->findAll();
+            ->findBy(
+                ['dispoVehicule' => 1],
+                ['dateAchat' => 'ASC']
+            );
         $promo = true;
 
         return $this->render('default/shop.html.twig', [
@@ -51,15 +54,14 @@ class VehiculeController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $vehicule = $em->getRepository(Vehicule:: class)
-            ->find($id);
+            ->findOneBy(
+                ['id' => $id ,'dispoVehicule' => 1]
+            );
         $options = $em->getRepository(Vehicule:: class)
-            ->findBy(
-                array(),
-                array('dateAchat' => 'desc'),
-                3);
+            ->findByNot('id', $id);
         if (!$vehicule) {
             throw $this->createNotFoundException(
-                'No vehicule found for id '.$id
+                'Vehicule absent'
             );
         }elseif ($vehicule == null){
             throw new HttpException(400, "New comment is not valid.");
@@ -79,6 +81,11 @@ class VehiculeController extends AbstractController
         throw new HttpException(400, "Aucune voiture selectionner");
     }
 
+
+
+/*************************************************************************/
+/***************************** FILTER & SEARCH ***************************:
+/*************************************************************************/
 
     /**
      * @Route("search", name="search")
@@ -104,7 +111,6 @@ class VehiculeController extends AbstractController
      */
     public function filterVehicule(Request $request, VehiculeManager $vehiculeManager)
     {
-        $em = $this->getDoctrine()->getManager();
         $agence = "";
         $type = "";
         $km_min = "";

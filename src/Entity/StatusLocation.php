@@ -80,4 +80,10 @@ class StatusLocation
 
         return $this;
     }
+
+
+    public function getLocation()
+    {
+        return $this->getId();
+    }
 }

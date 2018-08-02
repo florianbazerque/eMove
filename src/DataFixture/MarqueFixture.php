@@ -20,5 +20,6 @@ class MarqueFixture extends Fixture
         $marque->setLabel("Citroen");
         $manager->persist($marque);
         $manager->flush();
+        $this->addReference('marque', $marque);
     }
 }
