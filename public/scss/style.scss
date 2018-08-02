@@ -17,7 +17,7 @@
 $family1:"Century Gothic", sans-serif;
 $family2:"Candara", sans-serif;
 
-$color: #ff9d3d;
+$color: #ffbc49;
 $color1: #6a6a6a;
 $colorlight: #ff9e57;
 $colordark: #e26000;
@@ -78,7 +78,8 @@ header{
   }
 
   img{
-    max-height:80px;
+    max-height: 45px;
+    margin: 17px 0px;
     @media screen and (max-width: $large-devices) {
       width: 100px;
       margin-top: 10px;
@@ -255,6 +256,10 @@ header{
   .identity_card{
     display: none;
   }
+}
+
+.hidden{
+  display:none;
 }
 
 .resume{
@@ -483,18 +488,26 @@ header{
 /****************************************************************/
 .slide-product{
   max-height: 660px;
+  background: #333;
+  overflow: hidden;
 
   img{
-    max-height: 660px;
+    margin: auto;
   }
 }
 .product{
   max-width: 1400px;
   padding-top: 20px;
+
+  .carousel-inner{
+    min-height: 712px;
+  }
   .col-sm-4{
     h1{
       padding: 20px;
       font-family: $family1;
+      font-weight: 900;
+      text-transform: uppercase;
     }
     h2{
       float: right;
@@ -507,12 +520,11 @@ header{
     }
     button,a{
       margin:auto;
-      text-transform: uppercase;
       font-size: 30px;
       display: block;
       width: 100%;
       font-weight: 900;
-      font-family: $family2;
+      font-family: $family1;
     }
     .hr-primary{
       height: 1px;
@@ -539,7 +551,11 @@ header{
       }
     }
   }
-
+}
+.options{
+  img{
+    max-height: 245px;
+  }
 }
 
 
@@ -562,6 +578,7 @@ header{
 /****************************************************************/
 
 .search{
+  display: none;
     position: absolute;
     font-family:$family2;
     z-index: 9;
@@ -614,9 +631,16 @@ header{
     }
 }
 
+#indexcarrousel{
+  img{
+    max-height: 900px;
+  }
+}
+
 .summary a{
   text-align: center;
 }
+
 .introduce{
   padding: 60px 20px 0px 20px;
   min-height: 75vh; 
@@ -629,9 +653,14 @@ header{
   .summary{
     width: 100%;
     text-align: center;
-
+  a{
+    text-decoration: none;
+    &:hover{
+      color: #FFF;
+    }
+  }
     .card{
-     display: inline-block;
+      display: inline-block;
       text-align: left;
       max-width: 500px;
       border: 4px double $color;
@@ -639,7 +668,7 @@ header{
       max-height: 545px;
       cursor: pointer;
       margin: 35px;
-      color:$color;
+      color: $color;
       -webkit-transition: color .5s, background .5s, border .5s, -webkit-ease-out .5s;
       transition: color .5s, background .5s, border .5s, ease-out .5s;
       &:hover{
@@ -647,6 +676,7 @@ header{
         border: 4px double #FFF;
         color: #FFF;
       }
+
 
       i{
         font-size: 133px;

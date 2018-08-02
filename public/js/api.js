@@ -2,7 +2,11 @@ $( document ).ready(function() {
 	/*******************************************************/
 	/************************ INPUT ************************/
 	/*******************************************************/
-
+    $('button[type="submit"]').click(function(){
+        e.preventDefault; //On stop l'évènement par défault
+        $(this).val('Envoi en cours'); // Onchange la valeur pour avoir un retour visuel
+        $(this).attr("disabled", true); // On s'assure du fait que le bouton ne sera plus cliquable
+    });
 	$('.start').datetimepicker({
         format:'d/m/Y H:i',
         onShow:function( ct ){
