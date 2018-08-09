@@ -1,0 +1,16 @@
+<h3>Connectez-vous avec votre email</h3>
+<form role="form" action="{{ path('login') }}" method="post" id="login-connexion" autocomplete="off">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">@</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Email" name="_username" aria-describedby="basic-addon1" value="{{ last_username }}">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock" aria-hidden="true"></i></span>
+        </div>
+        <input type="password" class="form-control" placeholder="Password" name="_password" aria-describedby="basic-addon1">
+    </div>
+    <input type="submit" id="btn-connexion" class="btn btn-success btn-lg btn-block" value="Connexion">
+</form>

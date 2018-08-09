@@ -53,6 +53,9 @@
             "ref": "c1431086fec31f17fbcfe6d6d7e92059458facc1"
         }
     },
+    "doctrine/event-manager": {
+        "version": "v1.0.0"
+    },
     "doctrine/inflector": {
         "version": "v1.3.0"
     },
@@ -67,6 +70,15 @@
     },
     "doctrine/orm": {
         "version": "v2.6.1"
+    },
+    "doctrine/persistence": {
+        "version": "v1.0.0"
+    },
+    "doctrine/reflection": {
+        "version": "v1.0.0"
+    },
+    "dompdf/dompdf": {
+        "version": "v0.8.2"
     },
     "easycorp/easy-log-handler": {
         "version": "1.0",
@@ -92,8 +104,17 @@
     "nikic/php-parser": {
         "version": "v4.0.2"
     },
+    "ocramius/package-versions": {
+        "version": "1.3.0"
+    },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
+    },
+    "phenx/php-font-lib": {
+        "version": "0.5.1"
+    },
+    "phenx/php-svg-lib": {
+        "version": "v0.3.2"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -119,6 +140,9 @@
     "psr/simple-cache": {
         "version": "1.0.1"
     },
+    "sabberworm/php-css-parser": {
+        "version": "8.1.0"
+    },
     "sensio/framework-extra-bundle": {
         "version": "4.0",
         "recipe": {
@@ -127,6 +151,9 @@
             "version": "4.0",
             "ref": "aaddfdf43cdecd4cf91f992052d76c2cadc04543"
         }
+    },
+    "spipu/html2pdf": {
+        "version": "v5.2.0"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.1.0"
@@ -391,6 +418,9 @@
     },
     "symfony/yaml": {
         "version": "v4.1.1"
+    },
+    "tecnickcom/tcpdf": {
+        "version": "6.2.17"
     },
     "twig/twig": {
         "version": "v2.4.8"

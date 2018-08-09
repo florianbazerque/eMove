@@ -6,22 +6,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3>Connectez-vous avec votre email</h3>
-                <form role="form" action="" method="post" id="login-connexion" autocomplete="off">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">@</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Email" name="Email" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                        </div>
-                        <input type="password" class="form-control" placeholder="Password" name="Password" aria-describedby="basic-addon1">
-                    </div>
-                    <input type="submit" id="btn-connexion" class="btn btn-success btn-lg btn-block" value="Connexion">
-                </form>
+                    {{ render(controller('App\\Controller\\UserController::login')) }}
                 <a href="javascript:;" class="forget" data-toggle="modal" data-target=".forget-modal">J'ai oublié mon mot de passe ?</a>
             </div>
             <div class="modal-footer">

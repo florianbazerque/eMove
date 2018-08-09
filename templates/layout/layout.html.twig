@@ -20,7 +20,11 @@
 </head>
 <body>
 
-{% include 'layout/menu_user.html.twig' %}
+{% if app.user %}
+    {% include 'layout/menu_user.html.twig' %}
+{% else %}
+    {% include 'layout/menu.html.twig' %}
+{% endif %}
 {% block content %}{% endblock %}
 {% include 'layout/footer.html.twig' %}
 {% include 'layout/modal.html.twig' %}

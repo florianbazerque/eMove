@@ -5,11 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -237,5 +238,53 @@ class User
     public function getUtilisateur()
     {
         return $this->getId();
+    }
+
+    //Connection functions
+
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function getRoles()
+    {
+        $roleId = $this->getTypeUser()->getId();
+        if($roleId === 1) {
+            return ['ROLE_ADMIN'];
+        } else {
+            return ['ROLE_USER'];
+        }
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->email,
+            $this->password,
+            //$this->salt,
+        ]);
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            //$this->salt,
+        ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 }
