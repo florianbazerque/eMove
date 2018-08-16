@@ -1,0 +1,74 @@
+
+{% extends "layout/layout.html.twig" %}
+{% block content %}
+    <div class="container">
+        <div class="row resume">
+            <div class="well col-xs-12 col-sm-12">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <address>
+                            <strong>eMove</strong>
+                            <p>25 Rue Claude Tillier</p>
+                            <p>Paris, 75012</p>
+                            <p>01 55 43 26 65</p>
+                        </address>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                        <p>
+                            <?php
+	                        	dateFacture();
+							?>
+
+                        </p>
+                        <p>
+                            <?php
+		                        refFacture();
+							?>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="text-center">
+                        <h1>Facture</h1>
+                    </div>
+                    </span>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Début</th>
+                            <th>Fin</th>
+                            <th class="text-center">Réduction</th>
+                            <th class="text-center">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="col-md-8"><em>Mercedes</em></h4></td>
+                            <td class="col-md-1" style="text-align: center"> 3 </td>
+                            <td class="col-md-1" style="text-align: center"> 3 </td>
+                            <td class="col-md-1 text-center">0,00 €</td>
+                            <td class="col-md-1 text-center">48,00 €</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-right">
+                                <p><strong>Sous-total: </strong></p>
+                                <p><strong>Tax: </strong></p>
+                            </td>
+                            <td colspan="3" class="text-center">
+                                <p><strong>35,56 €</strong></p>
+                                <p><strong>6,94 €</strong></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-right"><h4><strong>Total: </strong></h4></td>
+                            <td colspan="3" class="text-center text-danger"><h4><strong>31.53 €</strong></h4></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-success btn-lg btn-block">PAYER <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

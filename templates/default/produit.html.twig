@@ -1,0 +1,142 @@
+
+{% extends "layout/layout.html.twig" %}
+{% block content %}
+
+<div class="container-fluid shop product">
+    <div class="row">
+        <div class="col-lg-2">
+            <form method="post">
+                <h2 class="my-4">Nouveautés</h2>
+                <div class="list-group">
+                    <a href="#vehiculetype" class="list-group-item" data-toggle="collapse" href="#vehiculetype" role="button" aria-expanded="false" aria-controls="vehiculetype">Vehicule</a>
+                    <div class="collapse" id="vehiculetype">
+                        <ul class="list-group">
+                            <li class="list-group-item ">
+                                <input type="checkbox" aria-label="Choix"> Choix</li>
+                        </ul>
+                    </div>
+                    <a href="#km" class="list-group-item" data-toggle="collapse" href="#km" role="button" aria-expanded="false" aria-controls="km">Kilometrage</a>
+                    <div class="collapse" id="km">
+                        <ul class="list-group">
+                            <li class="list-group-item ">
+                                <input type="checkbox" aria-label="Choix"> Choix</li>
+                        </ul>
+                    </div>
+                    <a href="#price" class="list-group-item" data-toggle="collapse" href="#price" role="button" aria-expanded="false" aria-controls="price">Prix</a>
+                    <div class="collapse" id="price">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id=""><i class="fas fa-euro-sign"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Min">
+                            <input type="text" class="form-control" placeholder="Max">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.col-lg-3 -->
+        <div class="col-lg-10 ">
+            <div class="card mt-4">
+                <div id="productControl" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a class="gallery_image" href="{{ asset('img/amg.jpg') }}"><img class="d-block w-100" src="{{ asset('img/amg.jpg') }}" alt=""></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a class="gallery_image" href="{{ asset('img/amg.jpg') }}"><img class="d-block w-100" src="{{ asset('img/amg.jpg') }}" alt=""></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a class="gallery_image" href="{{ asset('img/amg.jpg') }}"><img class="d-block w-100" src="{{ asset('img/amg.jpg') }}" alt=""></a>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#productControl" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#productControl" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <a class="btn btn-primary booking" href="#" role="button">Réservation</a>
+                    <h3 class="card-title">Product Name</h3>
+                    <h4>$24.99</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
+                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                    4.0 stars
+                </div>
+            </div>
+            <!-- /.card -->
+            <div class="jumbotron">
+                <h1 class="display-4">Caractéristiques</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr class="my-3">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Caractéristique</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                    <tr>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                    <tr>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                    <tr>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                    <tr>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!--<p class="lead">
+                  <a class="btn btn-primary btn-lg" href="#" role="button">Plus</a>
+                </p>-->
+            </div>
+            <div class="card card-outline-secondary my-5">
+                <div class="card-header">
+                    AVIS DES CLIENTS
+                </div>
+                <div class="card-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                    <hr>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                    <hr>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                    <hr>
+                    <form class="form-group">
+                        <label for="exampleFormControlTextarea1">Laisser un commentaire</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <button type="submit" class="btn btn-success">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col-lg-9 -->
+    </div>
+</div>
+    {% end content %}

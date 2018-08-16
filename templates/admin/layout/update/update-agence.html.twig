@@ -1,0 +1,21 @@
+{% extends "admin/layout/update/layout.html.twig" %}
+
+{% block body %}
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modifier Agence</h5>
+    </div>
+    <div class="modal-body">
+        {{ form_start(form_agence_update) }}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+            </div>
+            {{ form_widget(form_agence_update.label) }}
+        </div>
+    </div>
+    <div class="modal-footer">
+        {{ form_widget(form_agence_update.submit) }}
+        <a href="{{ path('dashboard') }}" class="btn btn-danger">Annuler</a>
+    </div>
+    {{ form_end(form_agence_update) }}
+{% endblock %}

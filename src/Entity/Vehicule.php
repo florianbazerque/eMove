@@ -19,22 +19,22 @@ class Vehicule
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\TypeVehicule", inversedBy="vehicules")
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypeVehicule", inversedBy="vehicules", cascade={"persist"})
      */
     private $typeVehicule;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\DispoVehicule", inversedBy="vehicules")
+     * @ORM\ManyToOne(targetEntity="App\Entity\DispoVehicule", inversedBy="vehicules", cascade={"persist"})
      */
     private $dispoVehicule;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Agence", inversedBy="vehicules")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Agence", inversedBy="vehicules", cascade={"persist"})
      */
     private $agence;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Marque", inversedBy="vehicules")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Marque", inversedBy="vehicules", cascade={"persist"})
      */
     private $marque;
 
@@ -74,7 +74,7 @@ class Vehicule
     private $prixAchat;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", cascade={"persist","remove"})
      */
     private $image;
 

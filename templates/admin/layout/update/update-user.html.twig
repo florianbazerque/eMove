@@ -1,0 +1,58 @@
+{% extends "admin/layout/update/layout.html.twig" %}
+
+{% block body %}
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Modifier l'utilisateur</h5>
+</div>
+<div class="modal-body">
+    {{ form_start(form_update_user) }}
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-user"></i></span>
+        </div>
+        {{ form_widget(form_update_user.firstname) }}
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-user"></i></span>
+        </div>
+        {{ form_widget(form_update_user.lastname) }}
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Rôle</span>
+        </div>
+        {{ form_widget(form_update_user.typeUser) }}
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i
+                                    class="fa fa-fw fa-birthday-cake"></i></span>
+        </div>
+        {{ form_widget(form_update_user.birthDate) }}
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map-marker "></i></span>
+        </div>
+        {{ form_widget(form_update_user.adresse) }}
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-envelope "></i></span>
+        </div>
+        {{ form_widget(form_update_user.email) }}
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-phone"></i></span>
+        </div>
+        {{ form_widget(form_update_user.telNum) }}
+    </div>
+    <div class="input-group mb-3">
+        {{ form_widget(form_update_user.submit) }}
+        <a href="{{ path('dashboard') }}" class="btn btn-danger btn-lg">Retour</a>
+    </div>
+    {{ form_end(form_update_user) }}
+</div>
+{% endblock %}

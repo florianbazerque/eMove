@@ -19,7 +19,7 @@ class User
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\TypeUser", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypeUser", inversedBy="users", cascade={"persist"})
      */
     private $typeUser;
 

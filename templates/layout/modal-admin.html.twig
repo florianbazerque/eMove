@@ -1,0 +1,194 @@
+<!-- Modal -->
+<div class="modal fade" id="new_user" tabindex="-1" role="dialog" aria-labelledby="ModalUser" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nouvel utilisateur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form_user) }}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-user"></i></span>
+                    </div>
+                    {{ form_widget(form_user.firstname) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-user"></i></span>
+                    </div>
+                    {{ form_widget(form_user.lastname) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Rôle</span>
+                    </div>
+                    {{ form_widget(form_user.typeUser) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i
+                                    class="fa fa-fw fa-birthday-cake"></i></span>
+                    </div>
+                    {{ form_widget(form_user.birthDate) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map-marker "></i></span>
+                    </div>
+                    {{ form_widget(form_user.adresse) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-envelope "></i></span>
+                    </div>
+                    {{ form_widget(form_user.email) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-phone"></i></span>
+                    </div>
+                    {{ form_widget(form_user.telNum) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-lock"></i></span>
+                    </div>
+                    {{ form_widget(form_user.password.first) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-lock"></i></span>
+                    </div>
+                    {{ form_widget(form_user.password.second) }}
+                </div>
+                {{ form_widget(form_user.submit) }}
+                {{ form_end(form_user) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="new_car" tabindex="-1" role="dialog" aria-labelledby="ModalCar" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nouveau Véhicule</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form_vehicule) }}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="type"><i class="fa fa-fw fa-car"></i></label>
+                        </div>
+                        {{ form_widget(form_vehicule.typeVehicule) }}
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="dispo"><i class="fa fa-fw fa-clock-o"></i></label>
+                        </div>
+                        {{ form_widget(form_vehicule.dispoVehicule) }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="agency"><i class="fa fa-fw fa-map"></i></label>
+                        </div>
+                        {{ form_widget(form_vehicule.agence) }}
+                    </div>
+                    <hr/>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
+                        </div>
+                        {{ form_widget(form_vehicule.marque) }}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
+                        </div>
+                        {{ form_widget(form_vehicule.modele) }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
+                        </div>
+                        {{ form_widget(form_vehicule.numSerie) }}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i
+                                        class="fa fa-fw fa-thumb-tack"></i></span>
+                        </div>
+                        {{ form_widget(form_vehicule.couleur) }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
+                        </div>
+                        {{ form_widget(form_vehicule.plaqueImma) }}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-road"></i></span>
+                        </div>
+                        {{ form_widget(form_vehicule.nbKm) }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i
+                                        class="fa fa-fw fa-credit-card"></i></span>
+                        </div>
+                        {{ form_widget(form_vehicule.dateAchat) }}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i
+                                        class="fa fa-fw fa-credit-card"></i></span>
+                        </div>
+                        {{ form_widget(form_vehicule.prixAchat) }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i
+                                        class="fa fa-fw fa-credit-card"></i></span>
+                        </div>
+                        {{ form_widget(form_vehicule.image) }}
+                    </div>
+
+            </div>
+            <div class="modal-footer">
+                {{ form_widget(form_vehicule.submit) }}
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            </div>
+            {{ form_end(form_vehicule) }}
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="new_agency" tabindex="-1" role="dialog" aria-labelledby="ModalAgency" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nouvel Agence</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form_agence) }}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                    </div>
+                    {{ form_widget(form_agence.label) }}
+                </div>
+            </div>
+            <div class="modal-footer">
+                {{ form_widget(form_agence.submit) }}
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            </div>
+            {{ form_end(form_agence) }}
+        </div>
+    </div>
+</div>
+

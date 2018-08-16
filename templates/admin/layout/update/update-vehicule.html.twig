@@ -1,0 +1,84 @@
+{% extends "admin/layout/update/layout.html.twig" %}
+
+{% block body %}
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Modifier Véhicule</h5>
+</div>
+<div class="modal-body">
+    {{ form_start(form_vehicule_update) }}
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="type"><i class="fa fa-fw fa-car"></i></label>
+        </div>
+        {{ form_widget(form_vehicule_update.typeVehicule) }}
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="dispo"><i class="fa fa-fw fa-clock-o"></i></label>
+        </div>
+        {{ form_widget(form_vehicule_update.dispoVehicule) }}
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="agency"><i class="fa fa-fw fa-map"></i></label>
+        </div>
+        {{ form_widget(form_vehicule_update.agence) }}
+    </div>
+    <hr/>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
+        </div>
+        {{ form_widget(form_vehicule_update.marque) }}
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
+        </div>
+        {{ form_widget(form_vehicule_update.modele) }}
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
+        </div>
+        {{ form_widget(form_vehicule_update.numSerie) }}
+        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i
+                                        class="fa fa-fw fa-thumb-tack"></i></span>
+        </div>
+        {{ form_widget(form_vehicule_update.couleur) }}
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
+        </div>
+        {{ form_widget(form_vehicule_update.plaqueImma) }}
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-road"></i></span>
+        </div>
+        {{ form_widget(form_vehicule_update.nbKm) }}
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i
+                                        class="fa fa-fw fa-credit-card"></i></span>
+        </div>
+        {{ form_widget(form_vehicule_update.dateAchat) }}
+        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i
+                                        class="fa fa-fw fa-credit-card"></i></span>
+        </div>
+        {{ form_widget(form_vehicule_update.prixAchat) }}
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i
+                                        class="fa fa-fw fa-credit-card"></i></span>
+        </div>
+        {{ form_widget(form_vehicule_update.image) }}
+    </div>
+
+</div>
+<div class="modal-footer">
+    {{ form_widget(form_vehicule_update.submit) }}
+
+    <a href="{{ path('dashboard') }}" class="btn btn-danger">Retour</a>
+</div>
+{{ form_end(form_vehicule_update) }}
+{% endblock %}
