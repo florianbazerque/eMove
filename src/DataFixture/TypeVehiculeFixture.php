@@ -23,6 +23,7 @@ class TypeVehiculeFixture extends Fixture
         $manager->persist($voiture);
         $manager->persist($scooter);
         $manager->flush();
+        $this->addReference('typevehicule', $voiture);
     }
 
 }

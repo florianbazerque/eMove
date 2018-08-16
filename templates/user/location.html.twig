@@ -1,38 +1,33 @@
 
 {% extends "layout/layout.html.twig" %}
 {% block content %}
+    {% set promo = 20 %}
+    {% set total = vehicule.prixachat - (vehicule.prixachat * promo/100) %}
     <div class="container reservation">
         <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Resume</span>
-                    <span class="badge badge-primary badge-pill">3</span>
+                    <!--<span class="badge badge-primary badge-pill">3</span>-->
                 </h4>
                 <ul class="list-group mb-3">
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
-                            <h6 class="my-0">Vehicule</h6>
+                            <h6 class="my-0">{{ vehicule.modele }}</h6>
                             <small class="text-muted">Brief description</small>
                         </div>
-                        <span class="text-muted">12,00€</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Second product</h6>
-                            <small class="text-muted">Brief description</small>
-                        </div>
-                        <span class="text-muted">8,00€</span>
+                        <span class="text-muted">{{ (vehicule.prixachat)|number_format(2, ',', ' ') }} €</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between bg-light">
                         <div class="text-success">
-                            <h6 class="my-0">Promo code</h6>
-                            <small>EXAMPLECODE</small>
+                            <h6 class="my-0">Offre de bienvenue</h6>
+                            <small>1er Réservation</small>
                         </div>
-                        <span class="text-success">5,00€</span>
+                        <span class="text-success">{{ promo }}%</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total (€)</span>
-                        <strong>15,00€</strong>
+                        <strong>{{ (total)|number_format(2, ',', ' ') }} €</strong>
                     </li>
                 </ul>
 
@@ -44,19 +39,28 @@
                         </div>
                     </div>
                 </form>
+                <form class="card p-2">
+                    <button type="button" class="btn btn-primary">Utiliser mes points | 60 €</button>
+                </form>
             </div>
             <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">Adresse de facturation</h4>
-                <form class="needs-validation" novalidate="">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                <h4 class="mb-3">Facturation</h4>
+                {{ form_row(form.vehicule) }}
+                {{ form_row(form.status_location) }}
+                {{ form_row(form.return_km) }}
+                {{ form_widget(form.return_date) }}
+                {{ form_row(form.user) }}
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <input type="text" class="form-control" name="firstName" placeholder="Prénom" value="" required="">
+                            {{ form_widget(form.start_date) }}
                             <div class="invalid-feedback">
-                                Un prénom valide est requis.
+                                Une date valide est requis.
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <input type="text" class="form-control" name="lastName" placeholder="Nom" value="" required="">
+                            {{ form_widget(form.end_date) }}
                             <div class="invalid-feedback">
                                 Un nom valide est requis.
                             </div>
@@ -70,7 +74,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="ville">Ville</label>
                             <select class="custom-select d-block w-100" id="ville" required="">
@@ -91,7 +95,7 @@
                                 Veuillez sélectionner un arrondissement valide
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <hr class="mb-4">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="save-info">
@@ -99,7 +103,7 @@
                     </div>
                     <hr class="mb-4">
 
-                    <h4 class="mb-3">Paiment</h4>
+                    <!--<h4 class="mb-3">Paiement</h4>
 
                     <div class="d-block my-3">
                         <div class="custom-control custom-radio">
@@ -148,9 +152,11 @@
                             </div>
                         </div>
                     </div>
-                    <hr class="mb-4">
-                    <a href="facture" class="btn btn-success btn-lg btn-block" type="submit">Continuer</a>
-                </form>
+                    <hr class="mb-4">-->
+                    <button class="btn btn-success btn-lg btn-block" type="submit">
+                        <strong>RESERVER <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></strong>
+                    </button>
+                    {{ form_end(form) }}
             </div>
         </div>
     </div>

@@ -18,13 +18,12 @@ class DispoVehiculeFixture extends Fixture
     {
         $dispo = new DispoVehicule();
         $dispo->setLabel('Disponible');
-        $dispo1 = new DispoVehicule();
-        $dispo1->setLabel('En location');
         $dispo2 = new DispoVehicule();
         $dispo2->setLabel('Indisponible');
         $manager->persist($dispo);
-        $manager->persist($dispo1);
         $manager->persist($dispo2);
         $manager->flush();
+        $this->addReference('dispovehicule', $dispo);
+        $this->addReference('indisponible', $dispo2);
     }
 }

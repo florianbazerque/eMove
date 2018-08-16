@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LocationRepository")
@@ -32,6 +33,7 @@ class Location
     private $user;
 
     /**
+     * @Assert\DateTime()
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $startDate;

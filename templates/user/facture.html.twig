@@ -1,6 +1,11 @@
 
 {% extends "layout/layout.html.twig" %}
 {% block content %}
+
+    {% set promo = 0 %}
+    {% set TVA = vehicule.prixachat - (vehicule.prixachat * 20/100) %}
+    {% set TVA2 = vehicule.prixachat * 20/100 %}
+    {% set total = vehicule.prixachat - (vehicule.prixachat * promo/100) %}
     <div class="container">
         <div class="row resume">
             <div class="well col-xs-12 col-sm-12">
@@ -15,23 +20,22 @@
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                         <p>
-                            <?php
-	                        	dateFacture();
-							?>
+                            <img src="{{ asset('img/logo.png') }}" width="200">
 
                         </p>
                         <p>
-                            <?php
-		                        refFacture();
-							?>
+                            <a href="{{  path('pdf', {'id': location.id}) }}" target="_blank" role="button" class="btn btn-danger">
+                                <strong>Récupérer le PDF</strong>
+                                <i class="far fa-file-pdf"></i>
+                            </a>
+                        <p>
+
                         </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="text-center">
-                        <h1>Facture</h1>
                     </div>
-                    </span>
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -43,30 +47,30 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="col-md-8"><em>Mercedes</em></h4></td>
-                            <td class="col-md-1" style="text-align: center"> 3 </td>
-                            <td class="col-md-1" style="text-align: center"> 3 </td>
-                            <td class="col-md-1 text-center">0,00 €</td>
-                            <td class="col-md-1 text-center">48,00 €</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class="text-right">
-                                <p><strong>Sous-total: </strong></p>
-                                <p><strong>Tax: </strong></p>
-                            </td>
-                            <td colspan="3" class="text-center">
-                                <p><strong>35,56 €</strong></p>
-                                <p><strong>6,94 €</strong></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class="text-right"><h4><strong>Total: </strong></h4></td>
-                            <td colspan="3" class="text-center text-danger"><h4><strong>31.53 €</strong></h4></td>
-                        </tr>
+                            <tr>
+                                <td class="col-md-7"><h4><em>{{ vehicule.modele }}</em></h4></td>
+                                <td class="col-md-1" style="text-align: center"> {{ location.startdate|date("m/d/Y H:i")  }} </td>
+                                <td class="col-md-1" style="text-align: center"> {{ location.enddate|date("m/d/Y H:i")  }} </td>
+                                <td class="col-md-1 text-center">0,00 €</td>
+                                <td class="col-md-2 text-center">{{ (vehicule.prixachat)|number_format(2, ',', ' ') }} €</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-right">
+                                    <p><strong>Sous-total: </strong></p>
+                                    <p><strong>TVA: </strong></p>
+                                </td>
+                                <td colspan="3" class="text-center">
+                                    <p><strong>{{ (TVA)|number_format(2, ',', ' ') }} €</strong></p>
+                                    <p><strong>{{ (TVA2)|number_format(2, ',', ' ') }} €</strong></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-right"><h4><strong>Total: </strong></h4></td>
+                                <td colspan="3" class="text-center text-danger"><h4><strong>{{ (total)|number_format(2, ',', ' ') }} €</strong></h4></td>
+                            </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-success btn-lg btn-block">PAYER <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-success btn-lg btn-block">MES COMMANDES</button>
                 </div>
             </div>
         </div>

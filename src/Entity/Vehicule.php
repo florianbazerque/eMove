@@ -54,6 +54,11 @@ class Vehicule
     private $couleur;
 
     /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $plaqueImma;
@@ -74,7 +79,7 @@ class Vehicule
     private $prixAchat;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", cascade={"persist","remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist","remove"})
      */
     private $image;
 
@@ -177,6 +182,19 @@ class Vehicule
         return $this;
     }
 
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
     public function getPlaqueImma(): ?string
     {
         return $this->plaqueImma;
@@ -266,5 +284,10 @@ class Vehicule
         }
 
         return $this;
+    }
+
+    public function getVehicule()
+    {
+        return $this->getId();
     }
 }

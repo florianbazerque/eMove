@@ -6,7 +6,7 @@ services:
 
     mysql:
       image: mysql:8.0
-      container_name: docker-emove-mysql
+      container_name: emove-mysql
       working_dir: /application
       volumes:
         - .:/application
@@ -20,7 +20,7 @@ services:
 
     webserver:
       image: nginx:alpine
-      container_name: docker-emove-webserver
+      container_name: emove-webserver
       working_dir: /application
       volumes:
           - .:/application
@@ -30,7 +30,7 @@ services:
 
     php-fpm:
       build: phpdocker/php-fpm
-      container_name: docker-emove-php-fpm
+      container_name: emove-php-fpm
       working_dir: /application
       volumes:
         - .:/application

@@ -1,0 +1,120 @@
+/****************************************************************/
+/*********************** PARAMETRAGE SASS ***********************/
+/****************************************************************/
+@font-face {
+  font-family: "Century Gothic";
+  src: url(../fonts/CenturyGothicRegular.ttf) format("truetype"); }
+@font-face {
+  font-family: "Candara";
+  src: url(../fonts/Candara.ttf) format("truetype"); }
+/****************************************************************/
+/**************************** ADIMN *****************************/
+/****************************************************************/
+h2, .mr-5, header {
+  font-family: "Century Gothic", sans-serif; }
+
+.navbar button {
+  background: none;
+  color: #FFF;
+  border: 0px;
+  cursor: pointer; }
+.navbar .navbar-brand {
+  margin-left: 25px;
+  font-size: 25px; }
+.navbar .input-group {
+  margin-top: 5px; }
+.navbar .nav-item {
+  margin: 10px; }
+  .navbar .nav-item .nav-link i {
+    float: left;
+    font-size: 30px; }
+  .navbar .nav-item .fa-circle {
+    float: right !important;
+    margin-top: -30px;
+    font-size: 10px !important; }
+  .navbar .nav-item .dropdown-toggle::after {
+    display: none; }
+  .navbar .nav-item .nav-link {
+    line-height: 30px; }
+.navbar .dropdown-menu {
+  max-width: 500px; }
+.navbar .dropdown-message {
+  overflow: hidden;
+  max-width: none;
+  text-overflow: ellipsis; }
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+  padding-top: 78px;
+  min-height: 100vh; }
+  .wrapper #sidebar.active {
+    margin-left: -300px;
+    -webkit-transition: margin-left .5s, -webkit-ease-out .5s;
+    transition: margin-left .5s, ease-out .5s; }
+  .wrapper #sidebar {
+    min-width: 300px;
+    max-width: 300px;
+    -webkit-transition: margin-left .5s, -webkit-ease-out .5s;
+    transition: margin-left .5s, ease-out .5s;
+    background: #444;
+    color: #FFF; }
+    .wrapper #sidebar h3 {
+      padding: 30px 20px;
+      background: #000;
+      text-transform: uppercase; }
+    .wrapper #sidebar .list-unstyled a {
+      text-decoration: none;
+      color: #FFF; }
+      .wrapper #sidebar .list-unstyled a li {
+        padding: 10px 20px;
+        font-size: 25px; }
+        .wrapper #sidebar .list-unstyled a li:hover {
+          background: #636363; }
+  .wrapper #content.active {
+    padding-left: 20px;
+    margin-left: 0px; }
+  .wrapper #content {
+    width: 100%;
+    padding-top: 20px;
+    padding-left: 350px;
+    margin-left: -320px;
+    -webkit-transition: padding .5s, margin .5s, -webkit-ease-out .5s;
+    transition: padding .5s, margin .5s, ease-out .5s; }
+    .wrapper #content .card-footer i {
+      font-size: 20px; }
+    .wrapper #content h2 {
+      margin: 20px auto;
+      margin: 20px auto;
+      margin-bottom: 30px; }
+    .wrapper #content .mr-5 {
+      font-size: 25px;
+      font-weight: 900; }
+    .wrapper #content .dashboard-carousel {
+      max-width: 100%; }
+      .wrapper #content .dashboard-carousel .slick-arrow {
+        display: none !important; }
+      .wrapper #content .dashboard-carousel .slick-list {
+        cursor: pointer; }
+      .wrapper #content .dashboard-carousel .slick-slide {
+        /*max-width: 100%;*/
+        padding: 20px; }
+
+/****************************************************************/
+/**************************** MODAL *****************************/
+/****************************************************************/
+.modal .modal-dialog {
+  margin: 100px auto;
+  min-width: 70vh; }
+  .modal .modal-dialog form {
+    padding: 0px 30px; }
+    .modal .modal-dialog form .input-group.mb-3 {
+      margin: 30px auto; }
+.modal button {
+  display: block;
+  margin: auto; }
+.modal .input-group > .form-control:not(:first-child) {
+  margin-right: 10px; }
+
+/*# sourceMappingURL=admin.css.map */
