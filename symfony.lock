@@ -422,6 +422,9 @@
     "tecnickcom/tcpdf": {
         "version": "6.2.17"
     },
+    "true/punycode": {
+        "version": "v2.1.1"
+    },
     "twig/twig": {
         "version": "v2.4.8"
     },

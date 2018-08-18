@@ -43,7 +43,6 @@ class VehiculeFixture extends Fixture
         $vehicule->setPrixAchat(60000.50);
 
         //$vehicule->setImage('img/voiture/audiA7/1.jpg');
-        $vehicule->setImage('img/voiture/audiA7/1.jpg');
         $vehicule->setImage('img/voiture/Audi/A7/1.jpg');
         $vehicule->setDescription('Sed tamen haec cum ita tutius observentur, 
         quidam vigore artuum inminuto rogati ad nuptias ubi aurum dextris manibus 

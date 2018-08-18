@@ -78,8 +78,9 @@ class Vehicule
      */
     private $prixAchat;
 
+
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist","remove"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
 
