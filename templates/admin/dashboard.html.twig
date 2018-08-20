@@ -37,14 +37,16 @@
                 <h6 class="dropdown-header">New Messages:</h6>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">
-                    <strong>David Miller</strong>
-                    <span class="small float-right text-muted">11:21 AM</span>
-                    <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These
-                        messages clip off when they reach the end of the box so they don't overflow over to the sides!
+                    {% for message in messages %}
+                    <strong>{{ message.nom }}</strong>
+                    <span class="small float-right text-muted">{{ message.heure }}</span>
+                    <div class="dropdown-message small">
+                        {{ message.message }}
                     </div>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item small" href="#">View all messages</a>
+                    {% endfor %}
+                <a class="dropdown-item small" href="#" data-slick-index="1">View all messages</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -88,11 +90,8 @@
             </form>
         </li>
         <li class="nav-item">
-<<<<<<< HEAD
             <a href="{{ path('home_page') }}" class="nav-link">
-=======
             <a href="" onclick="$(location).attr('href', '/logout')" class="nav-link" data-toggle="modal" >
->>>>>>> ef2658b4cbe45893f0b33ee08c7d33bf483abb48
                 <i class="fa fa-fw fa-sign-out"></i>Déconnexion
             </a>
         </li>
@@ -117,6 +116,9 @@
             </a>
             <a href="#" data-slick-index="0">
                 <li>Mes ventes</li>
+            </a>
+            <a href="{{ path('home_page') }}" data-slick-index="0">
+                <li style="color:red;">Retour sur le site</li>
             </a>
         </ul>
     </nav>
@@ -236,17 +238,19 @@
                 <table class="table">
                     <thead class="thead-light">
                     <tr>
-                        <th scope="col">Véhicule</th>
-                        <th scope="col">Locataire</th>
-                        <th scope="col">Suivi</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Date/Heure</th>
+                        <th scope="col">Message</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                    </tr>
+                    {% for message in messages %}
+                        <tr>
+                            <th scope="row">{{ message.nom }}</th>
+                            <td>{{ message.date|date('d/m/Y') }}|{{ message.heure }}</td>
+                            <td>{{ message.message }}</td>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>

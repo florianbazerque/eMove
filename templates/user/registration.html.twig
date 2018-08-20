@@ -1,0 +1,78 @@
+{% extends "layout/layout.html.twig" %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h3>Inscrivez-vous !</h3>
+                    {{ form_start(form_user_register) }}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"
+                                                                            aria-hidden="true"></i></span>
+                        </div>
+                        {{ form_widget(form_user_register.firstname) }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"
+                                                                            aria-hidden="true"></i></span>
+                        </div>
+                        {{ form_widget(form_user_register.lastname) }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text input-group-lg" id="basic-addon1"><i class="fa fa-user"
+                                                                            aria-hidden="true"></i></span>
+                            <div class="input-group date">
+                                {{ form_widget(form_user_register.birthDate) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-map-marker"
+                                                                                aria-hidden="true"></i></span>
+                        </div>
+                        {{ form_widget(form_user_register.email) }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"
+                                                                                aria-hidden="true"></i></span>
+                        </div>
+                        {{ form_widget(form_user_register.telNum) }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"
+                                                                                aria-hidden="true"></i></span>
+                        </div>
+                        {{ form_widget(form_user_register.password.first) }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"
+                                                                                aria-hidden="true"></i></span>
+                        </div>
+                        {{ form_widget(form_user_register.password.second) }}
+                    </div>
+                    {{ form_widget(form_user_register.submit) }}
+                    {{ form_end(form_user_register) }}
+                </div>
+                <div class="modal-footer">
+                    <div class="container">
+                        <div class="row">
+                            <p>Copyrights © - <?php echo date('Y'); ?> - Presented by <strong><a href="#"
+                                                                                                 target="_blank">Noche
+                                        Design</a></strong></p>
+                        </div>
+                    </div>
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+{% endblock %}

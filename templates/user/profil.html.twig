@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-sm-12 banner">
                 <img title="profile" class="img-circle img-responsive icon" src="src="{{ asset('img/profil.png') }}">
-                <h3>User</h3>
+                <h3>{{ user.firstname }} {{ user.lastname }}</h3>
             </div>
         </div>
         <div class="row">
@@ -37,7 +37,7 @@
                                 <th scope="col">Vehicule</th>
                                 <th scope="col">Début</th>
                                 <th scope="col">Fin</th>
-                                <th scope="col">Lien</th>
+                                <th scope="col">Facture</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -72,34 +72,22 @@
                         <table class="table table-striped">
                             <thead>
                             <tr class="bg-danger">
-                                <th scope="col">N° Commande</th>
-                                <th scope="col">Vehicule</th>
-                                <th scope="col">Début</th>
-                                <th scope="col">Fin</th>
-                                <th scope="col">Lien</th>
+                                <th>Vos Points de fidélités</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
+                                <th scope="row">Total :</th>
+                                <td>300</td>
                             </tr>
                             <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>@fat</td>
+                                <th scope="row">Utilisés :</th>
+                                <td>125</td>
+
                             </tr>
                             <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                <td>@twitter</td>
+                                <th scope="row">Restant</th>
+                                <td>175</td>
                             </tr>
                             </tbody>
                         </table>
@@ -111,34 +99,17 @@
                         <table class="table table-striped">
                             <thead>
                             <tr class="bg-danger">
-                                <th scope="col">N° Commande</th>
-                                <th scope="col">Vehicule</th>
-                                <th scope="col">Début</th>
-                                <th scope="col">Fin</th>
-                                <th scope="col">Lien</th>
+                                <th scope="col">Vehicules Favoris</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
+
                             </tr>
                             <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                <td>@twitter</td>
+                                <td>Citroen</td>
+                                <td>C3</td>
+                                <td>Voir</td>
                             </tr>
                             </tbody>
                         </table>
@@ -149,36 +120,12 @@
                         <h2>Paramètres de connexion</h2>
                         <table class="table table-striped">
                             <thead>
-                            <tr class="bg-danger">
-                                <th scope="col">N° Commande</th>
-                                <th scope="col">Vehicule</th>
-                                <th scope="col">Début</th>
-                                <th scope="col">Fin</th>
-                                <th scope="col">Lien</th>
+                            <tr class="bg-success">
+                                <th scope="col">Modifier son mot de passe</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                <td>@twitter</td>
-                            </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -188,36 +135,12 @@
                         <h2>Informations personnelles</h2>
                         <table class="table table-striped">
                             <thead>
-                            <tr class="bg-danger">
-                                <th scope="col">N° Commande</th>
-                                <th scope="col">Vehicule</th>
-                                <th scope="col">Début</th>
-                                <th scope="col">Fin</th>
-                                <th scope="col">Lien</th>
+                            <tr class="bg-success">
+                                <th scope="col">Adresse de facturation</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                <td>@twitter</td>
-                            </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -228,34 +151,19 @@
                         <table class="table table-striped">
                             <thead>
                             <tr class="bg-danger">
-                                <th scope="col">N° Commande</th>
-                                <th scope="col">Vehicule</th>
-                                <th scope="col">Début</th>
-                                <th scope="col">Fin</th>
-                                <th scope="col">Lien</th>
+                                <th scope="col">Promotions</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
+                                <th scope="row">Audi</th>
+                                <th>-20%/jour</th>
+                                <td>Voir l'offre</td>
                             </tr>
                             <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                <td>@twitter</td>
+                                <th scope="row">Citroen</th>
+                                <th>-30%/jour</th>
+                                <td>Voir l'offre</td>
                             </tr>
                             </tbody>
                         </table>

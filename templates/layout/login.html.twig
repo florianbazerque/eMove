@@ -1,3 +1,7 @@
+<body>
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
 <h3>Connectez-vous avec votre email</h3>
 <form role="form" action="{{ path('login') }}" method="post" id="login-connexion" autocomplete="off">
     <div class="input-group mb-3">
@@ -14,3 +18,4 @@
     </div>
     <input type="submit" id="btn-connexion" class="btn btn-success btn-lg btn-block" value="Connexion">
 </form>
+</body>

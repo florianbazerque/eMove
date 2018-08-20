@@ -74,9 +74,17 @@ class User implements UserInterface, \Serializable
      */
     private $locations;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $roles;
+
+
     public function __construct()
     {
         $this->locations = new ArrayCollection();
+        $this->roles = ['ROLE_ADMIN'];
+
     }
 
     public function getId()
@@ -254,13 +262,18 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        $roleId = $this->getTypeUser()->getId();
-        if($roleId === 1) {
+        $roleId = $this->getTypeUser()->getLabel();
+        if($roleId === "Administrateur") {
             return ['ROLE_ADMIN'];
         } else {
             return ['ROLE_USER'];
         }
     }
+
+   /* public function getRoles()
+    {
+        return $this->roles;
+    }*/
 
     public function eraseCredentials()
     {
