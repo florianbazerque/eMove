@@ -9,7 +9,6 @@
 namespace App\Controller;
 
 use App\Entity\User;
-
 use App\Entity\Vehicule;
 use App\Form\PasswordForm;
 use App\Service\Html2Pdf;
@@ -28,9 +27,9 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/profil", name="profil")
+     * @Route("/profil/{id}", name="profil",  requirements={"id"="\d+"})
      */
-    public function profilAction(Request $request)
+    public function profilAction(Request $request, User $id)
     {
         /*
         Florian
@@ -43,30 +42,28 @@ class UserController extends AbstractController
         Le code commence ici
 */
         $em = $this->getDoctrine()->getManager();
-        /* $id = $this->getUser()->getId();*/
-        $id = 1;
-        $userId = $em->getRepository(User:: class)
+        $user = $em->getRepository(User:: class)
             ->find($id);
         $locations = $em->getRepository(Location:: class)
             ->findBy(
                 ['user' => $id],
                 ['returnDate' => 'ASC']
             );
-        $user = new User();
         $form_info = $this->createForm(UserForm::class, $user);
+
         $form_info->handleRequest($request);
+
         if ($form_info->isSubmitted() && $form_info->isValid()) {
-            $task = $form_info->getData();
             $em = $this->getDoctrine()->getManager();
-            $em->persist($task);
+            $em->persist($user);
             return $this->render('user/profil.html.twig', [
-                'user' => $userId,
+                'user' => $user,
                 'locations' => $locations,
                 'form' => $form_info->createView()
             ]);
         } else {
             return $this->render('user/profil.html.twig', [
-                'user' => $userId,
+                'user' => $user,
                 'locations' => $locations,
                 'form' => $form_info->createView()
             ]);
@@ -128,6 +125,15 @@ class UserController extends AbstractController
 
     }
 
+
+    /**
+     * @Route("/pdf?location={id}", name="pdf_profil", requirements={"id"="\d+"})
+     */
+    public function personalInfoUpdate(User $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->find($id);
+    }
 
 
 }
