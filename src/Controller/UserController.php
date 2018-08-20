@@ -5,7 +5,9 @@
  * Date: 05/07/2018
  * Time: 14:53
  */
+
 namespace App\Controller;
+
 use App\Entity\Location;
 use App\Entity\User;
 use App\Form\PasswordForm;
@@ -16,10 +18,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
 class UserController extends AbstractController
 {
     /**
-     *  @Route("/profil", name="profil")
+     * @Route("/profil", name="profil")
      */
     public function profilAction(Request $request)
     {
@@ -55,7 +58,7 @@ class UserController extends AbstractController
                 'locations' => $locations,
                 'form' => $form_info->createView()
             ]);
-        }else{
+        } else {
             return $this->render('user/profil.html.twig', [
                 'user' => $userId,
                 'locations' => $locations,
@@ -63,8 +66,9 @@ class UserController extends AbstractController
             ]);
         }
     }
+
     /**
-     *  @Route("/login", name="login")
+     * @Route("/login", name="login")
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {
@@ -75,4 +79,25 @@ class UserController extends AbstractController
             'error' => $error,
         ]);
     }
+
+    /**
+     * @Route("/register", name="user_registration")
+     */
+    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $user = new User();
+        $form_user_register = $this->createForm(UserRegisterType::class, $user, ['method' => 'post']);
+        $form_user_register->handleRequest($request);
+        if ($form_user_register->isSubmitted() && $form_user_register->isValid()) {
+            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            //return $this->render('user/profil.html.twig', ['user' => $user]);
+            return $this->redirectToRoute('home_page');
+        }
+        return $this->render('user/registration.html.twig', ['form_user_register' => $form_user_register->createView()]);
+    }
+
 }
