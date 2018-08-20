@@ -14,6 +14,7 @@ use App\Entity\Vehicule;
 use App\Form\PasswordForm;
 use App\Service\Html2Pdf;
 use App\Form\UserForm;
+use App\Entity\Location;
 use App\Form\UserRegisterType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
