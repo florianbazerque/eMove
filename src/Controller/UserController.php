@@ -10,12 +10,15 @@ namespace App\Controller;
 
 use App\Entity\Location;
 use App\Entity\User;
+use App\Entity\Vehicule;
 use App\Form\PasswordForm;
+use App\Service\Html2Pdf;
 use App\Form\UserForm;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -99,5 +102,29 @@ class UserController extends AbstractController
         }
         return $this->render('user/registration.html.twig', ['form_user_register' => $form_user_register->createView()]);
     }
+
+    /**
+     * @Route("/pdf?location={id}", name="pdf_profil", requirements={"id"="\d+"})
+     */
+    public function pdfProfilAction(Location $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $location = $em->getRepository(Location::class)->find($id);
+        if($location){
+            $vehicule = $em->getRepository(Vehicule::class)->find($location->getVehicule()->getId());
+            $user = $em->getRepository(User::class)->find($location->getUser()->getId());
+            $template = $this->renderView('default/pdf.html.twig', ['location' => $location, 'vehicule' => $vehicule, 'user' => $user]);
+        }
+
+        $firstname = $user->getFirstName();
+        $modele = $vehicule->getModele();
+        $name = 'location_'.$firstname.'_'.$modele;
+        $html2pdf = new Html2Pdf();
+        $html2pdf->create('P', 'A4', 'fr', true, 'UTF-8', array(10, 15, 10, 15));
+        $html2pdf->generatePdf($template,$name);
+
+    }
+
+
 
 }

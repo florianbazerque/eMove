@@ -79,7 +79,7 @@ class User implements UserInterface, \Serializable
     {
         $this->locations = new ArrayCollection();
         $this->roles = ['ROLE_ADMIN'];
-        $this->typeUser = 1;
+        $this->typeUser = (new TypeUser())->getId();
 
     }
 
