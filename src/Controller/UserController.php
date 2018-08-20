@@ -12,7 +12,6 @@ use App\Entity\User;
 use App\Form\UserRegisterType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -39,12 +38,12 @@ class UserController extends AbstractController
     /**
      *  @Route("/login", name="login")
      */
-    public function login(AuthenticationUtils $authenticationUtils, Session $session)
+    public function login(AuthenticationUtils $authenticationUtils)
     {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('user/login.html.twig', [
+        return $this->render('layout/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
         ]);
