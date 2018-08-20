@@ -14,6 +14,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Message;
 use App\Entity\TypeUser;
 use App\Entity\User;
 use App\Entity\Vehicule;
@@ -34,6 +35,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 class AdminController extends AbstractController
@@ -50,6 +52,7 @@ class AdminController extends AbstractController
         $users = $em->getRepository(User::class)->findAll();
         $vehicules = $em->getRepository(Vehicule::class)->findAll();
         $agences = $em->getRepository(Agence::class)->findAll();
+        $messages = $em->getRepository(Message::class)->findAll();
 
         //------ Formulaire (user, vehicule, agence)
         $user = new User();
@@ -62,7 +65,7 @@ class AdminController extends AbstractController
         $agence = new Agence();
         $form_agence = $this->createForm(AgenceType::class, $agence, ['action' => $this->generateUrl('add_agence'), 'method' => 'POST']);
 
-        return $this->render('admin/dashboard.html.twig', ['users' => $users, 'vehicules' => $vehicules, 'agences' => $agences, 'form_user' => $form_user->createView(), 'form_vehicule' => $form_vehicule->createView(), 'form_agence' => $form_agence->createView()]);
+        return $this->render('admin/dashboard.html.twig', ['users' => $users, 'vehicules' => $vehicules, 'agences' => $agences, 'messages' => $messages, 'form_user' => $form_user->createView(), 'form_vehicule' => $form_vehicule->createView(), 'form_agence' => $form_agence->createView()]);
     }
 
     //***************  PARTIE UTILISATEUR
@@ -72,7 +75,7 @@ class AdminController extends AbstractController
      * @Route("/dashboard/add-user", name="add_user")
      */
 
-    public function addUserAction(Request $request, Session $session)
+    public function addUserAction(Request $request, Session $session, UserPasswordEncoderInterface $passwordEncoder)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -82,6 +85,10 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $password = $passwordEncoder->encodePassword($user->getPassword());
+            $user->setPassword($password);
+
             $em->persist($user);
             $em->flush();
 

@@ -32,7 +32,7 @@ class LocationController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $vehicule = $em->getRepository(Vehicule:: class)
             ->findOneBy(
-                ['id' => $id ,'dispoVehicule' => 1],
+                ['id' => $id ,'dispoVehicule' => 7],
                 ['id' => 'ASC']
             );
         $statut = $em->getRepository(StatusLocation:: class)

@@ -13,11 +13,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Swift_Mailer;
+use App\Entity\Message;
+
 
 class IndexController extends AbstractController
 {
     /**
-     *  @Route("/", name="home_page")
+     * @Route("/", name="home_page")
      */
     public function indexAction()
     {
@@ -25,24 +27,36 @@ class IndexController extends AbstractController
     }
 
     /**
-     *  @Route("/contact-confirmation", name="contact")
+     * @Route("/contact-confirmation", name="contact")
      */
-    public function contactAction(Request $request , Swift_Mailer $mailer){
-       $name = $request->request->get('name');
-       $email = $request->request->get('email');
-       $message = $request->request->get('message');
+    public function contactAction(Request $request, Swift_Mailer $mailer)
+    {
+        $em = $this->getDoctrine()->getManager();
 
-       $mail = (new \Swift_Message('Message client'))
-           ->setFrom($email)
-           ->setTo('assy.adon@gmail.com')
-           ->setBody(
-               $this->renderView('contact/contact-message.html.twig', ['name' => $name, 'email' => $email, 'message' => $message]),
-               'text/html'
-           );
+        $name = $request->request->get('name');
+        $email = $request->request->get('email');
+        $message = $request->request->get('message');
 
-       //var_dump($mail);die;
-       $mailer->send($mail);
+        $message_admin = new Message();
+        $message_admin->setNom($name);
+        $message_admin->setDate(new \DateTime());
+        $message_admin->setMessage($message);
+        $message_admin->setHeure(date('H:i:s'));
 
-       return $this->render('contact/contact-confirmation.html.twig');
+
+        $mail = (new \Swift_Message('Message client'))
+            ->setFrom($email)
+            ->setTo('assy.adon@gmail.com')
+            ->setBody(
+                $this->renderView('contact/contact-message.html.twig', ['name' => $name, 'email' => $email, 'message' => $message]),
+                'text/html'
+            );
+
+        $mailer->send($mail);
+
+        $em->persist($message_admin);
+        $em->flush();
+
+        return $this->render('contact/contact-confirmation.html.twig');
     }
 }

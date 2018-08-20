@@ -97,16 +97,16 @@ $( document ).ready(function() {
         'overlayShow'	:	false
 	});
 
-	/*******************************************************/
-	/********************** PROFILE  ***********************/
-	/*******************************************************/
+    /*******************************************************/
+    /********************** PROFILE  ***********************/
+    /*******************************************************/
 
-	$('.profile .col-sm-4 .list-group a').click(function(){
-	    var data = $(this).attr('data');
-	    $('.col-sm-8 .jumbotron-fluid').hide();
-	    $('.' + data).show();
+    $('.profile .col-sm-4 .list-group a').click(function(){
+        var data = $(this).attr('data');
+        $('.col-sm-8 .jumbotron-fluid').hide();
+        $('.' + data).show();
 
-	})
+    })
 
 });
 
