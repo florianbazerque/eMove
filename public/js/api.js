@@ -7,6 +7,9 @@ $( document ).ready(function() {
         $(this).val('Envoi en cours'); // Onchange la valeur pour avoir un retour visuel
         $(this).attr("disabled", true); // On s'assure du fait que le bouton ne sera plus cliquable
     });
+	$('.birthday').datetimepicker({
+        format:'d/m/Y H:i'
+	});
 	$('.start').datetimepicker({
         format:'d/m/Y H:i',
         onShow:function( ct ){
@@ -38,7 +41,13 @@ $( document ).ready(function() {
 		language: "fr",
 		todayHighlight: true,
 	});
-	/*******************************************************/
+
+	$('.pass_show').append('<span class="ptxt">Show</span>');
+	$('.pass_show .ptxt').click(function(){
+        $(this).text($(this).text() == "Show" ? "Hide" : "Show");
+        $(this).prev().attr('type', function(index, attr){return attr == 'password' ? 'text' : 'password'; });
+    });
+    /*******************************************************/
 	/******************* RESERVATION ***********************/
 	/*******************************************************/
 
@@ -92,9 +101,9 @@ $( document ).ready(function() {
 	/********************** PROFILE  ***********************/
 	/*******************************************************/
 
-	$('.profile .col-sm-3 .list-group a').click(function(){
+	$('.profile .col-sm-4 .list-group a').click(function(){
 	    var data = $(this).attr('data');
-	    $('.col-sm-9 .jumbotron-fluid').hide();
+	    $('.col-sm-8 .jumbotron-fluid').hide();
 	    $('.' + data).show();
 
 	})

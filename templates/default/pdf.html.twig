@@ -9,7 +9,7 @@
 </style>
     {% set promo = 5 %}
     {% set HT = vehicule.prixachat - (vehicule.prixachat * 20/100) %}
-    {% set TVA = vehicule.prixachat * 5/100 %}
+    {% set TVA = vehicule.prixachat * 20/100 %}
     {% set total = vehicule.prixachat - (vehicule.prixachat * promo/100) %}
     <page backtop="20mm" backright="10mm" backbottom="20mm" backleft="10mm">
         <table class="header">
@@ -47,15 +47,15 @@
                 </tr>
                 <tr>
                     <td colspan="3" class="text-right"><b>Remise de bienvenu</b></td>
-                    <td class="text-right"><b>{{ promo }} %</b></td>
+                    <td class="text-right"><b>{{ (promo)|number_format(2, ',', ' ')  }} %</b></td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-right"><b>TOTAL NET</b></td>
-                    <td class="text-right"><b>{{ HT }} €</b></td>
+                    <td class="text-right"><b>{{ (HT)|number_format(2, ',', ' ')  }} €</b></td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-right"><b>TVA (20%)</b></td>
-                    <td class="text-right"><b>{{ vehicule.prixachat }} €</b></td>
+                    <td class="text-right"><b>{{ (TVA)|number_format(2, ',', ' ') }} €</b></td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-right"><b>TOTAL TTC</b></td>

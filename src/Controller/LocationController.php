@@ -22,14 +22,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 
-
-
 class LocationController extends AbstractController
 {
     /**
      *  @Route("/location/{id}", name="location_view", requirements={"id"="\d+"})
      */
-    public function locationAction($id, Request $request)
+    public function locationAction(Vehicule $id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $vehicule = $em->getRepository(Vehicule:: class)

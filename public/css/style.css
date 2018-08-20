@@ -49,7 +49,6 @@ header {
     margin: 17px 0px; }
     @media screen and (max-width: 992px) {
       header img {
-        width: 100px;
         margin-top: 10px; } }
   header nav {
     max-width: 1000px; }
@@ -130,23 +129,70 @@ header {
 /****************************************************************/
 /*************************** PROFIL *****************************/
 /****************************************************************/
+@media screen and (max-width: 765px) and (min-width: 575px) {
+  .profile {
+    max-width: 100%;
+    margin-top: 145px; } }
+@media screen and (max-width: 575px) {
+  .profile {
+    margin-top: 145px; } }
+.profile .menu {
+  margin-bottom: 50px; }
 .profile .banner {
   background: #e26000;
   padding: 20px;
   border-bottom: 3px solid #FFF; }
 .profile .icon {
-  max-width: 120px;
-  float: left; }
+  max-width: 90px;
+  float: left;
+  margin: 10px auto; }
   .profile .icon + h3 {
     float: left;
     margin: 25px 40px;
     color: #FFF;
     font-weight: 800;
     font-size: 50px; }
-.profile .jumbotron-fluid h2 {
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-bottom: 50px; }
+.profile .jumbotron-fluid {
+  padding-top: 20px; }
+  .profile .jumbotron-fluid h2 {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 40px; }
+  .profile .jumbotron-fluid .hero-widget {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px; }
+    .profile .jumbotron-fluid .hero-widget .icon {
+      display: block;
+      font-size: 96px;
+      line-height: 96px;
+      margin-bottom: 10px;
+      text-align: center; }
+    .profile .jumbotron-fluid .hero-widget var {
+      display: block;
+      height: 57px;
+      font-size: 48px;
+      line-height: 41px;
+      font-style: normal; }
+    .profile .jumbotron-fluid .hero-widget label {
+      font-size: 17px; }
+    .profile .jumbotron-fluid .hero-widget .text {
+      min-height: 125px; }
+    .profile .jumbotron-fluid .hero-widget .options {
+      margin-top: 10px; }
+  .profile .jumbotron-fluid .pass_show {
+    position: relative; }
+    .profile .jumbotron-fluid .pass_show .ptxt {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      z-index: 1;
+      color: #f36c01;
+      margin-top: -10px;
+      cursor: pointer;
+      transition: .3s ease all; }
+  .profile .jumbotron-fluid .pass_show .ptxt:hover {
+    color: #333333; }
 .profile .advantage, .profile .favorite, .profile .connexion, .profile .information, .profile .plan {
   display: none; }
 .profile .col-sm-3 {
@@ -158,6 +204,11 @@ header {
   color: #FFF !important; }
 .profile > div {
   background: #ffbc49; }
+  .profile > div + div {
+    padding-top: 50px;
+    min-height: 400px; }
+.profile .information .row {
+  margin: 27px -15px; }
 
 /****************************************************************/
 /************************** FACTURE *****************************/
@@ -324,9 +375,9 @@ header {
 /****************************************************************/
 .slide-product {
   max-height: 660px;
-  background: #333;
-  overflow: hidden; }
+  background: #333; }
   .slide-product img {
+    max-height: 660px;
     margin: auto; }
 
 .product {

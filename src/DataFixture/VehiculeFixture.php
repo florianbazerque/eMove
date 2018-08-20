@@ -10,10 +10,6 @@ namespace App\DataFixture;
 
 use App\Entity\StatusLocation;
 use App\Entity\Vehicule;
-use App\Entity\TypeVehicule;
-use App\Entity\DispoVehicule;
-use App\Entity\Agence;
-use App\Entity\Marque;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -24,15 +20,9 @@ class VehiculeFixture extends Fixture
     public function load(ObjectManager $manager)
     {
         $vehicule = new Vehicule();
-
-        $vehicule->setTypeVehicule((new TypeVehicule())->setLabel("Voiture"));
-        $vehicule->setDispoVehicule((new DispoVehicule())->setLabel("Disponible"));
-        $vehicule->setAgence((new Agence())->setLabel("Paris"));
-        $vehicule->setMarque((new Marque())->setLabel("Citroen"));
         $vehicule->setTypeVehicule($this->getReference('typevehicule'));
         $vehicule->setDispoVehicule($this->getReference('dispovehicule'));
         $vehicule->setAgence($this->getReference('agence'));
-
         $vehicule->setMarque($this->getReference('marque'));
         $vehicule->setNumSerie('AAA111111');
         $vehicule->setModele('Audi A7');
@@ -41,17 +31,11 @@ class VehiculeFixture extends Fixture
         $vehicule->setNbKm('150000');
         $vehicule->setDateAchat(new \DateTime());
         $vehicule->setPrixAchat(60000.50);
-
-        //$vehicule->setImage('img/voiture/audiA7/1.jpg');
         $vehicule->setImage('img/voiture/Audi/A7/1.jpg');
         $vehicule->setDescription('Sed tamen haec cum ita tutius observentur, 
         quidam vigore artuum inminuto rogati ad nuptias ubi aurum dextris manibus 
         cavatis offertur, inpigre vel usque Spoletium pergunt. haec nobilium sunt instituta.');
-
         $manager->persist($vehicule);
-
-
-
         $manager->flush();
     }
 

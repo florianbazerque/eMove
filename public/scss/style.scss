@@ -81,7 +81,6 @@ header{
     max-height: 45px;
     margin: 17px 0px;
     @media screen and (max-width: $large-devices) {
-      width: 100px;
       margin-top: 10px;
     }
   }
@@ -166,7 +165,7 @@ header{
         position: absolute;
         margin: 10px 15px;
       }
-  }
+    }
 
     .dropdown-menu.show {
       margin-top: 10px;
@@ -199,15 +198,25 @@ header{
 /****************************************************************/
 
 .profile{
-
+  @media screen and (max-width : 765px) and (min-width : 575px) {
+    max-width: 100%;
+    margin-top: 145px;
+  }
+  @media screen and (max-width : 575px) {
+    margin-top: 145px;
+  }
+  .menu{
+    margin-bottom: 50px;
+  }
   .banner{
     background: $colordark;
-    padding: 20px;    
+    padding: 20px;
     border-bottom: 3px solid #FFF;
   }
   .icon{
-    max-width: 120px;
+    max-width: 90px;
     float: left;
+    margin: 10px auto;
     + h3{
       float: left;
       margin: 25px 40px;
@@ -217,11 +226,55 @@ header{
     }
   }
   .jumbotron-fluid{
+    padding-top: 20px;
     h2{
       text-transform: uppercase;
       font-weight: 600;
-      margin-bottom:50px;
+      margin-bottom:40px;
     }
+    .hero-widget {
+      text-align: center;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      .icon{
+        display: block;
+        font-size: 96px;
+        line-height: 96px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      var{
+        display: block;
+        height: 57px;
+        font-size: 48px;
+        line-height: 41px;
+        font-style: normal;
+      }
+      label{
+        font-size: 17px;
+      }
+      .text{
+        min-height: 125px;
+      }
+      .options{
+        margin-top: 10px;
+      }
+    }
+    .pass_show{
+      position: relative;
+      .ptxt{
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        z-index: 1;
+        color: #f36c01;
+        margin-top: -10px;
+        cursor: pointer;
+        transition: .3s ease all;
+      }
+    }
+
+    .pass_show .ptxt:hover{color: #333333;}
   }
 
   .advantage, .favorite, .connexion, .information, .plan{
@@ -244,6 +297,16 @@ header{
 
   > div{
     background:$color;
+    + div{
+      padding-top: 50px;
+      min-height: 400px;
+    }
+  }
+
+  .information{
+    .row {
+      margin: 27px -15px;
+    }
   }
 }
 
@@ -489,9 +552,9 @@ header{
 .slide-product{
   max-height: 660px;
   background: #333;
-  overflow: hidden;
 
   img{
+    max-height: 660px;
     margin: auto;
   }
 }
@@ -568,9 +631,9 @@ header{
 }
 
 .fancybox-close {
-    background: url(../img/cross.png) no-repeat;
-    top: -4px;
-    right: -10px;
+  background: url(../img/cross.png) no-repeat;
+  top: -4px;
+  right: -10px;
 }
 
 /****************************************************************/
@@ -579,56 +642,56 @@ header{
 
 .search{
   display: none;
-    position: absolute;
-    font-family:$family2;
-    z-index: 9;
-    background: #0000009e;
-    padding: 50px;
-    width: 80%;
-    transform: translate(0%, 60%);
-    border-radius: 10px;
-    border: 2px inset $color;
-    color: #EEE;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    @media screen and (max-width: $large-devices) {
-      transform: translate(0%, 30%);
-    }
+  position: absolute;
+  font-family:$family2;
+  z-index: 9;
+  background: #0000009e;
+  padding: 50px;
+  width: 80%;
+  transform: translate(0%, 60%);
+  border-radius: 10px;
+  border: 2px inset $color;
+  color: #EEE;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and (max-width: $large-devices) {
+    transform: translate(0%, 30%);
+  }
 
-    h2{
-      text-align:center;
-      color: $color;
-      padding-bottom:20px;
-    }
+  h2{
+    text-align:center;
+    color: $color;
+    padding-bottom:20px;
+  }
 
-    label{
-      width: 100%;
-      font-size: 24px;
-      @media screen and (max-width: $medium-devices) {
-        font-size: 21px;
-      }
+  label{
+    width: 100%;
+    font-size: 24px;
+    @media screen and (max-width: $medium-devices) {
+      font-size: 21px;
     }
-    
-    input{
-      max-height: 38px;
-    }
+  }
 
-    button{
-      background: $color;
+  input{
+    max-height: 38px;
+  }
+
+  button{
+    background: $color;
+    color: #FFF;
+    display: block;
+    margin: auto;
+    margin-top: 45px;
+    font-size: 20px;
+    border: 1px solid;
+    font-weight: 900;
+    &:hover{
+      background: $color1;
       color: #FFF;
-      display: block;
-      margin: auto;
-      margin-top: 45px;
-      font-size: 20px;
-      border: 1px solid;
-      font-weight: 900;
-      &:hover{
-        background: $color1;
-        color: #FFF;
-      }
     }
+  }
 }
 
 #indexcarrousel{
@@ -643,7 +706,7 @@ header{
 
 .introduce{
   padding: 60px 20px 0px 20px;
-  min-height: 75vh; 
+  min-height: 75vh;
   background: #FFF;
 
   h2{
@@ -653,12 +716,12 @@ header{
   .summary{
     width: 100%;
     text-align: center;
-  a{
-    text-decoration: none;
-    &:hover{
-      color: #FFF;
+    a{
+      text-decoration: none;
+      &:hover{
+        color: #FFF;
+      }
     }
-  }
     .card{
       display: inline-block;
       text-align: left;
@@ -690,10 +753,10 @@ header{
       }
     }
   }
-  
+
   + hr{
-    border: 0; 
-    height: 1px; 
+    border: 0;
+    height: 1px;
     background-image: -webkit-linear-gradient(left, #f0f0f0, $color, #f0f0f0);
     background-image: -moz-linear-gradient(left, #f0f0f0, $color, #f0f0f0);
     background-image: -ms-linear-gradient(left, #f0f0f0, $color, #f0f0f0);
@@ -730,10 +793,10 @@ header{
 }
 
 .map{
-    background: $color;
-    margin-right: -15px;
-    margin-left: -15px;
-    margin-bottom: -5px;
+  background: $color;
+  margin-right: -15px;
+  margin-left: -15px;
+  margin-bottom: -5px;
   h2{
     font-family: $family2;
     color: #FFF;
@@ -743,7 +806,7 @@ header{
   }
 
   iframe{
-      width:100%;
+    width:100%;
   }
 
 }
@@ -790,83 +853,83 @@ header{
   a{
     color: #FFF;
   }
-    .py-5{
-      padding-bottom: 0px !important; 
-    }
+  .py-5{
+    padding-bottom: 0px !important;
+  }
 
-    .fa-facebook{
+  .fa-facebook{
 
-      -webkit-transition: color .2s, background .2s, border .2s, -webkit-ease-out .2s;
-      transition: color .2s, background .2s, border .2s, ease-out .2s;
-      &:hover{
-        color: #3b5998 ;
-      }
+    -webkit-transition: color .2s, background .2s, border .2s, -webkit-ease-out .2s;
+    transition: color .2s, background .2s, border .2s, ease-out .2s;
+    &:hover{
+      color: #3b5998 ;
     }
-    .fa-twitter{
+  }
+  .fa-twitter{
 
-      -webkit-transition: color .2s, background .2s, border .2s, -webkit-ease-out .2s;
-      transition: color .2s, background .2s, border .2s, ease-out .2s;
-      &:hover{
-        color: #76a9ea ;
-      }
+    -webkit-transition: color .2s, background .2s, border .2s, -webkit-ease-out .2s;
+    transition: color .2s, background .2s, border .2s, ease-out .2s;
+    &:hover{
+      color: #76a9ea ;
     }
-    .fa-google-plus{
+  }
+  .fa-google-plus{
 
-      -webkit-transition: color .2s, background .2s, border .2s, -webkit-ease-out .2s;
-      transition: color .2s, background .2s, border .2s, ease-out .2s;
-      &:hover{
-        color: #d82a1e;
-      }
+    -webkit-transition: color .2s, background .2s, border .2s, -webkit-ease-out .2s;
+    transition: color .2s, background .2s, border .2s, ease-out .2s;
+    &:hover{
+      color: #d82a1e;
     }
-    .fa-linkedin{
+  }
+  .fa-linkedin{
 
-      -webkit-transition: color .2s, background .2s, border .2s, -webkit-ease-out .2s;
-      transition: color .2s, background .2s, border .2s, ease-out .2s;
-      &:hover{
-        color: #007ab9 ;
-      }
+    -webkit-transition: color .2s, background .2s, border .2s, -webkit-ease-out .2s;
+    transition: color .2s, background .2s, border .2s, ease-out .2s;
+    &:hover{
+      color: #007ab9 ;
     }
-    .fa-instagram{
+  }
+  .fa-instagram{
 
-      -webkit-transition: color .2s, background .2s, border .2s, -webkit-ease-out .2s;
-      transition: color .2s, background .2s, border .2s, ease-out .2s;
-      &:hover{
-        color: #b41b82 ;
-      }
+    -webkit-transition: color .2s, background .2s, border .2s, -webkit-ease-out .2s;
+    transition: color .2s, background .2s, border .2s, ease-out .2s;
+    &:hover{
+      color: #b41b82 ;
     }
-    .fa-pinterest{
+  }
+  .fa-pinterest{
 
-      -webkit-transition: color .2s, background .2s, border .2s, -webkit-ease-out .2s;
-      transition: color .2s, background .2s, border .2s, ease-out .2s;
-      &:hover{
-        color: #cb2027;
-      }
+    -webkit-transition: color .2s, background .2s, border .2s, -webkit-ease-out .2s;
+    transition: color .2s, background .2s, border .2s, ease-out .2s;
+    &:hover{
+      color: #cb2027;
     }
+  }
 }
 
 
 /****************************************************************/
 /*************************  SUGGESTION **************************/
 /****************************************************************/
-.autocomplete-suggestions { 
-  border: 1px solid #999; 
-  background: #FFF; overflow: auto; 
-  strong { 
-    font-weight: normal; color: #3399FF; 
+.autocomplete-suggestions {
+  border: 1px solid #999;
+  background: #FFF; overflow: auto;
+  strong {
+    font-weight: normal; color: #3399FF;
   }
 }
-.autocomplete-suggestion { 
+.autocomplete-suggestion {
   padding: 2px 5px;
-  white-space: nowrap; 
-  overflow: hidden; 
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .autocomplete-selected { background: #F0F0F0; }
-.autocomplete-group { 
-  padding: 2px 5px; 
-  strong { 
-    display: block; 
-    border-bottom: 1px solid #000; 
+.autocomplete-group {
+  padding: 2px 5px;
+  strong {
+    display: block;
+    border-bottom: 1px solid #000;
   }
 }
 
@@ -929,7 +992,7 @@ header{
       }
     }
   }
-  
+
 }
 
 
@@ -943,9 +1006,9 @@ header{
 }
 
 .datepicker-days{
-    min-width: 200px;
-    border: 2px solid $color;
-    padding: 5px;
+  min-width: 200px;
+  border: 2px solid $color;
+  padding: 5px;
   .table-condensed{
     min-width: 200px;
 
@@ -968,5 +1031,5 @@ header{
         text-align: center;
       }
     }
-  } 
+  }
 }
