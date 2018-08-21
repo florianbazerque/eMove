@@ -125,7 +125,7 @@ class LocationController extends AbstractController
                 ->setFrom('facture@emove.com')
                 ->setTo($user_email)
                 ->setBody(
-                    $this->renderView('user/location-confirmation-mail.html.twig', ['name' =>, 'email' => $email, 'message' => $message]),
+                    $this->renderView('user/location-confirmation-mail.html.twig'),
                     'text/html'
                 );
 
