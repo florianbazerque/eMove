@@ -140,9 +140,14 @@ class UserController extends AbstractController
                 );
             if($user)
             {
-                $random = html(random_bytes(10));
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $charactersLength = strlen($characters);
+                $random = '';
+                for ($i = 0; $i < 11; $i++) {
+                    $random .= $characters[rand(0, $charactersLength - 1)];
+                }
+
                 $newPwd = password_hash($random, PASSWORD_DEFAULT);
-                var_dump($random);die;
                 $user->setPassword($newPwd);
                 $em->persist($user);
                 $em->flush();
