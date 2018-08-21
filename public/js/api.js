@@ -26,21 +26,15 @@ $( document ).ready(function() {
             })
         },
     });
-	/*$('.date input').datepicker({
-		format: "dd/mm/yyyy",
-	    startDate: "today",
-	    todayBtn: "linked",
-	    language: "fr",
-	    orientation: "bottom auto",
-	    autoclose: true,
-	    todayHighlight: true,
-	    toggleActive: true
-	});*/
 	$('.naissance').datepicker({
 	    format: "dd/mm/yyyy",
 		language: "fr",
 		todayHighlight: true,
 	});
+
+	$('header .dropdown-toggle').dropdown();
+
+
 
 	$('.pass_show').append('<span class="ptxt">Show</span>');
 	$('.pass_show .ptxt').click(function(){
