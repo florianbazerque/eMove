@@ -1,6 +1,21 @@
 {% extends "layout/layout.html.twig" %}
 {% block content %}
     <div class="container-fluid">
+
+            <div class="col-sm-12">
+                <!--Message SUCCESS/ERROR-->
+                {% for flashMessage in app.session.flashbag.get('error') %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success" role="alert">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+            </div>
+
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">

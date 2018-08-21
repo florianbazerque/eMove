@@ -32,17 +32,16 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/profil/{id}", name="profil",  requirements={"id"="\d+"})
+     * @Route("/profil", name="profil")
      */
-    public function profilAction(Request $request, User $id)
+    public function profilAction(Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository(User:: class)
-            ->find($id);
+        $user = $this->getUser();
         $locations = $em->getRepository(Location:: class)
             ->findBy(
-                ['user' => $id],
+                ['user' => $user->getId()],
                 ['returnDate' => 'ASC']
             );
         $form_info = $this->createForm(UserForm::class, $user);
@@ -67,24 +66,17 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="login")
-     */
-    public function login(AuthenticationUtils $authenticationUtils)
-    {
-        $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
-        return $this->render('layout/login.html.twig', [
-            'last_username' => $lastUsername,
-            'error' => $error,
-        ]);
-    }
-
-
-    /**
      * @Route("/connexion", name="login")
      */
-    public function connexion(AuthenticationUtils $authenticationUtils)
+    public function connexion($message = 0, AuthenticationUtils $authenticationUtils, Session $session)
     {
+        if($message != 0) {
+            if($message = 1){
+                $session->getFlashBag()->add('success', 'Votre mot de passe a été réinitialisé');
+            } else {
+                $session->getFlashBag()->add('error', 'Echec de la réinitialisation de votre mot de passe');
+            }
+        }
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
         return $this->render('layout/login.html.twig', [
@@ -123,7 +115,7 @@ class UserController extends AbstractController
     /**
      * @Route("/password", name="pwd_forget")
      */
-    public function forgetPassword(Request $request,\Swift_Mailer $mailer)
+    public function forgetPassword(Request $request,\Swift_Mailer $mailer, Session $session)
     {
         // creates a task and gives it some dummy data for this example
         $user = new User();
@@ -176,7 +168,7 @@ class UserController extends AbstractController
                 return $this->redirectToRoute('login');
 
             } else {
-                return $this->redirectToRoute('task_error');
+                return $this->redirectToRoute('login');
             }
         }
 
@@ -209,13 +201,13 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/change-password/{id}", name="change_password", requirements={"id"="\d+"})
+     * @Route("/change-password", name="change_password")
      */
-    public function changePasswordAction(User $id, Request $request, Session $session, UserPasswordEncoderInterface $passwordEncoder)
+    public function changePasswordAction(Request $request, Session $session, UserPasswordEncoderInterface $passwordEncoder)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository(User::class)->find($id);
-        $locations = $em->getRepository(Location::class)->findBy(['user' => $id], ['returnDate' => 'ASC']);
+        $user = $this->getUser();
+        $locations = $em->getRepository(Location::class)->findBy(['user' => $user->getId()], ['returnDate' => 'ASC']);
 
         $form_change_password = $this->createForm(PasswordChangeType::class, $user, ['method' => 'post']);
 
@@ -229,7 +221,7 @@ class UserController extends AbstractController
 
             $session->getFlashBag()->add('success', 'Votre mot de passe a été modifié');
 
-            return $this->redirectToRoute('profil', ['id' => $user->getId()]);
+            return $this->redirectToRoute('profil');
         }
 
         return $this->render('user/password.html.twig', ['form_change_password' => $form_change_password->createView()]);
