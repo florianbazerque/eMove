@@ -137,7 +137,12 @@ class UserController extends AbstractController
                 );
             if($user)
             {
-                $random = random_bytes(10);
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $charactersLength = strlen($characters);
+                $random = '';
+                for ($i = 0; $i < 11; $i++) {
+                    $random .= $characters[rand(0, $charactersLength - 1)];
+                }
                 $newPwd = password_hash($random, PASSWORD_DEFAULT);
                 $user->setPassword($newPwd);
                 $em->persist($user);
@@ -145,7 +150,7 @@ class UserController extends AbstractController
 
                 $mail = (new \Swift_Message('eMove : Réinitialisation de votre mot de passe'))
                     ->setFrom('bazerquef@gmail.com')
-                    ->setTo('florian.bazerque@orange.fr')
+                    ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView('contact/contact-new-password.html.twig', ['message' => $random]),
                         'text/html'
