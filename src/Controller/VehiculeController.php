@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\Agence;
+use App\Entity\DispoVehicule;
 use App\Entity\TypeVehicule;
 use App\Entity\Vehicule;
 use App\Form\VehiculeForm;
@@ -34,9 +35,15 @@ class VehiculeController extends AbstractController
     {
 
         $em = $this->getDoctrine()->getManager();
+
+        $dispo = new DispoVehicule();
+        $dispo = $em->getRepository(DispoVehicule:: class)
+            ->findOneBy(
+                ['label' => 'Disponible']
+            );
         $vehicules = $em->getRepository(Vehicule::class)
             ->findBy(
-                ['dispoVehicule' => 1],
+                ['dispoVehicule' => $dispo->getId()],
                 ['dateAchat' => 'ASC']
             );
         $promo = true;
@@ -53,9 +60,15 @@ class VehiculeController extends AbstractController
     public function viewAction($id)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $dispo = new DispoVehicule();
+        $dispo = $em->getRepository(DispoVehicule:: class)
+            ->findOneBy(
+                ['label' => 'Disponible']
+            );
         $vehicule = $em->getRepository(Vehicule:: class)
             ->findOneBy(
-                ['id' => $id ,'dispoVehicule' => 1]
+                ['id' => $id ,'dispoVehicule' => $dispo->getId()]
             );
         $options = $em->getRepository(Vehicule:: class)
             ->findByNot('id', $id);

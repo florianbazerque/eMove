@@ -36,16 +36,7 @@ class UserController extends AbstractController
      */
     public function profilAction(Request $request)
     {
-        /*
-        Florian
-        J'ai commencé à ajouter l'essentiel de la function.
-        Tu devras aussi:
-            - mettre une condition pour savoir si l'utilisateur est connecté
-            - ajouter l'affichages des formulaires en twig et verifier qu'il marche bien
-            - ajouter les formulaires sur le template profil
-        Fait autant de modif que necessaire
-        Le code commence ici
-*/
+
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $locations = $em->getRepository(Location:: class)
