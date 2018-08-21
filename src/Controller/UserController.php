@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\Message;
+use App\Entity\TypeUser;
 use App\Entity\User;
 use App\Entity\Vehicule;
 use App\Form\PasswordForm;
@@ -96,6 +97,7 @@ class UserController extends AbstractController
         $form_user_register->handleRequest($request);
         if ($form_user_register->isSubmitted() && $form_user_register->isValid()) {
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setTypeUser(2);
             $user->setPassword($password);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
