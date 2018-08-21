@@ -78,7 +78,7 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->locations = new ArrayCollection();
-        $this->roles = ['ROLE_ADMIN'];
+        $this->roles = ['ROLE_USER'];
         $user = new TypeUser();
         $this->typeUser = $user->getId();
 

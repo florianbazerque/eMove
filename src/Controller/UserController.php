@@ -8,8 +8,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Message;
 use App\Entity\User;
 use App\Form\UserRegisterType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -97,6 +100,65 @@ class UserController extends AbstractController
             return $this->redirectToRoute('home_page');
         }
         return $this->render('user/registration.html.twig', ['form_user_register' => $form_user_register->createView()]);
+    }
+
+
+    /**
+     * @Route("/password", name="pwd_forget")
+     */
+    public function forgetPassword(Request $request,\Swift_Mailer $mailer)
+    {
+        // creates a task and gives it some dummy data for this example
+        $user = new User();
+
+        $form = $this->createFormBuilder($user)
+            ->add('email', EmailType::class)
+            ->add('save', SubmitType::class, array('label' => 'Réinitialiser'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $user = $form->getData();
+
+            // ... perform some action, such as saving the task to the database
+            // for example, if Task is a Doctrine entity, save it!
+            // $entityManager = $this->getDoctrine()->getManager();
+            // $entityManager->persist($task);
+            // $entityManager->flush();
+            $user = $em->getRepository(User:: class)
+                ->findOneBy(
+                    ['email' => $user->getEmail()]
+                );
+            if($user)
+            {
+                $random = random_bytes(10);
+                $newPwd = password_hash($random, PASSWORD_DEFAULT);
+                $user->setPassword($newPwd);
+                $em->persist($user);
+                $em->flush();
+
+                $mail = (new \Swift_Message('eMove : Réinitialisation de votre mot de passe'))
+                    ->setFrom('bazerquef@gmail.com')
+                    ->setTo('florian.bazerque@orange.fr')
+                    ->setBody(
+                        $this->renderView('contact/contact-new-password.html.twig', ['message' => $random]),
+                        'text/html'
+                    );
+
+                $mailer->send($mail);
+                return $this->redirectToRoute('task_success');
+
+            } else {
+                return $this->redirectToRoute('task_error');
+            }
+        }
+
+        return $this->render('layout/modal_password.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
 }
