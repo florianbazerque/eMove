@@ -33,7 +33,14 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
     access_control:
          - { path: ^/dashboard, roles: ROLE_ADMIN }
+         - { path: ^/location, roles: ROLE_USER}
+         - { path: ^/profil, roles: ROLE_USER}
+         - { path: ^/facture, roles: ROLE_USER}
+         - { path: ^/pdf, roles: ROLE_USER}
+         - { path: ^/change-password, roles: ROLE_USER}
         # - { path: ^/profile, roles: ROLE_USER }
-    access_denied_url: /
+    access_denied_url: /error=1
