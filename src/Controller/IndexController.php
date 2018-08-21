@@ -59,4 +59,29 @@ class IndexController extends AbstractController
 
         return $this->render('contact/contact-confirmation.html.twig');
     }
+
+
+
+    /**
+     *  @Route("/error={id}", name="error", requirements={"id"="\d+"})
+     */
+    public function errorsAction($id)
+    {
+        switch ($id){
+
+            case 0 :
+                $error = "Vehicule indisponible";
+                break;
+            case 1 :
+                $error = "Qui êtes-vous ?";
+                break;
+            default :
+                $error =  "Désolé, une erreur est survenue, page demandée introuvable!";
+        }
+
+        return $this->render('default/errors.html.twig', [
+            'error' => $error,
+        ]);
+    }
+
 }
