@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Vehicule;
+use App\Form\PasswordChangeType;
 use App\Form\PasswordForm;
 use App\Service\Html2Pdf;
 use App\Form\UserForm;
@@ -127,12 +128,33 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/pdf?location={id}", name="pdf_profil", requirements={"id"="\d+"})
+     * @Route("/change-password/{id}", name="change_password", requirements={"id"="\d+"})
      */
-    public function personalInfoUpdate(User $id)
+    public function changePasswordAction(User $id, Request $request, Session $session, UserPasswordEncoderInterface $passwordEncoder)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository(User::class)->find($id);
+        $locations = $em->getRepository(Location::class)->findBy(['user' => $id], ['returnDate' => 'ASC']);
+
+        $form_change_password = $this->createForm(PasswordChangeType::class, $user, ['method' => 'post']);
+
+        $form_change_password->handleRequest($request);
+        if ($form_change_password->isSubmitted() && $form_change_password->isValid()) {
+            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $session->getFlashBag()->add('success', 'Votre mot de passe a été modifié');
+
+            return $this->redirectToRoute('profil', ['id' => $user->getId()]);
+        }
+
+        return $this->render('user/password.html.twig', ['form_change_password' => $form_change_password->createView()]);
+
+
+
     }
 
 

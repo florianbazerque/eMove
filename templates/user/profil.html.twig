@@ -8,7 +8,14 @@
                 <h3>User</h3>
             </div>
         </div>
-        <div class="row menu">
+        <div class="row menu" style="padding: 15px;">
+            <div class="col-sm-12">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            </div>
             <div class="col-sm-4">
                 <!--left col-->
                 <ul class="list-group">
@@ -21,7 +28,7 @@
                     <li class="list-group-item text-muted">Paramètre du compte <i class="fa fa-address-card-o" aria-hidden="true"></i></li>
                     <!--<a href="#" class="list-group-item text-right" data="connexion"><span class="pull-left"><strong>Mot de passe</strong></span></a>-->
                     <a href="#" class="list-group-item text-right" data="information"><span class="pull-left"><strong>Informations personnelles</strong></span></a>
-                    <a href="#" class="list-group-item text-right" data="plan"><span class="pull-left"><strong class="">Paramètre de connexion</strong></span></a>-->
+                    <a href="#" class="list-group-item text-right" data="connexion"><span class="pull-left"><strong>Paramètre de connexion</strong></span></a>
                     <!--<a href="#" class="list-group-item text-right" data="plan"><span class="pull-left"><strong class="">Bon Plans</strong></span></a>-->
                 </ul>
             </div>
@@ -147,6 +154,19 @@
                     </div>
                 </div>
                 <div class="jumbotron-fluid connexion ">
+                    <div class="container">
+                        <h2>Paramètre de connexion</h2>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr class="bg-success">
+                                <th scope="col"><a href="{{ path('change_password', {'id' : app.user.id }) }}" style="color:black;">Modifier votre mot de passe</a></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <td></td>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="jumbotron-fluid information ">
                     <div class="container">
@@ -198,44 +218,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="jumbotron-fluid plan ">
-                    <div class="container">
-                        <h2>Bon plans</h2>
-                        <table class="table table-striped">
-                            <thead>
-                            <tr class="bg-danger">
-                                <th scope="col">N° Commande</th>
-                                <th scope="col">Vehicule</th>
-                                <th scope="col">Début</th>
-                                <th scope="col">Fin</th>
-                                <th scope="col">Lien</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                <td>@twitter</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="jumbotron-fluid">
+
                 </div>
             </div>
             <div id="push"></div>
