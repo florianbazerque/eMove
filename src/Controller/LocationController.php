@@ -15,6 +15,7 @@ use App\Entity\Vehicule;
 use App\Form\LocationForm;
 use App\Entity\User;
 use App\Service\Html2Pdf;
+use Swift_Mailer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -101,7 +102,7 @@ class LocationController extends AbstractController
     /**
      *  @Route("/facture?vehicule={id}", name="facture", requirements={"id"="\d+"})
      */
-    public function factureAction($id)
+    public function factureAction($id, Swift_Mailer $mailer)
     {
         $em = $this->getDoctrine()->getManager();
         $location = $em->getRepository(Location:: class)
@@ -115,6 +116,21 @@ class LocationController extends AbstractController
         } else {
             $vehicule = $em->getRepository(Vehicule::class)
                 ->find($location->getVehicule());
+
+            //envoi de l'email de confirmation au client
+            $user = $em->getRepository(User::class)->find($id);
+            $user_email = $user->getEmail();
+
+            $mail = (new \Swift_Message('Message client'))
+                ->setFrom('facture@emove.com')
+                ->setTo($user_email)
+                ->setBody(
+                    $this->renderView('user/location-confirmation-mail.html.twig'),
+                    'text/html'
+                );
+
+            $mailer->send($mail);
+
             return $this->render('user/facture.html.twig', [
                 'location' => $location,
                 'vehicule' => $vehicule
