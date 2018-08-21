@@ -699,6 +699,29 @@ header {
     .modal .modal-dialog .modal-footer p {
       margin: auto; }
 
+.container-login {
+  padding-top: 50px; }
+  .container-login h3 {
+    padding: 20px 0px; }
+  .container-login input {
+    padding: 15px; }
+  .container-login input[type="submit"] {
+    margin-top: 50px; }
+
+.change {
+  max-width: 800px; }
+  .change .modal-content {
+    margin-top: 110px;
+    border: 0px; }
+    .change .modal-content .input-group.mb-3 {
+      margin: 30px auto; }
+    .change .modal-content button {
+      margin-top: 40px; }
+  .change .modal.footer p {
+    margin: auto; }
+  .change .birth .input-group-prepend {
+    width: 100%; }
+
 /****************************************************************/
 /************************** DATEPICKER **************************/
 /****************************************************************/

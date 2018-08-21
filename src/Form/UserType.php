@@ -34,6 +34,7 @@ class UserType extends  AbstractType
                 ->add('email', EmailType::class, ['attr'=> ['class' => 'form-control', 'placeholder' => 'Votre email']])
                 ->add('birthDate', DateType::class, ['attr'=> ['class' => 'form-control', 'placeholder' => 'DD/MM/YYYY'], 'widget' => 'single_text', 'format' =>  'dd/MM/yyyy'])
                 ->add('adresse', TextType::class, ['attr' => ['class' =>  'form-control', 'placeholder' => 'Adresse']])
+                ->add('licence_num', TextType::class, ['attr' => ['class' =>  'form-control', 'placeholder' => 'N° Licence']])
                 ->add('telNum', TelType::class, ['attr' => ['class' => 'form-control', 'placeholder' => 'Numéro']])
                 ->add('password', RepeatedType::class, [ 'type' => PasswordType::class, 'invalid_message' => 'Les mots de passe ne concorde pas', 'required' => true, 'first_options' => ['attr' =>['class' => 'form-control','placeholder' => 'Votre mot de passe']], 'second_options' => ['attr' =>['class' => 'form-control','placeholder' => 'Confirmer votre mot de passe']] ])
                 ->add('submit', SubmitType::class, ['label' => 'Confirmer l\'utilisateur ', 'attr' => ['class' => 'btn btn-primary btn-lg btn-block']]);

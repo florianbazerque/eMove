@@ -994,7 +994,42 @@ header{
   }
 
 }
+.container-login{
+  padding-top: 50px;
+  h3{
+    padding: 20px 0px;
+  }
+  input{
+    padding: 15px;
+  }
+  input[type="submit"]{
+    margin-top: 50px;
+  }
+}
 
+.change{
+  max-width: 800px;
+  .modal-content{
+    margin-top: 110px;
+    border: 0px;
+    .input-group.mb-3{
+      margin: 30px auto ;
+    }
+    button{
+      margin-top: 40px;
+    }
+  }
+  .modal.footer{
+    p{
+      margin: auto;
+    }
+  }
+  .birth{
+    .input-group-prepend{
+      width: 100%;
+    }
+  }
+}
 
 /****************************************************************/
 /************************** DATEPICKER **************************/

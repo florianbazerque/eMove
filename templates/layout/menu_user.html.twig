@@ -8,7 +8,7 @@
             {{ render(controller('App\\Controller\\VehiculeController::searchBarAction')) }}
             <div class="col-sm-4">
                 <ul>
-                    <li><a href="{{ path('shop') }}"><span>Catalogue</span> <i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
+                    <li><a href="{{ path('shop') }}"><span><i class="fa fa-shopping-bag" aria-hidden="true"></i></span> <i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             <span>{{ app.user.firstname|capitalize }} {{ app.user.lastname|capitalize }}</span> <i class="fa fa-user" aria-hidden="true"></i>

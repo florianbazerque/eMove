@@ -88,17 +88,37 @@ class UserController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/connexion", name="login")
+     */
+    public function connexion(AuthenticationUtils $authenticationUtils)
+    {
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+        return $this->render('layout/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+        ]);
+    }
+
     /**
      * @Route("/register", name="user_registration")
      */
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
+        $em = $this->getDoctrine()->getManager();
         $user = new User();
+        $type = new TypeUser();
+        $type = $em->getRepository(TypeUser:: class)
+            ->findOneBy(
+                ['label' => 'Utilisateur']
+            );
         $form_user_register = $this->createForm(UserRegisterType::class, $user, ['method' => 'post']);
         $form_user_register->handleRequest($request);
         if ($form_user_register->isSubmitted() && $form_user_register->isValid()) {
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
-            $user->setTypeUser(2);
+            $user->setTypeUser($type);
             $user->setPassword($password);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);

@@ -26,7 +26,7 @@ $( document ).ready(function() {
             })
         },
     });
-	$('.date input').datepicker({
+	/*$('.date input').datepicker({
 		format: "dd/mm/yyyy",
 	    startDate: "today",
 	    todayBtn: "linked",
@@ -35,7 +35,7 @@ $( document ).ready(function() {
 	    autoclose: true,
 	    todayHighlight: true,
 	    toggleActive: true
-	});
+	});*/
 	$('.naissance').datepicker({
 	    format: "dd/mm/yyyy",
 		language: "fr",

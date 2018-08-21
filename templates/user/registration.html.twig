@@ -1,15 +1,14 @@
 {% extends "layout/layout.html.twig" %}
 {% block content %}
     <div class="container-fluid">
-        <div class="modal-dialog">
+        <div class="modal-dialog change">
             <div class="modal-content">
                 <div class="modal-body">
                     <h3>Inscrivez-vous !</h3>
                     {{ form_start(form_user_register) }}
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"
-                                                                            aria-hidden="true"></i></span>
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"  aria-hidden="true"></i></span>
                         </div>
                         {{ form_widget(form_user_register.firstname) }}
                     </div>
@@ -20,7 +19,7 @@
                         </div>
                         {{ form_widget(form_user_register.lastname) }}
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3 birth">
                         <div class="input-group-prepend">
                         <span class="input-group-text input-group-lg" id="basic-addon1"><i class="fa fa-user"
                                                                             aria-hidden="true"></i></span>
@@ -42,6 +41,13 @@
                                                                                 aria-hidden="true"></i></span>
                         </div>
                         {{ form_widget(form_user_register.email) }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-car"
+                                                                                aria-hidden="true"></i></span>
+                        </div>
+                        {{ form_widget(form_user_register.licence_num) }}
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
