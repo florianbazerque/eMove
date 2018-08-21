@@ -21,6 +21,7 @@
                     <li class="list-group-item text-muted">Paramètre du compte <i class="fa fa-address-card-o" aria-hidden="true"></i></li>
                     <!--<a href="#" class="list-group-item text-right" data="connexion"><span class="pull-left"><strong>Mot de passe</strong></span></a>-->
                     <a href="#" class="list-group-item text-right" data="information"><span class="pull-left"><strong>Informations personnelles</strong></span></a>
+                    <a href="#" class="list-group-item text-right" data="plan"><span class="pull-left"><strong class="">Paramètre de connexion</strong></span></a>-->
                     <!--<a href="#" class="list-group-item text-right" data="plan"><span class="pull-left"><strong class="">Bon Plans</strong></span></a>-->
                 </ul>
             </div>
@@ -40,15 +41,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td class="text-center">
-                                    <a class="btn btn-danger btn-xs" href="#" ><span class="glyphicon glyphicon-remove"><i class="fa fa-download" aria-hidden="true"></i></span></a>
-                                </td>
-                            </tr>
+                            {% for location in app.user.locations %}
+                                <tr>
+                                    <th scope="row">{{ location.id }}</th>
+                                    <td>{{ location.vehicule.marque.label }} {{ location.vehicule.modele }}</td>
+                                    <td>{{ location.startDate|date('d/m/Y') }}</td>
+                                    <td>{{ location.endDate|date('d/m/Y') }}</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-danger btn-xs" href="{{ path('pdf_profil', {'id' : location.id }) }}" ><span class="glyphicon glyphicon-remove"><i class="fa fa-download" aria-hidden="true"></i></span></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -186,18 +189,6 @@
                                         <div class="col-md-6">
                                             <div class="md-form">
                                                 {{ form_widget(form.telnum) }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group pass_show md-form">
-                                                {{ form_widget(form.password.first) }}
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group pass_show md-form">
-                                                {{ form_widget(form.password.second) }}
                                             </div>
                                         </div>
                                     </div>

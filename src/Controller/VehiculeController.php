@@ -36,7 +36,7 @@ class VehiculeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $vehicules = $em->getRepository(Vehicule::class)
             ->findBy(
-                ['dispoVehicule' => 7],
+                ['dispoVehicule' => 1],
                 ['dateAchat' => 'ASC']
             );
         $promo = true;
@@ -55,7 +55,7 @@ class VehiculeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $vehicule = $em->getRepository(Vehicule:: class)
             ->findOneBy(
-                ['id' => $id ,'dispoVehicule' => 7]
+                ['id' => $id ,'dispoVehicule' => 1]
             );
         $options = $em->getRepository(Vehicule:: class)
             ->findByNot('id', $id);

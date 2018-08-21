@@ -14,6 +14,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Location;
 use App\Entity\Message;
 use App\Entity\TypeUser;
 use App\Entity\User;
@@ -53,6 +54,7 @@ class AdminController extends AbstractController
         $vehicules = $em->getRepository(Vehicule::class)->findAll();
         $agences = $em->getRepository(Agence::class)->findAll();
         $messages = $em->getRepository(Message::class)->findAll();
+        $locations = $em->getRepository(Location::class)->findAll();
 
         //------ Formulaire (user, vehicule, agence)
         $user = new User();
@@ -65,7 +67,7 @@ class AdminController extends AbstractController
         $agence = new Agence();
         $form_agence = $this->createForm(AgenceType::class, $agence, ['action' => $this->generateUrl('add_agence'), 'method' => 'POST']);
 
-        return $this->render('admin/dashboard.html.twig', ['users' => $users, 'vehicules' => $vehicules, 'agences' => $agences, 'messages' => $messages, 'form_user' => $form_user->createView(), 'form_vehicule' => $form_vehicule->createView(), 'form_agence' => $form_agence->createView()]);
+        return $this->render('admin/dashboard.html.twig', ['users' => $users, 'vehicules' => $vehicules, 'agences' => $agences, 'messages' => $messages, 'locations' => $locations, 'form_user' => $form_user->createView(), 'form_vehicule' => $form_vehicule->createView(), 'form_agence' => $form_agence->createView()]);
     }
 
     //***************  PARTIE UTILISATEUR

@@ -10,6 +10,11 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Entity\User;
+use App\Entity\Vehicule;
+use App\Form\PasswordForm;
+use App\Service\Html2Pdf;
+use App\Form\UserForm;
+use App\Entity\Location;
 use App\Form\UserRegisterType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -19,14 +24,15 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
 {
     /**
-     * @Route("/profil", name="profil")
+     * @Route("/profil/{id}", name="profil",  requirements={"id"="\d+"})
      */
-    public function profilAction(Request $request)
+    public function profilAction(Request $request, User $id)
     {
         /*
         Florian
@@ -39,30 +45,28 @@ class UserController extends AbstractController
         Le code commence ici
 */
         $em = $this->getDoctrine()->getManager();
-        /* $id = $this->getUser()->getId();*/
-        $id = 1;
-        $userId = $em->getRepository(User:: class)
+        $user = $em->getRepository(User:: class)
             ->find($id);
         $locations = $em->getRepository(Location:: class)
             ->findBy(
                 ['user' => $id],
                 ['returnDate' => 'ASC']
             );
-        $user = new User();
         $form_info = $this->createForm(UserForm::class, $user);
+
         $form_info->handleRequest($request);
+
         if ($form_info->isSubmitted() && $form_info->isValid()) {
-            $task = $form_info->getData();
             $em = $this->getDoctrine()->getManager();
-            $em->persist($task);
+            $em->persist($user);
             return $this->render('user/profil.html.twig', [
-                'user' => $userId,
+                'user' => $user,
                 'locations' => $locations,
                 'form' => $form_info->createView()
             ]);
         } else {
             return $this->render('user/profil.html.twig', [
-                'user' => $userId,
+                'user' => $user,
                 'locations' => $locations,
                 'form' => $form_info->createView()
             ]);
@@ -101,7 +105,6 @@ class UserController extends AbstractController
         }
         return $this->render('user/registration.html.twig', ['form_user_register' => $form_user_register->createView()]);
     }
-
 
     /**
      * @Route("/password", name="pwd_forget")
@@ -159,6 +162,38 @@ class UserController extends AbstractController
         return $this->render('layout/modal_password.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * @Route("/pdf?location={id}", name="pdf_profil", requirements={"id"="\d+"})
+     */
+    public function pdfProfilAction(Location $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $location = $em->getRepository(Location::class)->find($id);
+        if($location){
+            $vehicule = $em->getRepository(Vehicule::class)->find($location->getVehicule()->getId());
+            $user = $em->getRepository(User::class)->find($location->getUser()->getId());
+            $template = $this->renderView('default/pdf.html.twig', ['location' => $location, 'vehicule' => $vehicule, 'user' => $user]);
+        }
+
+        $firstname = $user->getFirstName();
+        $modele = $vehicule->getModele();
+        $name = 'location_'.$firstname.'_'.$modele;
+        $html2pdf = new Html2Pdf();
+        $html2pdf->create('P', 'A4', 'fr', true, 'UTF-8', array(10, 15, 10, 15));
+        $html2pdf->generatePdf($template,$name);
+
+    }
+
+
+    /**
+     * @Route("/pdf?location={id}", name="pdf_profil", requirements={"id"="\d+"})
+     */
+    public function personalInfoUpdate(User $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->find($id);
     }
 
 }

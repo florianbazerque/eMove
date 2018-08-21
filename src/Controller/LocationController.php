@@ -32,7 +32,7 @@ class LocationController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $vehicule = $em->getRepository(Vehicule:: class)
             ->findOneBy(
-                ['id' => $id ,'dispoVehicule' => 7],
+                ['id' => $id ,'dispoVehicule' => 1],
                 ['id' => 'ASC']
             );
         $statut = $em->getRepository(StatusLocation:: class)
@@ -127,7 +127,7 @@ class LocationController extends AbstractController
      *  @Route("/pdf?location={id}", name="pdf", requirements={"id"="\d+"})
      *  @return Response
      */
-    public function PdfAction($id)
+    public function PdfAction(Location $id)
     {
         $em = $this->getDoctrine()->getManager();
         $location = $em->getRepository(Location:: class)

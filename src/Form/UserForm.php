@@ -70,12 +70,6 @@ class UserForm extends AbstractType
                     'class' => 'form-control birthday'
                 ]
             ])
-            ->add('password',RepeatedType::class, array(
-                'type' => PasswordType::class,
-                'invalid_message' => 'Les mots de passe ne sont pas les mêmes',
-                'first_options' => array('label' => 'Password', 'attr' => array('placeholder' => 'Mot de passe', 'class' => 'password-field form-control')),
-                'second_options'  => array('label' => 'Repeat Password', 'attr' => array('placeholder' => 'Confirmer ', 'class' => 'password-field form-control'))
-            ))
         ;
     }
 }
