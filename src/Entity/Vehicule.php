@@ -78,9 +78,10 @@ class Vehicule
      */
     private $prixAchat;
 
-    /**
+    /*
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    
     private $image;
 
     /**

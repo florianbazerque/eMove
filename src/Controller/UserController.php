@@ -117,6 +117,7 @@ class UserController extends AbstractController
         $form_user_register = $this->createForm(UserRegisterType::class, $user, ['method' => 'post']);
         $form_user_register->handleRequest($request);
         if ($form_user_register->isSubmitted() && $form_user_register->isValid()) {
+
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setTypeUser($type);
             $user->setPassword($password);
