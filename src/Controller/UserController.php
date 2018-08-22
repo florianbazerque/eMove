@@ -92,7 +92,6 @@ class UserController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $user = new User();
-        $type = new TypeUser();
         $type = $em->getRepository(TypeUser:: class)
             ->findOneBy(
                 ['label' => 'Utilisateur']
