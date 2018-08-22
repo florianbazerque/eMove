@@ -19,6 +19,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -32,13 +33,15 @@ class Vehiculetype extends  AbstractType
                 ->add('agence', EntityType::class, ['class' => Agence::class, 'choice_label' => 'label', 'attr' => ['class' => 'form-control custom-select']])
                 ->add('marque', EntityType::class, ['class' => Marque::class, 'choice_label' => 'label', 'attr' => ['class' => 'form-control custom-select']])
                 ->add('modele', TextType::class, ['attr' => ['class' => 'form-control', 'placeholder' => 'Modèle']])
+                ->add('description', TextareaType::class, ['attr' => ['class' => 'form-control', 'placeholder' => 'Entrez une description']])
                 ->add('numSerie', TextType::class, ['attr' => ['class' => 'form-control' , 'placeholder' => 'Numéro de serie']])
                 ->add('couleur', TextType::class, ['attr' => ['class' => 'form-control' , 'placeholder' => 'Couleur']])
                 ->add('plaqueImma', TextType::class, ['attr' => ['class' => 'form-control', 'placeholder' => 'N° plaque d\'immatriculation']])
                 ->add('nbKm', IntegerType::class, ['attr' => ['class' => 'form-control' , 'placeholder' => 'Kilométrage']])
-            ->add('dateAchat', DateType::class, ['attr'=> ['class' => 'form-control', 'placeholder' => 'DD/MM/YYYY'], 'widget' => 'single_text', 'format' =>  'dd/MM/yyyy'])
+                ->add('dateAchat', DateType::class, ['attr'=> ['class' => 'form-control', 'placeholder' => 'DD/MM/YYYY'], 'widget' => 'single_text', 'format' =>  'dd/MM/yyyy'])
                 ->add('prixAchat', IntegerType::class, ['attr' => ['class' => 'form-control' , 'placeholder' => 'Prix d\'achat']])
-                ->add('image', TextType::class, ['attr' => ['class' => 'form-control', 'placeholder' => 'Lien de l\'image']])
+                //->add('image', TextType::class, ['attr' => ['class' => 'form-control', 'placeholder' => 'Lien de l\'image']])
+                ->add('image', ImageType::class)
                 ->add('submit', SubmitType::class, ['attr' => ['class' => 'btn btn-primary'], 'label' => 'Enregistrer'])
         ;
     }

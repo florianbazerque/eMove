@@ -87,8 +87,7 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $password = $passwordEncoder->encodePassword($user->getPassword());
+            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
 
             $em->persist($user);
@@ -358,4 +357,21 @@ class AdminController extends AbstractController
         }
     }
 
+    /**
+     * @Route("/dashboard/message/{id}", name="admin_message", requirements={"id"="\d+"})
+     */
+
+    public function messageAction(Message $id)
+    {
+        $user = $this->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+        $message = $em->getRepository(Message::class)->find($id);
+
+        if($message && $user){
+            return $this->render('admin/layout/admin-message.html.twig', ['message' => $message]);
+        } else {
+            return $this->$this->redirectToRoute('home_page');
+        }
+    }
 }

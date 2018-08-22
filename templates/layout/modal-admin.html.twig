@@ -91,73 +91,75 @@
             </div>
             <div class="modal-body">
                 {{ form_start(form_vehicule) }}
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="type"><i class="fa fa-fw fa-car"></i></label>
-                        </div>
-                        {{ form_widget(form_vehicule.typeVehicule) }}
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="dispo"><i class="fa fa-fw fa-clock-o"></i></label>
-                        </div>
-                        {{ form_widget(form_vehicule.dispoVehicule) }}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="type"><i class="fa fa-fw fa-car"></i></label>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="agency"><i class="fa fa-fw fa-map"></i></label>
-                        </div>
-                        {{ form_widget(form_vehicule.agence) }}
+                    {{ form_widget(form_vehicule.typeVehicule) }}
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="dispo"><i class="fa fa-fw fa-clock-o"></i></label>
                     </div>
-                    <hr/>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
-                        </div>
-                        {{ form_widget(form_vehicule.marque) }}
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
-                        </div>
-                        {{ form_widget(form_vehicule.modele) }}
+                    {{ form_widget(form_vehicule.dispoVehicule) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="agency"><i class="fa fa-fw fa-map"></i></label>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
-                        </div>
-                        {{ form_widget(form_vehicule.numSerie) }}
-                        <div class="input-group-prepend">
+                    {{ form_widget(form_vehicule.agence) }}
+                </div>
+                <hr/>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
+                    </div>
+                    {{ form_widget(form_vehicule.marque) }}
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
+                    </div>
+                    {{ form_widget(form_vehicule.modele) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
+                    </div>
+                    {{ form_widget(form_vehicule.description) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
+                    </div>
+                    {{ form_widget(form_vehicule.numSerie) }}
+                    <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i
                                         class="fa fa-fw fa-thumb-tack"></i></span>
-                        </div>
-                        {{ form_widget(form_vehicule.couleur) }}
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
-                        </div>
-                        {{ form_widget(form_vehicule.plaqueImma) }}
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-road"></i></span>
-                        </div>
-                        {{ form_widget(form_vehicule.nbKm) }}
+                    {{ form_widget(form_vehicule.couleur) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-car"></i></span>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
+                    {{ form_widget(form_vehicule.plaqueImma) }}
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-road"></i></span>
+                    </div>
+                    {{ form_widget(form_vehicule.nbKm) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i
                                         class="fa fa-fw fa-credit-card"></i></span>
-                        </div>
-                        {{ form_widget(form_vehicule.dateAchat) }}
-                        <div class="input-group-prepend">
+                    </div>
+                    {{ form_widget(form_vehicule.dateAchat) }}
+                    <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i
                                         class="fa fa-fw fa-credit-card"></i></span>
-                        </div>
-                        {{ form_widget(form_vehicule.prixAchat) }}
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i
-                                        class="fa fa-fw fa-credit-card"></i></span>
-                        </div>
-                        {{ form_widget(form_vehicule.image) }}
-                    </div>
+                    {{ form_widget(form_vehicule.prixAchat) }}
+                </div>
+                <div class="input-group mb-3">
+                    {{ form_widget(form_vehicule.image) }}
+                </div>
 
             </div>
             <div class="modal-footer">

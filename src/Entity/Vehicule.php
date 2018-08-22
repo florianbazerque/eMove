@@ -78,8 +78,10 @@ class Vehicule
      */
     private $prixAchat;
 
+
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $image;
 
@@ -243,12 +245,12 @@ class Vehicule
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage(): ?Image
     {
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage(?Image $image): self
     {
         $this->image = $image;
 

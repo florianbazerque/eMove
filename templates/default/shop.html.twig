@@ -48,7 +48,7 @@
                     <p></p>
                     <div class="col-lg-3 col-md-6 mb-3">
                         <div class="card h-100">
-                            <a href="{{ path('produit_view', {'id': vehicule.id}) }}"><img class="card-img-top" src="{{ asset(vehicule.image) }}" alt=""></a>
+                            <a href="{{ path('produit_view', {'id': vehicule.id}) }}"><img class="card-img-top" src="img/vehicule/{{ asset(vehicule.image.path)  }}" alt="{{ vehicule.image.alt }}"></a>
                             <div class="card-header">
                                 <h4><a href="{{ path('produit_view', {'id': vehicule.id}) }}">{{ vehicule.modele }}</a></h4>
                                 <p>{{ (vehicule.prixachat)|number_format(2, ',', ' ') }} € / jour</p>

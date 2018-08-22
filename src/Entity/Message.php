@@ -36,6 +36,12 @@ class Message
      */
     private $heure;
 
+    /**
+     * @ORM\Column(type="string", length=125)
+     */
+    private $email;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,4 +94,17 @@ class Message
 
         return $this;
     }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
 }

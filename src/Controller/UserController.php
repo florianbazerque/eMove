@@ -95,13 +95,19 @@ class UserController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $user = new User();
+
+        $type = new TypeUser();
+
         $type = $em->getRepository(TypeUser:: class)
             ->findOneBy(
                 ['label' => 'Utilisateur']
             );
+
         $form_user_register = $this->createForm(UserRegisterType::class, $user, ['method' => 'post']);
+
         $form_user_register->handleRequest($request);
-        if ($form_user_register->isSubmitted() && $form_user_register->isValid()) {
+
+        if ($form_user_register->isSubmitted() && $form_user_register->isValid()){
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setTypeUser($type);
             $user->setPassword($password);
@@ -110,8 +116,10 @@ class UserController extends AbstractController
             $entityManager->flush();
             //return $this->render('user/profil.html.twig', ['user' => $user]);
             return $this->redirectToRoute('home_page');
+        } else {
+            return $this->render('user/registration.html.twig', ['form_user_register' => $form_user_register->createView()]);
         }
-        return $this->render('user/registration.html.twig', ['form_user_register' => $form_user_register->createView()]);
+
     }
 
     /**

@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Image
 {
@@ -22,6 +23,7 @@ class Image
      * @ORM\Column(type="datetime")
      */
     private $update_at;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -86,7 +88,7 @@ class Image
 
     public function getFile()
     {
-        return $this->getFile();
+        return $this->file;
     }
 
     public function setFile(UploadedFile $file)
@@ -94,7 +96,7 @@ class Image
         $this->file = $file;
         $this->update_at = new \DateTime();
         if($this->path != null){
-            $this->tempFile = $this->getAbsolutePath().$this->path;
+            $this->tempFile = $this->getUploadDirPath().$this->path;
         }
     }
 
@@ -121,7 +123,6 @@ class Image
             $oldFile = $this->tempFile;
             unlink($oldFile);
         }
-
         $this->file->move($this->getUploadDirPath(), $this->path);
     }
 
@@ -137,14 +138,10 @@ class Image
     }
 
     public function getUploadDirPath(){
-        return '../public/img/'.$this->getUploadDir();
+        return __DIR__.'/../../public/img/'.$this->getUploadDir();
     }
 
     public function getUploadDir(){
         return "vehicule/";
     }
-
-
-
-
 }
