@@ -240,6 +240,10 @@
                             <td><a class="btn btn-danger btn-xs" href="{{ path('pdf_profil', {'id' : location.id }) }}"><span
                                             class="glyphicon glyphicon-remove"><i class="fa fa-download"
                                                                                   aria-hidden="true"></i></span></a>
+                                <a class="btn btn-primary btn-xs" href="{{ path('location_update', {'id' : location.id }) }}"><span
+                                            class="glyphicon glyphicon-remove"><i
+                                            class="fa fa-pencil"
+                                            aria-hidden="true"></i></span></a>
                             </td>
                         </tr>
                     {% endfor %}

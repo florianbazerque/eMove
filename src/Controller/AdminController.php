@@ -21,6 +21,7 @@ use App\Entity\User;
 use App\Entity\Vehicule;
 use App\Entity\Agence;
 use App\Form\AgenceType;
+use App\Form\LocationUpdateType;
 use App\Form\UserType;
 use App\Form\UserUpdateType;
 use App\Form\Vehiculetype;
@@ -373,5 +374,36 @@ class AdminController extends AbstractController
         } else {
             return $this->$this->redirectToRoute('home_page');
         }
+    }
+
+    /**
+     * @Route("/dashboard/location-update/{id}", name="location_update", requirements={"id"="\d+"})
+     */
+
+    public function updateLocationAction(Location $id, Request $request, Session $session)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $location = $em->getRepository(Location::class)->find($id);
+
+        $form_location_update = $this->createForm(LocationUpdateType::class, $location, ['method' => 'post']);
+
+        $form_location_update->handleRequest($request);
+
+        if($form_location_update->isSubmitted() && $form_location_update->isValid()){
+            if($location){
+                $em->persist($location);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', 'La location a été modifier');
+
+                return $this->redirectToRoute('dashboard');
+            } else {
+                $session->getFlashBag()->add('error', 'La location n\'a pas pu être modifier');
+
+                return $this->redirectToRoute('dashboard');
+            }
+
+        }
+        return $this->render('admin/layout/update/update-location.html.twig', ['form_location_update' => $form_location_update->createView()]);
     }
 }

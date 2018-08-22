@@ -1,11 +1,7 @@
 {% extends "admin/layout/update/layout.html.twig" %}
 
 {% block body %}
-
         <strong>Message de {{ message.nom }}  <a href="mailto:{{ message.email }}"><em>{{ message.email }}</em></a></strong><br>
         <span class="small text-muted"><em>à {{ message.heure }} le {{ message.date|date('d/m/Y') }}</em></span><br>
         {{ message.message }}
-
-
-
 {% endblock %}

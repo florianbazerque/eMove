@@ -1,0 +1,30 @@
+{% extends "admin/layout/update/layout.html.twig" %}
+
+{% block body %}
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modifier la location</h5>
+        </div>
+        <div class="modal-body">
+            {{ form_start(form_location_update) }}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-user"></i></span>
+                </div>
+                {{ form_widget(form_location_update.startDate) }}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-user"></i></span>
+                </div>
+                {{ form_widget(form_location_update.endDate) }}
+            </div>
+
+            <div class="input-group mb-3">
+                {{ form_widget(form_location_update.submit) }}<br><br>
+                <a href="{{ path('dashboard') }}" class="btn btn-danger btn-lg">Retour</a>
+            </div>
+            {{ form_end(form_location_update) }}
+        </div>
+    </div>
+{% endblock %}
