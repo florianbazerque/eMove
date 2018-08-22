@@ -7,10 +7,9 @@
     .content td{border: solid 1px #cfd1c2; padding: 10px; width: 25%;}
     .content th{border: solid 1px; padding: 10px; background-color: #333333; color: #FFF;}
 </style>
-    {% set promo = 5 %}
-    {% set HT = vehicule.prixachat - (vehicule.prixachat * 20/100) %}
-    {% set TVA = vehicule.prixachat * 20/100 %}
-    {% set total = vehicule.prixachat - (vehicule.prixachat * promo/100) %}
+
+    {% set NET = location.price - (location.price * 20/100) %}
+    {% set TVA = location.price * 20/100 %}
     <page backtop="20mm" backright="10mm" backbottom="20mm" backleft="10mm">
         <table class="header">
             <tr>
@@ -43,15 +42,11 @@
                     <td class="text-left">{{ vehicule.modele }}</td>
                     <td class="text-center">{{ location.startdate|date("m/d/Y H:i")  }} </td>
                     <td class="text-center">{{ location.enddate|date("m/d/Y H:i")  }} </td>
-                    <td class="text-right">{{ (HT)|number_format(2, ',', ' ') }} €</td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="text-right"><b>Remise de bienvenu</b></td>
-                    <td class="text-right"><b>{{ (promo)|number_format(2, ',', ' ')  }} %</b></td>
+                    <td class="text-right">{{ (NET)|number_format(2, ',', ' ') }} €</td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-right"><b>TOTAL NET</b></td>
-                    <td class="text-right"><b>{{ (HT)|number_format(2, ',', ' ')  }} €</b></td>
+                    <td class="text-right"><b>{{ (NET)|number_format(2, ',', ' ')  }} €</b></td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-right"><b>TVA (20%)</b></td>
@@ -59,7 +54,7 @@
                 </tr>
                 <tr>
                     <td colspan="3" class="text-right"><b>TOTAL TTC</b></td>
-                    <td class="text-right"><b>{{ (total)|number_format(2, ',', ' ') }} €</b></td>
+                    <td class="text-right"><b>{{ (location.price)|number_format(2, ',', ' ') }} €</b></td>
                 </tr>
             </tbody>
         </table>

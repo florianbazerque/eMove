@@ -75,6 +75,12 @@ class IndexController extends AbstractController
             case 1 :
                 $error = "Qui êtes-vous ?";
                 break;
+            case 2 :
+                $error = "Vehicule loue ou resserve";
+                break;
+            case 3 :
+                $error = "Ben alors on es perdu ?";
+                break;
             default :
                 $error =  "Désolé, une erreur est survenue, page demandée introuvable!";
         }

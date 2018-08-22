@@ -308,7 +308,15 @@ header {
   background: #ff9e57;
   color: #FFF;
   font-weight: 900;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  max-height: 300px; }
+  .shop .my-4 a {
+    text-decoration: none;
+    color: #FFF; }
+  .shop .my-4 .carousel-inner {
+    max-height: 300px; }
+    .shop .my-4 .carousel-inner .carousel-item {
+      max-height: 300px; }
 .shop .input-group-text {
   background: #ff9e57;
   color: #FFF; }
@@ -317,9 +325,9 @@ header {
   text-align: center;
   font-family: "Candara", sans-serif;
   width: 75%;
-  top: 37%;
+  top: 40%;
   margin: 0 auto;
-  font-size: 30px;
+  font-size: 35px;
   right: 0;
   left: 0; }
   @media screen and (max-width: 768px) {
@@ -390,6 +398,8 @@ header {
     font-family: "Century Gothic", sans-serif;
     font-weight: 900;
     text-transform: uppercase; }
+  .product .col-sm-4 .reduction {
+    color: #ff0800; }
   .product .col-sm-4 h2 {
     float: right;
     padding: 0px 20px;
@@ -398,6 +408,11 @@ header {
     color: #0087ff;
     margin: -1px 0px;
     font-family: "Century Gothic", sans-serif; }
+  .product .col-sm-4 h5 {
+    float: right;
+    clear: both;
+    margin-top: 10px;
+    color: #5d5b5b; }
   .product .col-sm-4 button, .product .col-sm-4 a {
     margin: auto;
     font-size: 30px;
@@ -443,6 +458,16 @@ header {
 /****************************************************************/
 /*************************** ACCUEIL ****************************/
 /****************************************************************/
+.promotion h6 {
+  width: 100%; }
+.promotion div {
+  width: 80%;
+  overflow: hidden; }
+  .promotion div:after {
+    content: ".."; }
+.promotion small {
+  white-space: nowrap; }
+
 .search {
   display: none;
   position: absolute;

@@ -14,6 +14,7 @@ use App\Entity\User;
 use App\Entity\Vehicule;
 use App\Form\PasswordChangeType;
 use App\Form\PasswordForm;
+use App\Service\FidelityPoint;
 use App\Service\Html2Pdf;
 use App\Form\UserForm;
 use App\Entity\Location;
@@ -44,8 +45,9 @@ class UserController extends AbstractController
                 ['user' => $user->getId()],
                 ['returnDate' => 'ASC']
             );
+        $fidelitypoint = new FidelityPoint();
+        $order = $this->getDoctrine()->getRepository(Location::class)->countOrder($user->getId());
         $form_info = $this->createForm(UserForm::class, $user);
-
         $form_info->handleRequest($request);
 
         if ($form_info->isSubmitted() && $form_info->isValid()) {
@@ -54,13 +56,21 @@ class UserController extends AbstractController
             return $this->render('user/profil.html.twig', [
                 'user' => $user,
                 'locations' => $locations,
-                'form' => $form_info->createView()
+                'form' => $form_info->createView(),
+                'point' => $user->getFidelityPoint(),
+                'spend' => $user->getSpendPoint(),
+                'euro' => $fidelitypoint->getEuro($user->getFidelityPoint()),
+                'order' => $order
             ]);
         } else {
             return $this->render('user/profil.html.twig', [
                 'user' => $user,
                 'locations' => $locations,
-                'form' => $form_info->createView()
+                'form' => $form_info->createView(),
+                'point' => $user->getFidelityPoint(),
+                'spend' => $user->getSpendPoint(),
+                'euro' => $fidelitypoint->getEuro($user->getFidelityPoint()),
+                'order' => $order
             ]);
         }
     }

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm-12 banner">
                 <img title="profile" class="img-circle img-responsive icon" src="{{ asset('img/profil.png') }}">
-                <h3>User</h3>
+                <h3>{{ app.user.firstname|capitalize }} {{ app.user.lastname|capitalize }}</h3>
             </div>
         </div>
         <div class="row menu" style="padding: 15px;">
@@ -73,7 +73,7 @@
                                         <i class="glyphicon glyphicon-user"></i>
                                     </div>
                                     <div class="text">
-                                        <var>3</var>
+                                        <var>{{ point }}</var>
                                         <label class="text-muted">Points de fidélité restant</label>
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@
                                         <i class="glyphicon glyphicon-star"></i>
                                     </div>
                                     <div class="text">
-                                        <var>614</var>
+                                        <var>{{ spend }}</var>
                                         <label class="text-muted">Points dépensés</label>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                         <i class="glyphicon glyphicon-tags"></i>
                                     </div>
                                     <div class="text">
-                                        <var>73</var>
+                                        <var>{{ order }}</var>
                                         <label class="text-muted">Commande passé</label>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@
                                         <i class="glyphicon glyphicon-cog"></i>
                                     </div>
                                     <div class="text">
-                                        <var>5.00€</var>
+                                        <var>{{ euro|number_format(2, '.', ',') }}€</var>
                                         <label class="text-muted">Réduction</label>
                                     </div>
                                 </div>

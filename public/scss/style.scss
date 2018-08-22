@@ -454,11 +454,22 @@ header{
     }
   }
   .my-4{
+    a {
+      text-decoration: none;
+      color: #FFF;
+    }
     border-radius: 5px;
     background: $colorlight;
     color: #FFF;
     font-weight: 900;
     text-transform: uppercase;
+    max-height: 300px;
+    .carousel-inner{
+      max-height: 300px;
+      .carousel-item{
+        max-height: 300px;
+      }
+    }
   }
   .input-group-text{
     background: $colorlight;
@@ -472,9 +483,9 @@ header{
         text-align: center;
         font-family: $family2;
         width: 75%;
-        top: 37%;
+        top: 40%;
         margin: 0 auto;
-        font-size: 30px;
+        font-size: 35px;
         right: 0;
         left: 0;
         @media screen and (max-width: $medium-devices) {
@@ -572,6 +583,9 @@ header{
       font-weight: 900;
       text-transform: uppercase;
     }
+    .reduction{
+      color: #ff0800;
+    }
     h2{
       float: right;
       padding: 0px 20px;
@@ -580,6 +594,12 @@ header{
       color: #0087ff;
       margin: -1px 0px;
       font-family: $family1;
+    }
+    h5{
+      float: right;
+      clear: both;
+      margin-top: 10px;
+      color: #5d5b5b;
     }
     button,a{
       margin:auto;
@@ -639,6 +659,21 @@ header{
 /****************************************************************/
 /*************************** ACCUEIL ****************************/
 /****************************************************************/
+.promotion{
+  h6{
+    width: 100%;
+  }
+  div{
+    width: 80%;
+    overflow: hidden;
+    &:after{
+      content:"..";
+    }
+  }
+  small{
+    white-space: nowrap;
+  }
+}
 
 .search{
   display: none;

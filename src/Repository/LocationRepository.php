@@ -19,6 +19,16 @@ class LocationRepository extends ServiceEntityRepository
         parent::__construct($registry, Location::class);
     }
 
+    public function countOrder($value)
+    {
+        return $this->createQueryBuilder('a')
+            ->select('COUNT(a)')
+            ->andWhere('a.user = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 //    /**
 //     * @return Location[] Returns an array of Location objects
 //     */
