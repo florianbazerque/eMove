@@ -14,7 +14,6 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="{{ path('profil') }}">Profil</a>
-                            <a class="dropdown-item" href="#">Commandes</a>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <a class="dropdown-item" href="{{ path('dashboard') }}">Administration</a>
                             {% endif %}

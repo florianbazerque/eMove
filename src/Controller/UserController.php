@@ -152,7 +152,7 @@ class UserController extends AbstractController
                 $em->flush();
 
                 $mail = (new \Swift_Message('eMove : Réinitialisation de votre mot de passe'))
-                    ->setFrom('bazerquef@gmail.com')
+                    ->setFrom('silvertooop@gmail.com')
                     ->setTo('florian.bazerque@orange.fr')
                     ->setBody(
                         $this->renderView('contact/contact-new-password.html.twig', ['message' => $random]),
