@@ -30,7 +30,7 @@ class VehiculeFixture extends Fixture
         $vehicule->setPlaqueImma('AAA111111');
         $vehicule->setNbKm('150000');
         $vehicule->setDateAchat(new \DateTime());
-        $vehicule->setPrixAchat(60000.50);
+        $vehicule->setPrixAchat(50.50);
         $vehicule->setImage('img/voiture/Audi/A7/1.jpg');
         $vehicule->setDescription('Sed tamen haec cum ita tutius observentur, 
         quidam vigore artuum inminuto rogati ad nuptias ubi aurum dextris manibus 

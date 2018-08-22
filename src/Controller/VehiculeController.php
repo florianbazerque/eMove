@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Entity\Agence;
 use App\Entity\DispoVehicule;
+use App\Entity\Promo;
 use App\Entity\TypeVehicule;
 use App\Entity\Vehicule;
 use App\Form\VehiculeForm;
@@ -36,7 +37,6 @@ class VehiculeController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
 
-        $dispo = new DispoVehicule();
         $dispo = $em->getRepository(DispoVehicule:: class)
             ->findOneBy(
                 ['label' => 'Disponible']
@@ -46,11 +46,11 @@ class VehiculeController extends AbstractController
                 ['dispoVehicule' => $dispo->getId()],
                 ['dateAchat' => 'ASC']
             );
-        $promo = true;
+        $promo_vehicule = $em->getRepository(Promo::class)->currentPromoVehicule();
 
         return $this->render('default/shop.html.twig', [
             'vehicules' => $vehicules,
-            'promo' => $promo
+            'promoVehicules' => $promo_vehicule,
         ]);
     }
 
@@ -70,18 +70,22 @@ class VehiculeController extends AbstractController
             ->findOneBy(
                 ['id' => $id ,'dispoVehicule' => $dispo->getId()]
             );
+
+
+        $promo_vehicule = $em->getRepository(Promo::class)->currentPromoVehicule();
         $options = $em->getRepository(Vehicule:: class)
             ->findByNot('id', $id);
         if (!$vehicule) {
-            throw $this->createNotFoundException(
-                'Vehicule absent'
-            );
+            return $this->redirectToRoute('error', [
+                'id' => 2,
+            ]);;
         }elseif ($vehicule == null){
             throw new HttpException(400, "New comment is not valid.");
         } else {
             return $this->render('default/produit.html.twig', [
                 'vehicule' => $vehicule,
-                'options' => $options
+                'options' => $options,
+                'promos' => $promo_vehicule
             ]);
         }
     }
@@ -91,7 +95,9 @@ class VehiculeController extends AbstractController
      */
     public function errorAction()
     {
-        throw new HttpException(400, "Aucune voiture selectionner");
+        return $this->redirectToRoute('error', [
+            'id' => 3,
+        ]);
     }
 
 
@@ -111,8 +117,10 @@ class VehiculeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $search = $request->request->get('form')['modele'];
         $vehicules = $vehiculeManager->search($search);
+        $promo_vehicule = $em->getRepository(Promo::class)->currentPromoVehicule();
         return $this->render('default/shop.html.twig', [
-            'vehicules' => $vehicules
+            'vehicules' => $vehicules,
+            'promo' => $promo_vehicule
         ]);
     }
 

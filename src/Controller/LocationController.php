@@ -10,17 +10,21 @@ namespace App\Controller;
 
 use App\Entity\DispoVehicule;
 use App\Entity\Location;
+use App\Entity\Promo;
 use App\Entity\StatusLocation;
 use App\Entity\Vehicule;
 use App\Form\LocationForm;
 use App\Entity\User;
+use App\Service\FidelityPoint;
 use App\Service\Html2Pdf;
 use Swift_Mailer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 
 class LocationController extends AbstractController
@@ -28,19 +32,25 @@ class LocationController extends AbstractController
     /**
      *  @Route("/location/{id}", name="location_view", requirements={"id"="\d+"})
      */
-    public function locationAction(Vehicule $id, Request $request)
+    public function locationAction(Vehicule $id, Request $request, Session $session)
     {
+
         $em = $this->getDoctrine()->getManager();
-        $vehicule = $em->getRepository(Vehicule:: class)
+        $dispo = $em->getRepository(DispoVehicule:: class)
             ->findOneBy(
-                ['id' => $id ,'dispoVehicule' => 1],
-                ['id' => 'ASC']
+                ['label' => 'Disponible']
             );
         $statut = $em->getRepository(StatusLocation:: class)
             ->findOneBy(
-                ['id' => 2],
+                ['label' => 'Retourné']
+            );
+        $vehicule = $em->getRepository(Vehicule:: class)
+            ->findOneBy(
+                ['id' => $id ,'dispoVehicule' => $dispo->getId()],
                 ['id' => 'ASC']
             );
+        $promo_vehicule = $em->getRepository(Promo::class)->currentPromoVehicule();
+        $html2pdf = new Html2Pdf();
         $location = new Location();
         $location->setVehicule($vehicule);
         $location->setStatusLocation($statut);
@@ -48,53 +58,73 @@ class LocationController extends AbstractController
         $location->setReturnDate(null);
         $form = $this->createForm(LocationForm::class, $location);
         $form->handleRequest($request);
-        if (!$vehicule)
+
+        if (!$this->getUser())
         {
-            throw $this->createNotFoundException(
-                "VEHICULE Absent"
-            );
-        }
-        elseif ($vehicule == null)
-        {
-            throw new HttpException(400, "VEHICULE Absent");
-        }
-        elseif ($form->isSubmitted() && $form->isValid())
-        {
-            $loue = $em->getRepository(Location:: class)
-                ->findOneBy(
-                    ['statusLocation' => 1 ,'vehicule' => $id],
-                    ['vehicule' => 'ASC']
-                );
-            $reserve = $em->getRepository(Location:: class)
-                ->findOneBy(
-                    ['statusLocation' => 2 ,'vehicule' => $id],
-                    ['vehicule' => 'ASC']
-                );
-            if (!$loue || !$reserve) {
-                $start = $form["start_date"]->getData();
-                $end = $form["end_date"]->getData();
-                if ($start >= $end){
-                    throw new HttpException(400, "Mauvaise date");
-                }else {
-                    $dispo = $em->getRepository(DispoVehicule:: class)
-                        ->find(2);
-                    $em = $this->getDoctrine()->getManager();
-                    $vehicule->setDispoVehicule($dispo);
-                    $em->persist($location, $vehicule);
-                    $em->flush();
-                    $em->refresh($location);
-                    return $this->redirectToRoute('facture', [
-                        'id' => $location->getId(),
+            return $this->redirectToRoute('login');
+        }else {
+
+
+            if (!$vehicule || $vehicule == null) {
+                return $this->redirectToRoute('error', [
+                    'id' => 2,
+                ]);
+            } elseif ($form->isSubmitted() && $form->isValid()) {
+
+                $user = $em->getRepository(User:: class)
+                    ->find($this->getUser());
+                $loue = $em->getRepository(Location:: class)
+                    ->findOneBy(
+                        ['statusLocation' => 1, 'vehicule' => $id],
+                        ['vehicule' => 'ASC']
+                    );
+                $reserve = $em->getRepository(Location:: class)
+                    ->findOneBy(
+                        ['statusLocation' => 2, 'vehicule' => $id],
+                        ['vehicule' => 'ASC']
+                    );
+                if (!$loue || !$reserve) {
+                    $start = $form["start_date"]->getData();
+                    $end = $form["end_date"]->getData();
+                    $now = new \DateTime('Now');
+                    if ($start >= $end || $now > $start ) {
+                        $session->getFlashBag()->add('error', 'Mauvaise saise des dates');
+                        return $this->render('user/location.html.twig', [
+                            'vehicule' => $vehicule,
+                            'promos' => $promo_vehicule,
+                            'form' => $form->createView(),
+                            'user' => $user
+                        ]);
+                    } else {
+                        $price = new FidelityPoint();
+                        $prix = $price->getBuild($start->format('Y-m-d H:i'), $end->format('Y-m-d H:i'), $vehicule->getPrixAchat(), $user->getFidelityPoint());
+                        $location->setPrice($prix);
+                        $dispo = $em->getRepository(DispoVehicule:: class)
+                            ->find(2);
+                        $em = $this->getDoctrine()->getManager();
+                        $vehicule->setDispoVehicule($dispo);
+                        $em->persist($location, $vehicule);
+                        $em->flush();
+                        $em->refresh($location);
+                        return $this->redirectToRoute('facture', [
+                            'id' => $location->getId(),
+                        ]);
+                    }
+                } else {
+                    return $this->redirectToRoute('error', [
+                        'id' => 2,
                     ]);
                 }
-            }else{
-                throw new HttpException(400, "VEHICULE Loue ou Reserve");
+            } else {
+                $user = $em->getRepository(User:: class)
+                    ->find($this->getUser());
+                return $this->render('user/location.html.twig', [
+                    'vehicule' => $vehicule,
+                    'promos' => $promo_vehicule,
+                    'form' => $form->createView(),
+                    'user' => $user
+                ]);
             }
-        }else {
-            return $this->render('user/location.html.twig', [
-                'vehicule' => $vehicule,
-                'form' => $form->createView()
-            ]);
         }
     }
 
@@ -114,16 +144,19 @@ class LocationController extends AbstractController
                 'Location indisponible'.$id
             );
         }elseif ($location == null){
-            throw new HttpException(400, "VEHICULE Absent");
+            return $this->redirectToRoute('error', [
+                'id' => 0,
+            ]);
         } else {
             $vehicule = $em->getRepository(Vehicule::class)
                 ->find($location->getVehicule());
+
 
             //envoi de l'email de confirmation au client
             $user = $em->getRepository(User::class)->find($id);
             $user_email = $user->getEmail();
 
-            /*$mail = (new \Swift_Message('Message client'))
+            $mail = (new \Swift_Message('Message client'))
                 ->setFrom('facture@emove.com')
                 ->setTo($user_email)
                 ->setBody(
@@ -131,8 +164,8 @@ class LocationController extends AbstractController
                     'text/html'
                 );
 
-            $mailer->send($mail);*/
 
+            $mailer->send($mail);
             return $this->render('user/facture.html.twig', [
                 'location' => $location,
                 'vehicule' => $vehicule
@@ -155,7 +188,9 @@ class LocationController extends AbstractController
                 'Location indisponible'
             );
         }elseif ($location == null){
-            throw new HttpException(400, "VEHICULE Absent");
+            return $this->redirectToRoute('error', [
+                'id' => 0,
+            ]);
         } else {
             $user = $em->getRepository(User::class)
                 ->find($location->getUser());

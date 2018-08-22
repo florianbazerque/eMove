@@ -1,8 +1,6 @@
 
 {% extends "layout/layout.html.twig" %}
 {% block content %}
-    {% set promo = 20 %}
-    {% set total = vehicule.prixachat - (vehicule.prixachat * promo/100) %}
     <div class="container reservation">
         <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
@@ -18,35 +16,46 @@
                         </div>
                         <span class="text-muted">{{ (vehicule.prixachat)|number_format(2, ',', ' ') }} €</span>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between bg-light">
-                        <div class="text-success">
-                            <h6 class="my-0">Offre de bienvenue</h6>
-                            <small>1er Réservation</small>
-                        </div>
-                        <span class="text-success">{{ promo }}%</span>
-                    </li>
+                    {% if user.fidelitypoint > 100 %}
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div class="text-info">
+                                <h6 class="my-0">Vous avez au moins 100 de fidélités !!!</h6>
+                                <small class="text-muted">Vous avez 10 € de reduction</small>
+                            </div>
+                            <span class="text-muted">10€</span>
+                        </li>
+                    {% endif %}
+
+                    {% set reduc = 0 %}
+                {% if promos is not null %}
+                    {% for promo in promos %}
+                        {% set reduction = vehicule.prixachat * (1- promo.value/100) %}
+                        <li class="list-group-item d-flex justify-content-between bg-light promotion">
+                            <div class="text-success">
+                                <h6 class="my-0">{{ promo.label }}</h6>
+                                <small>{{ promo.description }}</small>
+                            </div>
+                            <span class="text-success">{{ promo.value }}%</span>
+                        </li>
+                    {% set reduc = promo.value %}
+                    {% endfor %}
+                {% endif %}
+                {% set total = vehicule.prixachat - (vehicule.prixachat * reduc/100) %}
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total (€)</span>
                         <strong>{{ (total)|number_format(2, ',', ' ') }} €</strong>
                     </li>
                 </ul>
-
-                <form class="card p-2">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Promo code">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary">Promo</button>
-                        </div>
-                    </div>
-                </form>
-                <form class="card p-2">
-                    <button type="button" class="btn btn-primary">Utiliser mes points | 60 €</button>
-                </form>
             </div>
             <div class="col-md-8 order-md-1">
                 {{ form_start(form) }}
                 {{ form_errors(form) }}
                 <h4 class="mb-3">Facturation</h4>
+                {% for flashMessage in app.session.flashbag.get('error') %}
+                    <div class="alert alert-danger">
+                        {{ flashMessage }}
+                    </div>
+                    {% endfor %}
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             {{ form_widget(form.start_date) }}
@@ -61,93 +70,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                        <input type="email" class="form-control" name="email" placeholder="you@example.com">
-                        <div class="invalid-feedback">
-                            S'il vous plaît entrer une adresse email valide pour les mises à jour d'expédition.
-                        </div>
-                    </div>
-
-                    <!--<div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="ville">Ville</label>
-                            <select class="custom-select d-block w-100" id="ville" required="">
-                                <option value="">Choose...</option>
-                                <option>Paris</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                Veuillez sélectionner une ville valide
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="arrd">Arrondissement</label>
-                            <select class="custom-select d-block w-100" id="arrd" required="">
-                                <option value="">Choose...</option>
-                                <option>75012</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                Veuillez sélectionner un arrondissement valide
-                            </div>
-                        </div>
-                    </div>-->
                     <hr class="mb-4">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="save-info">
                         <label class="custom-control-label" for="save-info">Sauvegarder cette information pour la prochaine fois</label>
                     </div>
                     <hr class="mb-4">
-
-                    <!--<h4 class="mb-3">Paiement</h4>
-
-                    <div class="d-block my-3">
-                        <div class="custom-control custom-radio">
-                            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input credit" required="">
-                            <label class="custom-control-label credit" for="credit">Carte de crédit</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                            <label class="custom-control-label" for="debit">Espèce</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                            <label class="custom-control-label" for="paypal">Paypal</label>
-                        </div>
-                    </div>
-                    <div class="row identity_card">
-                        <div class="col-md-6 mb-3">
-                            <label for="cc-name">Nom sur la carte</label>
-                            <input type="text" class="form-control" name="cc-name" placeholder="" required="">
-                            <small class="text-muted">Nom complet tel qu'affiché sur la carte</small>
-                            <div class="invalid-feedback">
-                                Nom de la carte requis
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="cc-number">Numéro</label>
-                            <input type="text" class="form-control" name="cc-number" placeholder="" required="">
-                            <div class="invalid-feedback">
-                                Numéro de carte requis
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row identity_card">
-                        <div class="col-md-3 mb-3">
-                            <label for="cc-expiration">Expiration</label>
-                            <input type="text" class="form-control" name="cc-expiration" placeholder="" required="">
-                            <div class="invalid-feedback">
-                                Date d'éxpiration
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="cc-expiration">CVV</label>
-                            <input type="text" class="form-control" name="cc-cvv" placeholder="" required="">
-                            <div class="invalid-feedback">
-                                Code de Sécurité requis
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="mb-4">-->
                     <button class="btn btn-success btn-lg btn-block" type="submit">
                         <strong>RESERVER <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></strong>
                     </button>

@@ -52,6 +52,10 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
+    private $spendPoint;
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
     private $telNum;
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -136,6 +140,9 @@ class User implements UserInterface, \Serializable
     }
     public function getFidelityPoint(): ?int
     {
+        if($this->fidelityPoint == null)
+            $this->fidelityPoint = 0;
+
         return $this->fidelityPoint;
     }
     public function setFidelityPoint(?int $fidelityPoint): self
@@ -143,6 +150,26 @@ class User implements UserInterface, \Serializable
         $this->fidelityPoint = $fidelityPoint;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSpendPoint()
+    {
+        if($this->spendPoint == null)
+            $this->spendPoint = 0;
+
+        return $this->spendPoint;
+    }
+
+    /**
+     * @param mixed $spendPoint
+     */
+    public function setSpendPoint($spendPoint): void
+    {
+        $this->spendPoint = $spendPoint;
+    }
+
     public function getTelNum(): ?int
     {
         return $this->telNum;

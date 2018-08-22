@@ -15,7 +15,6 @@ final class Version20180809092438 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE user ADD type_user_id INT DEFAULT NULL, DROP type_user');
         $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D6498F4FBC60 FOREIGN KEY (type_user_id) REFERENCES type_user (id)');
         $this->addSql('CREATE INDEX IDX_8D93D6498F4FBC60 ON user (type_user_id)');
         $this->addSql('ALTER TABLE vehicule ADD description LONGTEXT NOT NULL');

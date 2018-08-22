@@ -79,7 +79,17 @@
                     <h1>{{ vehicule.modele }}</h1>
                 </div>
                 <div class="col-sm-12">
+
+                {% if promos is not null %}
+                    {% for promo in promos %}
+                    {% set reduction = vehicule.prixachat * (1- promo.value/100) %}
+                    <h2 class="reduction">{{ (reduction)|number_format(2, ',', ' ') }} € / jour</h2>
+                    <h5 class="old">au lieu de {{ (vehicule.prixachat)|number_format(2, ',', ' ') }} € / jour</h5>
+                    {% endfor %}
+                {% else %}
                     <h2>{{ (vehicule.prixachat)|number_format(2, ',', ' ') }} €</h2>
+                {% endif %}
+
                 </div>
             </div>
             <hr class="hr-primary" />

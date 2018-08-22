@@ -33,7 +33,7 @@ $( document ).ready(function() {
 	});
 
 	$('header .dropdown-toggle').dropdown();
-
+    $('#carouselIndicators').find('.carousel-item').first().addClass('active');
 
 
 	$('.pass_show').append('<span class="ptxt">Show</span>');
