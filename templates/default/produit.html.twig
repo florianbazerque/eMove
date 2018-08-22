@@ -4,18 +4,18 @@
     <div id="carouselControls" class="carousel slide slide-product" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <a class="gallery_image" href="{{ asset(vehicule.image) }}">
-                    <img class="d-block w-100" src="{{ asset(vehicule.image) }}" alt="First slide">
+                <a class="gallery_image" href="img/vehicule/006d27bb947c9255282729cddff070b5a872fd24.jpeg">
+                    <img class="d-block w-100" src="img/vehicule{{ asset(vehicule.image.path)  }}" alt="{{ vehicule.image.alt }}">
                 </a>
             </div>
             <div class="carousel-item">
-                <a class="gallery_image" href="{{ asset(vehicule.image) }}">
-                    <img class="d-block w-100" src="{{ asset(vehicule.image) }}" alt="Second slide">
+                <a class="gallery_image" href="img/vehicule{{ asset(vehicule.image.path)  }}">
+                    <img class="d-block w-100" src="img/vehicule{{ asset(vehicule.image.path)  }}" alt="{{ vehicule.image.alt }}">
                 </a>
             </div>
             <div class="carousel-item">
-                <a class="gallery_image" href="{{ asset(vehicule.image) }}">
-                    <img class="d-block w-100" src="{{ asset(vehicule.image) }}" alt="Third slide">
+                <a class="gallery_image" href="img/vehicule{{ asset(vehicule.image.path)  }}">
+                    <img class="d-block w-100" src="img/vehicule{{ asset(vehicule.image.path)  }}" alt="{{ vehicule.image.alt }}">
                 </a>
             </div>
         </div>

@@ -123,7 +123,7 @@ class LocationController extends AbstractController
             $user = $em->getRepository(User::class)->find($id);
             $user_email = $user->getEmail();
 
-            $mail = (new \Swift_Message('Message client'))
+            /*$mail = (new \Swift_Message('Message client'))
                 ->setFrom('facture@emove.com')
                 ->setTo($user_email)
                 ->setBody(
@@ -131,7 +131,7 @@ class LocationController extends AbstractController
                     'text/html'
                 );
 
-            $mailer->send($mail);
+            $mailer->send($mail);*/
 
             return $this->render('user/facture.html.twig', [
                 'location' => $location,

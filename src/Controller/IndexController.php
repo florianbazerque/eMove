@@ -42,7 +42,7 @@ class IndexController extends AbstractController
         $message_admin->setDate(new \DateTime());
         $message_admin->setMessage($message);
         $message_admin->setHeure(date('H:i:s'));
-
+        $message_admin->setEmail($email);
 
         $mail = (new \Swift_Message('Message client'))
             ->setFrom($email)
