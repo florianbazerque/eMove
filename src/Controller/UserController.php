@@ -68,15 +68,8 @@ class UserController extends AbstractController
     /**
      * @Route("/connexion", name="login")
      */
-    public function connexion($message = 0, AuthenticationUtils $authenticationUtils, Session $session)
+    public function connexion(AuthenticationUtils $authenticationUtils, Session $session)
     {
-        if($message != 0) {
-            if($message = 1){
-                $session->getFlashBag()->add('success', 'Votre mot de passe a été réinitialisé');
-            } else {
-                $session->getFlashBag()->add('error', 'Echec de la réinitialisation de votre mot de passe');
-            }
-        }
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
         return $this->render('layout/login.html.twig', [
@@ -120,8 +113,8 @@ class UserController extends AbstractController
         $user = new User();
 
         $form = $this->createFormBuilder($user)
-            ->add('email', EmailType::class)
-            ->add('save', SubmitType::class, array('label' => 'Réinitialiser'))
+            ->add('email', EmailType::class, ['label' => false, 'attr' => ['class' => 'form-control', 'placeholder' => 'Email' ]])
+            ->add('save', SubmitType::class, array('label' => 'Réinitialiser', 'attr' => ['class' => 'btn btn-success btn-lg btn-block']))
             ->getForm();
 
         $form->handleRequest($request);
@@ -130,12 +123,6 @@ class UserController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
             $user = $form->getData();
-
-            // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($task);
-            // $entityManager->flush();
             $user = $em->getRepository(User:: class)
                 ->findOneBy(
                     ['email' => $user->getEmail()]
@@ -155,19 +142,24 @@ class UserController extends AbstractController
                 $em->flush();
 
                 $mail = (new \Swift_Message('eMove : Réinitialisation de votre mot de passe'))
-                    ->setFrom('assy.adon@gmail.com')
-                    ->setTo('assy.adon@gmail.com')
+                    ->setFrom('bazerquef@gmail.com')
+                    ->setTo('florian.bazerque@orange.fr')
                     ->setBody(
                         $this->renderView('contact/contact-new-password.html.twig', ['message' => $random]),
                         'text/html'
                     );
 
                 $mailer->send($mail);
-                //return $this->redirectToRoute('task_success');
-                return $this->redirectToRoute('login');
+                $session->getFlashBag()->add('success', 'Votre mot de passe a été réinitialisé');
+                return $this->render('layout/modal_password.html.twig', array(
+                    'form' => $form->createView(),
+                ));
 
             } else {
-                return $this->redirectToRoute('login');
+                $session->getFlashBag()->add('error', 'Echec de la réinitialisation de votre mot de passe, cette adresse n\'existe pas');
+                return $this->render('layout/modal_password.html.twig', array(
+                    'form' => $form->createView(),
+                ));
             }
         }
 

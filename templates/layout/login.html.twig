@@ -20,7 +20,6 @@
 </head>
 <body>
 {% include 'layout/menu.html.twig' %}
-
 <div class="container container-login">
     <h3>Connectez-vous avec votre email</h3>
 
@@ -42,6 +41,7 @@
         {% endif %}
         <input type="submit" id="btn-connexion" class="btn btn-success btn-lg btn-block" value="Connexion">
     </form>
+    <a href="{{ path('pwd_forget') }}">J'ai oublié mon mot de passe ?</a>
 </div>
 {% include 'layout/footer.html.twig' %}
 </body>
