@@ -46,7 +46,7 @@
                     </a>
                     <div class="dropdown-divider"></div>
                 {% endfor %}
-                <a class="dropdown-item small" href="#" data-slick-index="1">View all messages</a>
+                <!--<a class="dropdown-item small" href="#" data-slick-index="1">View all messages</a>-->
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -237,13 +237,17 @@
                                     En retard
                                 {% endif %}
                             </td>
-                            <td><a class="btn btn-danger btn-xs" href="{{ path('pdf_profil', {'id' : location.id }) }}"><span
+                            <td><a class="btn btn-success btn-xs" href="{{ path('pdf_profil', {'id' : location.id }) }}"><span
                                             class="glyphicon glyphicon-remove"><i class="fa fa-download"
                                                                                   aria-hidden="true"></i></span></a>
                                 <a class="btn btn-primary btn-xs" href="{{ path('location_update', {'id' : location.id }) }}"><span
                                             class="glyphicon glyphicon-remove"><i
                                             class="fa fa-pencil"
                                             aria-hidden="true"></i></span></a>
+                                <a class="btn btn-danger btn-xs" href="{{ path('location_delete', {'id' : location.id }) }}"><span
+                                            class="glyphicon glyphicon-remove"><i
+                                                class="fa fa-times"
+                                                aria-hidden="true"></i></span></a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -267,7 +271,8 @@
                             <th scope="row">{{ message.nom }}</th>
                             <td>{{ message.date|date('d/m/Y') }} | {{ message.heure }}</td>
                             <td>{{ message.message }}</td>
-                            <td><a class="dropdown-item" href="{{ path('admin_message', {'id' : message.id }) }}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                            <td><a class="btn btn-primary btn-xs" href="{{ path('admin_message', {'id' : message.id }) }}"><span
+                                            class="glyphicon glyphicon-remove"><i class="fa fa-eye" aria-hidden="true"></i></span></a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -290,13 +295,15 @@
                             <td>{{ user.firstname }}</td>
                             <td>{{ user.lastname }}</td>
                             <td>{{ user.email }}</td>
-                            <td><a class="update_user" data-user="{{ user.id }}"
-                                   href="{{ path('update_user', {'id' : user.id }) }}"><i
-                                            style="margin-right: 10px;"
+                            <td><a class="btn btn-primary btn-xs"
+                                   href="{{ path('update_user', {'id' : user.id }) }}"><span
+                                            class="glyphicon glyphicon-remove"><i
                                             class="fa fa-pencil"
-                                            aria-hidden="true"></i></a><a
-                                        href="{{ path('delete_user', {'id' : user.id}) }}"><i
-                                            class="fa fa-times" aria-hidden="true"></i></a></td>
+                                            aria-hidden="true"></i></span></a>
+                                <a class="btn btn-danger btn-xs"
+                                        href="{{ path('delete_user', {'id' : user.id}) }}"><span
+                                            class="glyphicon glyphicon-remove"><i
+                                                class="fa fa-times" aria-hidden="true"></i></span></a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -321,12 +328,14 @@
                             <td>{{ vehicule.typevehicule.label }}</td>
                             <td>{{ vehicule.agence.label }}</td>
                             <td>{{ vehicule.dispovehicule.label }}</td>
-                            <td><a href="{{ path('update_vehicule', {'id' : vehicule.id}) }}"><i
-                                            style="margin-right: 10px;" class="fa fa-pencil"
-                                            aria-hidden="true"></i></a><a
-                                        href="{{ path('delete_vehicule', {'id' : vehicule.id}) }}"><i
+                            <td><a class="btn btn-primary btn-xs" href="{{ path('update_vehicule', {'id' : vehicule.id}) }}"><span
+                                            class="glyphicon glyphicon-remove"><i class="fa fa-pencil"
+                                            aria-hidden="true"></i></span></a>
+                                <a class="btn btn-danger btn-xs"
+                                        href="{{ path('delete_vehicule', {'id' : vehicule.id}) }}"><span
+                                            class="glyphicon glyphicon-remove"><i
                                             class="fa fa-times"
-                                            aria-hidden="true"></i></a></td>
+                                            aria-hidden="true"></i></span></a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

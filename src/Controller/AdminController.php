@@ -14,6 +14,7 @@
 
 namespace App\Controller;
 
+use App\Entity\DispoVehicule;
 use App\Entity\Location;
 use App\Entity\Message;
 use App\Entity\TypeUser;
@@ -405,5 +406,33 @@ class AdminController extends AbstractController
 
         }
         return $this->render('admin/layout/update/update-location.html.twig', ['form_location_update' => $form_location_update->createView()]);
+    }
+
+    /**
+     * @Route("/dashboard/location-delete/{id}", name="location_delete", requirements={"id"="\d+"})
+     */
+
+    public function deleteLocationAction(Location $id, Session $session)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $location = $em->getRepository(Location::class)->find($id);
+        $vehicule = $em->getRepository(Vehicule::class)->find($location->getVehicule()->getId());
+        $dispoVehicule = $em->getRepository(DispoVehicule::class)->findOneBy(['label' => 'Disponible']);
+
+        if($location){
+            $vehicule->setDispoVehicule($dispoVehicule);
+            $em->persist($vehicule);
+            $em->remove($location);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', 'La Location a été supprimmer');
+
+            return $this->redirectToRoute('dashboard');
+        }else{
+            $session->getFlashBag()->add('error', 'Une erreur est survenue');
+
+            return $this->redirectToRoute('dashboard');
+        }
     }
 }
