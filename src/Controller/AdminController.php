@@ -435,4 +435,31 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('dashboard');
         }
     }
+
+
+    /**
+     *  @Route("/retard-location/{id}", name="retard_location", requirements={"id"="\d+"})
+     */
+
+    public function retardLocationAction(Location $id, Swift_Mailer $mailer)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $location = $em->getRepository(Location::class)->find($id);
+
+        //envoi de l'email de retard de la location au client
+        $user = $em->getRepository(User::class)->find($location->getUser()->getId());
+        $vehicule = $em->getRepository(Vehicule::class)->find($location->getVehicule()->getId());
+        $user_email = $user->getEmail();
+
+        $mail = (new \Swift_Message('Retard Location du vehicule '.$vehicule->getMarque()->getLabel().' '.$vehicule->getModel()))
+            ->setFrom('retard@emove.com')
+            ->setTo($user_email)
+            ->setBody(
+                $this->renderView('user/retard-location-mail.html.twig', ['location' => $location, 'vehicule' => $vehicule ,'user' => $user]),
+                'text/html'
+            );
+
+
+        $mailer->send($mail);
+    }
 }
