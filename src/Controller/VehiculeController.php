@@ -11,6 +11,7 @@ namespace App\Controller;
 use App\Entity\Agence;
 use App\Entity\DispoVehicule;
 use App\Entity\Promo;
+use App\Entity\StatusLocation;
 use App\Entity\TypeVehicule;
 use App\Entity\Vehicule;
 use App\Form\VehiculeForm;
@@ -120,7 +121,7 @@ class VehiculeController extends AbstractController
         $promo_vehicule = $em->getRepository(Promo::class)->currentPromoVehicule();
         return $this->render('default/shop.html.twig', [
             'vehicules' => $vehicules,
-            'promo' => $promo_vehicule
+            'promoVehicules' => $promo_vehicule
         ]);
     }
 
@@ -132,6 +133,7 @@ class VehiculeController extends AbstractController
      */
     public function filterVehicule(Request $request, VehiculeManager $vehiculeManager)
     {
+        $em = $this->getDoctrine()->getManager();
         $agence = "";
         $type = "";
         $km_min = "";
@@ -153,9 +155,11 @@ class VehiculeController extends AbstractController
             $price_max = (int)$request->request->get('form')['Price_Max'];
         if ( isset($request->request->get('form')['couleur']))
             $color = $request->request->get('form')['couleur'];
+        $promo_vehicule = $em->getRepository(Promo::class)->currentPromoVehicule();
         $vehicules = $vehiculeManager->filter($agence, $type, $km_min, $km_max, $price_max, $price_min, $color);
         return $this->render('default/shop.html.twig', [
-            'vehicules' => $vehicules
+            'vehicules' => $vehicules,
+            'promoVehicules' => $promo_vehicule
         ]);
     }
 
@@ -189,8 +193,20 @@ class VehiculeController extends AbstractController
      */
     public function filterColAction()
     {
-        $agence_tab = ['Paris' => 1, 'Lyon' => 2];
-        $vehicule_tab = ['Voiture' => 1, 'Scooter' => 2];
+
+        $em = $this->getDoctrine()->getManager();
+        $agence_tab = [];
+        $vehicule_tab = [];
+        $agences = $em->getRepository(Agence:: class)
+        ->findAll();
+        $vehicules = $em->getRepository(TypeVehicule:: class)
+        ->findAll();
+        foreach ($agences as $agence){
+            $agence_tab[$agence->getLabel()] = $agence->getId();
+        }
+        foreach ($vehicules as $vehicule){
+            $vehicule_tab[$vehicule->getLabel()] = $vehicule->getId();
+        }
         $color_tab = [
             'Blanc' => 'Blanc',
             'Noir' => 'Noir',

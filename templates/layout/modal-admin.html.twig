@@ -160,6 +160,12 @@
                 <div class="input-group mb-3">
                     {{ form_widget(form_vehicule.image) }}
                 </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-bullseye" aria-hidden="true"></i></span>
+                    </div>
+                    {{ form_widget(form_vehicule.fidelity_point) }}
+                </div>
 
             </div>
             <div class="modal-footer">
@@ -178,6 +184,34 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Nouvel Agence</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form_agence) }}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                    </div>
+                    {{ form_widget(form_agence.label) }}
+                </div>
+            </div>
+            <div class="modal-footer">
+                {{ form_widget(form_agence.submit) }}
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            </div>
+            {{ form_end(form_agence) }}
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="new_offer" tabindex="-1" role="dialog" aria-labelledby="ModalOffer" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nouvelles Offres</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

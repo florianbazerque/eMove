@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\DispoVehicule;
 use App\Entity\Vehicule;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -71,10 +72,14 @@ class VehiculeRepository extends ServiceEntityRepository
 
     public function filterAction($agence, $vehicule, $km_min, $km_max, $price_max, $price_min, $color)
     {
-
+        $em = $this->getDoctrine()->getManager();
+        $dispo = $em->getRepository(DispoVehicule:: class)
+            ->findOneBy(
+                ['label' => 'Disponible']
+            );
         $qb = $this->createQueryBuilder('f')
             ->select('f')
-            ->where('f.dispoVehicule = 1');
+            ->where('f.dispoVehicule = '.$dispo->getId().'');
         if (isset($agence) && $agence != '' && $agence != 0) {
             var_dump($agence);
             $req = '';

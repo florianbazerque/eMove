@@ -45,7 +45,8 @@ class VehiculeFixture extends Fixture
             TypeVehiculeFixture::class,
             AgenceFixture::class,
             DispoVehiculeFixture::class,
-            MarqueFixture::class
+            MarqueFixture::class,
+            IM
         );
     }
     public function getOrder() {

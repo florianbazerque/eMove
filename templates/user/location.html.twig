@@ -16,7 +16,7 @@
                         </div>
                         <span class="text-muted">{{ (vehicule.prixachat)|number_format(2, ',', ' ') }} €</span>
                     </li>
-                    {% if user.fidelitypoint > 100 %}
+                    {% if user.fidelitypoint >= 100 %}
                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                             <div class="text-info">
                                 <h6 class="my-0">Vous avez au moins 100 de fidélités !!!</h6>

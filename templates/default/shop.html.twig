@@ -6,7 +6,6 @@
         <!-- /.col-lg-2 -->
         <div class="col-lg-2">
         {{ render(controller('App\\Controller\\VehiculeController::filterColAction')) }}
-
         </div>
         <div class="col-lg-10">
             <div class="feed"></div>
@@ -52,12 +51,13 @@
                             <div class="card-header">
                                 <h4><a href="{{ path('produit_view', {'id': vehicule.id}) }}">{{ vehicule.modele }}</a></h4>
                                 <p>{{ (vehicule.prixachat)|number_format(2, ',', ' ') }} € / jour</p>
+                                <span>{{ vehicule.fidelitypoint }} points de fidélités</span>
                             </div>
                             <div class="card-body">
                                 <p class="card-text">{{ vehicule.description }}</p>
                             </div>
                             <div class="card-footer">
-                                <a href="">Notes et commentaires </a>
+                                <a href="">Notes et commentaires</a>
                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                             </div>
                         </div>
