@@ -38,6 +38,7 @@ class Vehiculetype extends  AbstractType
                 ->add('couleur', TextType::class, ['attr' => ['class' => 'form-control' , 'placeholder' => 'Couleur']])
                 ->add('plaqueImma', TextType::class, ['attr' => ['class' => 'form-control', 'placeholder' => 'N° plaque d\'immatriculation']])
                 ->add('nbKm', IntegerType::class, ['attr' => ['class' => 'form-control' , 'placeholder' => 'Kilométrage']])
+                ->add('fidelity_point', IntegerType::class, ['attr' => ['class' => 'form-control' , 'placeholder' => 'Point de fidélité']])
                 ->add('dateAchat', DateType::class, ['attr'=> ['class' => 'form-control', 'placeholder' => 'DD/MM/YYYY'], 'widget' => 'single_text', 'format' =>  'dd/MM/yyyy'])
                 ->add('prixAchat', IntegerType::class, ['attr' => ['class' => 'form-control' , 'placeholder' => 'Prix d\'achat']])
                 //->add('image', TextType::class, ['attr' => ['class' => 'form-control', 'placeholder' => 'Lien de l\'image']])

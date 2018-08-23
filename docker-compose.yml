@@ -8,15 +8,23 @@ services:
       image: mysql:8.0
       container_name: emove-mysql
       working_dir: /application
-      volumes:
-        - .:/application
       environment:
         - MYSQL_ROOT_PASSWORD=root
-        - MYSQL_DATABASE=eMove
+        - MYSQL_DATABASE=db_emove
         - MYSQL_USER=root
-        - MYSQL_PASSWORD=eMove
+        - MYSQL_PASSWORD=
       ports:
         - "8002:3306"
+
+    phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      links:
+        - mysql
+      environment:
+        PMA_HOST: mysql
+        PMA_PORT: 3306
+      ports:
+        - '8080:80'
 
     webserver:
       image: nginx:alpine

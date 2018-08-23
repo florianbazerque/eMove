@@ -17,6 +17,7 @@ namespace App\Controller;
 use App\Entity\DispoVehicule;
 use App\Entity\Location;
 use App\Entity\Message;
+use App\Entity\Promo;
 use App\Entity\TypeUser;
 use App\Entity\User;
 use App\Entity\Vehicule;

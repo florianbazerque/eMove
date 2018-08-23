@@ -86,6 +86,11 @@ class Vehicule
     private $image;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $fidelitypoint;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Location", mappedBy="vehicule")
      */
     private $locations;
@@ -256,6 +261,23 @@ class Vehicule
 
         return $this;
     }
+
+    /**
+     * @param mixed $fidelitypoint
+     */
+    public function setFidelitypoint($fidelitypoint): void
+    {
+        $this->fidelitypoint = $fidelitypoint;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFidelitypoint()
+    {
+        return $this->fidelitypoint;
+    }
+
 
     /**
      * @return Collection|Location[]

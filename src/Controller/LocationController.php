@@ -73,14 +73,21 @@ class LocationController extends AbstractController
 
                 $user = $em->getRepository(User:: class)
                     ->find($this->getUser());
+                $statut = $em->getRepository(StatusLocation:: class)
+                    ->findOneBy(
+                        ['label' => 'En location']);
+                $statut2 = $em->getRepository(StatusLocation:: class)
+                    ->findOneBy(
+                        ['label' => 'Réservé']);
+
                 $loue = $em->getRepository(Location:: class)
                     ->findOneBy(
-                        ['statusLocation' => 1, 'vehicule' => $id],
+                        ['statusLocation' => $statut->getId(), 'vehicule' => $id],
                         ['vehicule' => 'ASC']
                     );
                 $reserve = $em->getRepository(Location:: class)
                     ->findOneBy(
-                        ['statusLocation' => 2, 'vehicule' => $id],
+                        ['statusLocation' => $statut2->getId(), 'vehicule' => $id],
                         ['vehicule' => 'ASC']
                     );
                 if (!$loue || !$reserve) {
@@ -100,10 +107,21 @@ class LocationController extends AbstractController
                         $prix = $price->getBuild($start->format('Y-m-d H:i'), $end->format('Y-m-d H:i'), $vehicule->getPrixAchat(), $user->getFidelityPoint());
                         $location->setPrice($prix);
                         $dispo = $em->getRepository(DispoVehicule:: class)
-                            ->find(2);
+                            ->findOneBy(
+                                ['label' => 'Indisponible']
+                            );
                         $em = $this->getDoctrine()->getManager();
+                        if ($user->getFidelityPoint() >= 100){
+                            $point = $user->getFidelityPoint() + $vehicule->getFidelitypoint() - 100;
+                            $spend = $user->getSpendPoint() + 100;
+                        }else{
+                            $point = $user->getFidelityPoint() + $vehicule->getFidelitypoint();
+                            $spend = $user->getSpendPoint();
+                        }
+                        $user->setSpendPoint($spend);
+                        $user->setFidelityPoint($point);
                         $vehicule->setDispoVehicule($dispo);
-                        $em->persist($location, $vehicule);
+                        $em->persist($location, $vehicule, $user);
                         $em->flush();
                         $em->refresh($location);
                         return $this->redirectToRoute('facture', [
