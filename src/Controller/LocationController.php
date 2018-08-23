@@ -153,14 +153,14 @@ class LocationController extends AbstractController
 
 
             //envoi de l'email de confirmation au client
-            $user = $em->getRepository(User::class)->find($id);
+            $user = $this->getUser();
             $user_email = $user->getEmail();
 
             $mail = (new \Swift_Message('Message client'))
                 ->setFrom('facture@emove.com')
-                ->setTo($user_email)
+                ->setTo('assy.adon@gmail.com')
                 ->setBody(
-                    $this->renderView('user/location-confirmation-mail.html.twig'),
+                    $this->renderView('user/location-confirmation-mail.html.twig', ['location' => $location, 'vehicule' => $vehicule ,'user' => $user]),
                     'text/html'
                 );
 
