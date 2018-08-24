@@ -52,7 +52,8 @@ class Promo
     private $endDate;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $image;
     /**

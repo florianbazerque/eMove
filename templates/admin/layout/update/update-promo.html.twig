@@ -1,0 +1,67 @@
+{% extends "admin/layout/update/layout.html.twig" %}
+
+{% block body %}
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modifier la location</h5>
+        </div>
+        <div class="modal-body">
+            {{ form_start(form_promo_update) }}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                </div>
+                {{ form_widget(form_promo_update.label) }}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                </div>
+                {{ form_widget(form_promo_update.description) }}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                </div>
+                {{ form_widget(form_promo_update.legal_condition) }}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                </div>
+                {{ form_widget(form_promo_update.vehicule) }}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                </div>
+                {{ form_widget(form_promo_update.marque) }}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                </div>
+                {{ form_widget(form_promo_update.startDate) }}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                </div>
+                {{ form_widget(form_promo_update.endDate) }}
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                </div>
+                {{ form_widget(form_promo_update.value) }}
+            </div>
+            <div class="input-group mb-3">
+                {{ form_widget(form_promo_update.image) }}
+            </div>
+            <div class="input-group mb-3">
+                {{ form_widget(form_promo_update.submit) }}<br><br>
+                <a href="{{ path('dashboard') }}" class="btn btn-danger btn-lg">Retour</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

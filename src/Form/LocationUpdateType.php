@@ -20,6 +20,6 @@ class LocationUpdateType extends AbstractType
     {
         $builder->add('startDate', DateType::class, ['attr'=> ['class' => 'form-control', 'placeholder' => 'Date de début']])
             ->add('endDate', DateType::class, ['attr'=> ['class' => 'form-control', 'placeholder' => 'Date de fin']])
-            ->add('submit', SubmitType::class, ['label' => 'Modifier la livraison', 'attr' => ['class' => 'btn btn-primary btn-block']]);
+            ->add('submit', SubmitType::class, ['label' => 'Modifier la location', 'attr' => ['class' => 'btn btn-primary']]);
     }
 }

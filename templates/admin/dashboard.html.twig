@@ -358,11 +358,12 @@
                     {% for agence in agences %}
                         <tr>
                             <td>{{ agence.label }}</td>
-                            <td><a href="{{ path('update_agence', {'id' : agence.id }) }}"><i
-                                            style="margin-right: 10px;" class="fa fa-pencil"
-                                            aria-hidden="true"></i></a><a
-                                        href="{{ path('delete_agence', {'id' : agence.id }) }}"><i class="fa fa-times"
-                                                                                                   aria-hidden="true"></i></a>
+                            <td><a class="btn btn-primary btn-xs"  href="{{ path('update_agence', {'id' : agence.id }) }}"><span
+                                            class="glyphicon glyphicon-remove"><i class="fa fa-pencil"
+                                            aria-hidden="true"></i></span></a>
+                                <a class="btn btn-danger btn-xs" href="{{ path('delete_agence', {'id' : agence.id }) }}"><span
+                                            class="glyphicon glyphicon-remove"><i class="fa fa-times"
+                                                                                  aria-hidden="true"></i></span></a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -374,19 +375,37 @@
                 <table class="table">
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Intitulé</th>
+                        <th scope="col">Titre</th>
                         <th scope="col limite">Description</th>
-                        <th scope="col">Value</th>
+                        <th scope="col">Vehicule</th>
+                        <th scope="col">Marque</th>
                         <th scope="col">Début</th>
                         <th scope="col">Fin</th>
+                        <th scope="col">Valeur promo</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
+                    {% for promo in promos %}
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
+                        <th scope="row">{{ promo.label }}</th>
+                        <td>{{ promo.description }}</td>
+                        <td>{{ promo.vehicule.marque.label }} {{ promo.vehicule.modele }}</td>
+                        <td>{{ promo.marque.label }}</td>
+                        <td>{{ promo.startDate|date('d/m/Y') }}</td>
+                        <td>{{ promo.endDate|date('d/m/Y')  }}</td>
+                        <td>{{ promo.value }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-xs"  href="{{ path('update_promo', {'id' : promo.id }) }}"><span
+                                        class="glyphicon glyphicon-remove"><i class="fa fa-pencil"
+                                                                              aria-hidden="true"></i></span></a>
+                            <a class="btn btn-danger btn-xs" href="{{ path('delete_promo', {'id' : promo.id }) }}"><span
+                                        class="glyphicon glyphicon-remove"><i class="fa fa-times"
+                                                                              aria-hidden="true"></i></span></a>
+
+                        </td>
                     </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>

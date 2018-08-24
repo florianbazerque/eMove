@@ -217,19 +217,64 @@
                 </button>
             </div>
             <div class="modal-body">
-                {{ form_start(form_agence) }}
+                {{ form_start(form_promo) }}
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
                     </div>
-                    {{ form_widget(form_agence.label) }}
+                    {{ form_widget(form_promo.label) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                    </div>
+                    {{ form_widget(form_promo.description) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                    </div>
+                    {{ form_widget(form_promo.legal_condition) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                    </div>
+                    {{ form_widget(form_promo.vehicule) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                    </div>
+                    {{ form_widget(form_promo.marque) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                    </div>
+                    {{ form_widget(form_promo.startDate) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                    </div>
+                    {{ form_widget(form_promo.endDate) }}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-fw fa-map"></i></span>
+                    </div>
+                    {{ form_widget(form_promo.value) }}
+                </div>
+                <div class="input-group mb-3">
+                    {{ form_widget(form_promo.image) }}
                 </div>
             </div>
             <div class="modal-footer">
-                {{ form_widget(form_agence.submit) }}
+                {{ form_widget(form_promo.submit) }}
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
             </div>
-            {{ form_end(form_agence) }}
+            {{ form_end(form_promo) }}
         </div>
     </div>
 </div>

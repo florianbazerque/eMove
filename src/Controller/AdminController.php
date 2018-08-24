@@ -14,6 +14,7 @@
 
 namespace App\Controller;
 
+use App\Form\PromoType;
 use App\Entity\DispoVehicule;
 use App\Entity\Location;
 use App\Entity\Message;
@@ -58,6 +59,7 @@ class AdminController extends AbstractController
         $agences = $em->getRepository(Agence::class)->findAll();
         $messages = $em->getRepository(Message::class)->findAll();
         $locations = $em->getRepository(Location::class)->findAll();
+        $promos = $em->getRepository(Promo::class)->findAll();
 
         //------ Formulaire (user, vehicule, agence)
         $user = new User();
@@ -70,7 +72,10 @@ class AdminController extends AbstractController
         $agence = new Agence();
         $form_agence = $this->createForm(AgenceType::class, $agence, ['action' => $this->generateUrl('add_agence'), 'method' => 'POST']);
 
-        return $this->render('admin/dashboard.html.twig', ['users' => $users, 'vehicules' => $vehicules, 'agences' => $agences, 'messages' => $messages, 'locations' => $locations, 'form_user' => $form_user->createView(), 'form_vehicule' => $form_vehicule->createView(), 'form_agence' => $form_agence->createView()]);
+        $promo = new Promo();
+        $form_promo = $this->createForm(PromoType::class, $promo, ['action' => $this->generateUrl('add_promo'), 'method' => 'POST']);
+
+        return $this->render('admin/dashboard.html.twig', ['users' => $users, 'vehicules' => $vehicules, 'agences' => $agences, 'messages' => $messages, 'locations' => $locations, 'promos' => $promos, 'form_user' => $form_user->createView(), 'form_vehicule' => $form_vehicule->createView(), 'form_agence' => $form_agence->createView(), 'form_promo' => $form_promo->createView()]);
     }
 
     //***************  PARTIE UTILISATEUR
@@ -437,12 +442,96 @@ class AdminController extends AbstractController
         }
     }
 
+    /**
+     *  @Route("/dashboard/add-promo", name="add_promo")
+     */
+
+    public function addPromoAction(Request $request, Session $session)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $promo = new Promo();
+        $form = $this->createForm(PromoType::class, $promo);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            if($promo){
+                $em->persist($promo);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', 'La promotion a été ajouter');
+
+                return $this->redirectToRoute('dashboard');
+            }else{
+                $session->getFlashBag()->add('error', 'La promotion n\'a  pas pu être ajouter');
+
+                return $this->redirectToRoute('dashboard');
+            }
+        }
+    }
+
+    /**
+     *  @Route("/dashboard/update-promo/{id}", name="update_promo", requirements={"id"="\d+"})
+     */
+
+    public function updatePromoAction(Promo $id, Request $request, Session $session)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $promo = $em->getRepository(Promo::class)->find($id);
+
+        $form_promo_update = $this->createForm(PromoType::class, $promo, ['method' => 'post']);
+
+        $form_promo_update->handleRequest($request);
+
+        if($form_promo_update->isSubmitted() && $form_promo_update->isValid()){
+            if($promo){
+                $em->persist($promo);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', 'La promo a été modifier');
+
+                return $this->redirectToRoute('dashboard');
+            } else {
+                $session->getFlashBag()->add('error', 'La promo n\'a pas pu être modifier');
+
+                return $this->redirectToRoute('dashboard');
+            }
+
+        }
+        return $this->render('admin/layout/update/update-promo.html.twig', ['form_promo_update' => $form_promo_update->createView()]);
+    }
+
+    /**
+     * @Route("/dashboard/delete-promo/{id}", name="delete_promo", requirements={"id"="\d+"})
+     */
+
+    public function deletePromoAction(Promo $id, Session $session)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $promo = $em->getRepository(Promo::class)->find($id);
+
+        if($promo){
+            $em->remove($promo);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', 'La promo a été supprimmer');
+
+            return $this->redirectToRoute('dashboard');
+        }else{
+            $session->getFlashBag()->add('error', 'Une erreur est survenue');
+
+            return $this->redirectToRoute('dashboard');
+        }
+    }
 
     /**
      *  @Route("/retard-location/{id}", name="retard_location", requirements={"id"="\d+"})
      */
 
-    public function retardLocationAction(Location $id, Swift_Mailer $mailer)
+    public function retardLocationAction(Location $id, \Swift_Mailer $mailer)
     {
         $em = $this->getDoctrine()->getManager();
         $location = $em->getRepository(Location::class)->find($id);
@@ -462,5 +551,9 @@ class AdminController extends AbstractController
 
 
         $mailer->send($mail);
+
+        return;
     }
+
+
 }
