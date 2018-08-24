@@ -21,7 +21,7 @@
                             <div class="carousel-item">
                                 <a href="{{ path('produit_view', {'id': promo.vehicule.id}) }}">
                                     <h3>{{ promo.label }}</h3>
-                                    <img class="d-block img-fluid" src="{{ asset(promo.image) }}" alt="">
+                                    <img class="d-block img-fluid" src="{{ asset('img/vehicule/'~promo.image.path) }}" alt="">
                                     <p>{{ promo.description }}</p>
                                 </a>
                             </div>
@@ -49,7 +49,7 @@
                         <div class="card h-100">
                             <a href="{{ path('produit_view', {'id': vehicule.id}) }}"><img class="card-img-top" src="img/vehicule/{{ asset(vehicule.image.path)  }}" alt="{{ vehicule.image.alt }}"></a>
                             <div class="card-header">
-                                <h4><a href="{{ path('produit_view', {'id': vehicule.id}) }}">{{ vehicule.modele }}</a></h4>
+                                <h4><a href="{{ path('produit_view', {'id': vehicule.id}) }}">{{ vehicule.modele }} </a></h4>
                                 <p>{{ (vehicule.prixachat)|number_format(2, ',', ' ') }} € / jour</p>
                                 <span>{{ vehicule.fidelitypoint }} points de fidélités</span>
                             </div>

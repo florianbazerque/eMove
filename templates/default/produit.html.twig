@@ -118,7 +118,7 @@
         {% for option in options %}
             <div class="col-sm-4 my-4">
                 <div class="card">
-                    <img class="card-img-top" src="{{  asset(option.image) }}" alt="">
+                    <img class="card-img-top" src="{{  asset('img/vehicule/'~option.image.path) }}" alt="">
                     <div class="card-body">
                         <h4 class="card-title">{{ option.modele }}</h4>
                         <p class="card-text">{{ option.description }}</p>

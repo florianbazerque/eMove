@@ -486,6 +486,7 @@ class AdminController extends AbstractController
         $form_promo_update->handleRequest($request);
 
         if($form_promo_update->isSubmitted() && $form_promo_update->isValid()){
+            var_dump('test');die;
             if($promo){
                 $em->persist($promo);
                 $em->flush();
